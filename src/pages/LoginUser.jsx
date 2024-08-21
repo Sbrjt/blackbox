@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, setDoc, doc, firestore, onAuthStateChanged, signOut } from '../fb'
 
-function UserDashboard() {
+function LoginUser() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false)
 
 	async function login(e) {
@@ -15,17 +15,7 @@ function UserDashboard() {
 			usr = await signInWithEmailAndPassword(auth, email.value, pwd.value)
 			console.log('sign in: ', usr.user.email)
 		} catch (err) {
-			// If new user, sign up and create new record in firestore
-			usr = await createUserWithEmailAndPassword(auth, email.value, pwd.value)
-			console.log(usr.user)
-
-			await setDoc(doc(firestore, 'users', usr.user.uid), {
-				name: usr.user.email,
-				email: usr.user.email,
-				role: 'user'
-			})
-
-			console.log('create user: ', usr.user.email)
+			alert("Bad Credintioals")
 		}
 	}
 
@@ -34,19 +24,23 @@ function UserDashboard() {
 			setIsLoggedIn(true)
 		} else {
 			setIsLoggedIn(false)
+			// console.log("user logged out")
 		}
 	})
 
 	return (
 		<>
 			{!isLoggedIn && (
-				<form onSubmit={login}>
+				<><form onSubmit={login}>
 					<input id='email' placeholder='email' required />
+					<br></br>
 					<input id='pwd' placeholder='password' required />
-					<button>Log/Sign in</button>
-				</form>
+					<br></br>
+					<button>LoginUser</button>
+				</form><a href='/HospitalRegister'>New Here?... Register</a></>
 			)}
 			{isLoggedIn && (
+
 				<button
 					onClick={() => {
 						signOut(auth)
@@ -59,4 +53,4 @@ function UserDashboard() {
 	)
 }
 
-export default UserDashboard
+export default LoginUser

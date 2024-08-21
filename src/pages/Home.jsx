@@ -2,10 +2,19 @@ function Home() {
 	return (
 		<>
 			<a className='btn btn-primary' href='/userLogin'>
-				User Login gfdfhfhjdi
+				User Login
 			</a>
-			<a className='btn btn-primary' href='/'>
+			<br></br>
+			<a className='btn btn-primary' href='/userRegister'>
+				User Register
+			</a>
+			<br></br>
+			<a className='btn btn-primary' href='/hospitalLogin'>
 				Hospital Login
+			</a>
+			<br></br>
+			<a className='btn btn-primary' href='/hospitalRegister'>
+				Hospital Register
 			</a>
 		</>
 	)
