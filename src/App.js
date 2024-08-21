@@ -1,16 +1,16 @@
-import { f } from './fb'
-
-const res = await f()
-console.log(res.data)
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import Home from './pages/Home'
+import UserDashboard from './pages/UserDashboard'
 
 function App() {
 	return (
-		<div className='p-5'>
-			<div className='display-1 p-5'>Hello World!</div>
-			<p className='lead'>Firebase</p>
-			<p className='lead'>React</p>
-			<p className='lead'>Bootstrap</p>
-		</div>
+		<Router>
+			<Routes>
+				<Route path='/' element={<Home />} />
+				<Route path='/user' element={<UserDashboard />} />
+				<Route path='*' element={<Home />} />
+			</Routes>
+		</Router>
 	)
 }
 
