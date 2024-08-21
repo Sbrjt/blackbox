@@ -1,6 +1,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js'
-import { collection, getFirestore, getDocs, setDoc, onSnapshot, doc } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js'
-import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-functions.js'
+import { collection, getFirestore, getDocs, getDoc, setDoc, onSnapshot, doc } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js'
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-storage.js'
+// import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-functions.js'
 import {
 	getAuth,
 	createUserWithEmailAndPassword,
@@ -19,13 +20,11 @@ const app = initializeApp({
 })
 
 const auth = getAuth(app)
-
+const storage = getStorage(app)
 const firestore = getFirestore(app)
-const functions = getFunctions(app)
-const f = httpsCallable(functions, 'f')
+// const functions = getFunctions(app)
 
 export {
-	f,
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
 	auth,
@@ -33,7 +32,12 @@ export {
 	signOut,
 	firestore,
 	getDocs,
+	getDoc,
 	setDoc,
 	doc,
-	collection
+	collection,
+	storage,
+	ref,
+	uploadBytes,
+	getDownloadURL
 }

@@ -2,7 +2,7 @@ function Home() {
 	return (
 		<>
 			<a className='btn btn-primary' href='/userLogin'>
-				User Login gfdfhfhjdi
+				User Login
 			</a>
 			<a className='btn btn-primary' href='/'>
 				Hospital Login

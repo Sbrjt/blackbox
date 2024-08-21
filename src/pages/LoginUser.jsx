@@ -8,24 +8,11 @@ function UserDashboard() {
 		e.preventDefault()
 		const { email, pwd } = e.target.elements
 
-		let usr
-
 		try {
-			// Sign in user
-			usr = await signInWithEmailAndPassword(auth, email.value, pwd.value)
-			console.log('sign in: ', usr.user.email)
+			const usr = await signInWithEmailAndPassword(auth, email.value, pwd.value)
+			window.location.href = '/user'
 		} catch (err) {
-			// If new user, sign up and create new record in firestore
-			usr = await createUserWithEmailAndPassword(auth, email.value, pwd.value)
-			console.log(usr.user)
-
-			await setDoc(doc(firestore, 'users', usr.user.uid), {
-				name: usr.user.email,
-				email: usr.user.email,
-				role: 'user'
-			})
-
-			console.log('create user: ', usr.user.email)
+			console.log(err)
 		}
 	}
 
