@@ -8,14 +8,12 @@ function LoginUser() {
 		e.preventDefault()
 		const { email, pwd } = e.target.elements
 
-		let usr
-
 		try {
-			// Sign in user
-			usr = await signInWithEmailAndPassword(auth, email.value, pwd.value)
-			console.log('sign in: ', usr.user.email)
+			const usr = await signInWithEmailAndPassword(auth, email.value, pwd.value)
+			window.location.href = '/user'
 		} catch (err) {
 			alert("Bad Credintioals")
+      console.log(err)
 		}
 	}
 
