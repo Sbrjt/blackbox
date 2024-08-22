@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import { auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, setDoc, doc, firestore, onAuthStateChanged, signOut } from '../fb'
-import { useNavigate } from 'react-router-dom'
 
-function UserDashboard() {
+function LoginUser() {
 	const navigate = useNavigate()
 	const [isLoggedIn, setIsLoggedIn] = useState(false)
 
@@ -12,7 +11,6 @@ function UserDashboard() {
 
 		try {
 			const usr = await signInWithEmailAndPassword(auth, email.value, pwd.value)
-			navigate('/user')
 		} catch (err) {
 			console.log(err)
 		}
@@ -31,8 +29,10 @@ function UserDashboard() {
 			{!isLoggedIn && (
 				<form onSubmit={login}>
 					<input id='email' placeholder='email' required />
+					<br></br>
 					<input id='pwd' placeholder='password' required />
-					<button>Log/Sign in</button>
+					<br></br>
+					<button>LoginUser</button>
 				</form>
 			)}
 			{isLoggedIn && (
@@ -48,4 +48,4 @@ function UserDashboard() {
 	)
 }
 
-export default UserDashboard
+export default LoginUser
