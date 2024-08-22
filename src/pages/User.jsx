@@ -1,29 +1,19 @@
 import { useEffect, useState } from 'react'
-import {
-	auth,
-	signInWithEmailAndPassword,
-	createUserWithEmailAndPassword,
-	setDoc,
-	doc,
-	firestore,
-	onAuthStateChanged,
-	signOut,
-	getDoc,
-	storage,
-	uploadBytes,
-	ref,
-	getDownloadURL
-} from '../fb'
+import { auth, doc, firestore, onAuthStateChanged, getDoc, storage, uploadBytes, ref, getDownloadURL, arrayUnion, updateDoc } from '../fb'
 
 function User() {
+	const [id, setId] = useState()
 	const [data, setData] = useState('')
 	const [img, setImg] = useState()
+
+	let docRef
 
 	useEffect(() => {
 		onAuthStateChanged(auth, async (usr) => {
 			if (usr) {
-				const docref = await getDoc(doc(firestore, 'users', usr.uid))
-				setData(JSON.stringify(docref.data()))
+				setId(usr.uid)
+				const snap = await getDoc(doc(firestore, 'users', usr.uid))
+				setData(JSON.stringify(snap.data()))
 			} else {
 				window.location.href = '/userLogin'
 			}
@@ -34,7 +24,10 @@ function User() {
 		try {
 			const imgref = ref(storage, img.name)
 			await uploadBytes(imgref, img)
-			console.log('uploaded: ', await getDownloadURL(imgref))
+			const url = await getDownloadURL(imgref)
+			await updateDoc(doc(firestore, 'users', id), {
+				files: arrayUnion(url)
+			})
 		} catch (err) {
 			console.log(err)
 		}

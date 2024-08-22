@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, setDoc, doc, firestore, onAuthStateChanged, signOut } from '../fb'
+import { useNavigate } from 'react-router-dom'
 
 function UserDashboard() {
+	const navigate = useNavigate()
 	const [isLoggedIn, setIsLoggedIn] = useState(false)
 
 	async function login(e) {
@@ -10,7 +12,7 @@ function UserDashboard() {
 
 		try {
 			const usr = await signInWithEmailAndPassword(auth, email.value, pwd.value)
-			window.location.href = '/user'
+			navigate('/user')
 		} catch (err) {
 			console.log(err)
 		}
