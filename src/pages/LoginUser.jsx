@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, setDoc, doc, firestore, onAuthStateChanged, signOut } from '../fb'
 
 function LoginUser() {
-	const navigate = useNavigate()
 	const [isLoggedIn, setIsLoggedIn] = useState(false)
 
 	async function login(e) {
@@ -11,6 +10,7 @@ function LoginUser() {
 
 		try {
 			const usr = await signInWithEmailAndPassword(auth, email.value, pwd.value)
+			window.location.href = '/user'
 		} catch (err) {
 			console.log(err)
 		}
