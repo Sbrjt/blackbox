@@ -18,6 +18,8 @@ function RegisterUser() {
 				bloodGroup: '',
 				gender: ''
 			})
+
+			window.location.href = '/user'
 		} catch (err) {
 			console.log(err)
 		}

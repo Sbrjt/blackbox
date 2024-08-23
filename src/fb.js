@@ -4,11 +4,13 @@ import {
 	getFirestore,
 	getDocs,
 	getDoc,
+	addDoc,
 	setDoc,
 	onSnapshot,
 	doc,
 	arrayUnion,
-	updateDoc
+	updateDoc,
+	serverTimestamp
 } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js'
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-storage.js'
 // import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-functions.js'
@@ -43,11 +45,13 @@ export {
 	firestore,
 	getDocs,
 	getDoc,
+	addDoc,
 	setDoc,
 	doc,
 	collection,
 	arrayUnion,
 	updateDoc,
+	serverTimestamp,
 	storage,
 	ref,
 	uploadBytes,
