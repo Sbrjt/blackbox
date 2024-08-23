@@ -117,12 +117,11 @@ function User() {
 			<div>
 				Reports:
 				<br />
-				{reports ? reports.map((i) => <img key={i.id} src={i.url} height='50' />) : 'Loading...'}
-			</div>{' '}
+				{reports ? reports.map((i) => <img key={i.id} src={i.url} height='50' alt={i.id} />) : 'Loading...'}
+			</div>
 			<div>
 				<input
 					className='form-control form-control-lg'
-					id='formFileLg'
 					type='file'
 					onChange={(e) => {
 						setNewUpload(e.target.files[0])
