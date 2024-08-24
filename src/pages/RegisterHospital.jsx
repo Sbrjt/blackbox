@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, setDoc, doc, firestore, onAuthStateChanged, signOut } from '../fb'
 
-function LoginUser() {
+function RegisterHospital() {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
 
     async function register(e) {
@@ -87,3 +87,5 @@ function LoginUser() {
         </>
     )
 }
+
+export default RegisterHospital
