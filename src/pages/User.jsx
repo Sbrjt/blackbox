@@ -134,7 +134,7 @@ function User() {
 				<h2>Reports:</h2>
 				{reports
 					? reports.map((i) => (
-							<a href={i.url} target='_blank' key={i.id}>
+							<a href={i.url} target='_blank' rel='noreferrer' key={i.id}>
 								<img src={i.url} height='50' alt={i.id} />
 								<div>
 									<small>{i.file}</small>
