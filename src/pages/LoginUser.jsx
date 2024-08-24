@@ -12,8 +12,7 @@ function LoginUser() {
 			const usr = await signInWithEmailAndPassword(auth, email.value, pwd.value)
 			window.location.href = '/user'
 		} catch (err) {
-			alert("Bad Credintioals")
-      console.log(err)
+			console.log(err)
 		}
 	}
 
@@ -22,23 +21,21 @@ function LoginUser() {
 			setIsLoggedIn(true)
 		} else {
 			setIsLoggedIn(false)
-			// console.log("user logged out")
 		}
 	})
 
 	return (
 		<>
 			{!isLoggedIn && (
-				<><form onSubmit={login}>
+				<form onSubmit={login}>
 					<input id='email' placeholder='email' required />
 					<br></br>
 					<input id='pwd' placeholder='password' required />
 					<br></br>
 					<button>LoginUser</button>
-				</form><a href='/HospitalRegister'>New Here?... Register</a></>
+				</form>
 			)}
 			{isLoggedIn && (
-
 				<button
 					onClick={() => {
 						signOut(auth)

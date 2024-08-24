@@ -1,5 +1,17 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js'
-import { collection, getFirestore, getDocs, getDoc, setDoc, onSnapshot, doc } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js'
+import {
+	collection,
+	getFirestore,
+	getDocs,
+	getDoc,
+	addDoc,
+	setDoc,
+	onSnapshot,
+	doc,
+	arrayUnion,
+	updateDoc,
+	serverTimestamp
+} from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js'
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-storage.js'
 // import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-functions.js'
 import {
@@ -33,9 +45,13 @@ export {
 	firestore,
 	getDocs,
 	getDoc,
+	addDoc,
 	setDoc,
 	doc,
 	collection,
+	arrayUnion,
+	updateDoc,
+	serverTimestamp,
 	storage,
 	ref,
 	uploadBytes,

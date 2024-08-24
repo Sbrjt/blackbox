@@ -1,12 +1,5 @@
 {
   "projects": {
     "default": "sih-a7673"
-  },
-  "targets": {},
-  "etags": {
-    "sih-a7673": {
-      "extensionInstances": {}
-    }
-  },
-  "dataconnectEmulatorConfig": {}
+  }
 }

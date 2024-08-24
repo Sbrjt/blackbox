@@ -1,7 +1,7 @@
 function Home() {
 	return (
 		<>
-			<a className='btn btn-primary' href='/userLogin'>
+			<a className='btn btn-primary' href='userLogin'>
 				User Login
 			</a>
 			<br></br>
