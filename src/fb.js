@@ -10,7 +10,9 @@ import {
 	doc,
 	arrayUnion,
 	updateDoc,
-	serverTimestamp
+	serverTimestamp,
+	query,
+	orderBy
 } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js'
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-storage.js'
 // import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-functions.js'
@@ -52,6 +54,9 @@ export {
 	arrayUnion,
 	updateDoc,
 	serverTimestamp,
+	onSnapshot,
+	query,
+	orderBy,
 	storage,
 	ref,
 	uploadBytes,

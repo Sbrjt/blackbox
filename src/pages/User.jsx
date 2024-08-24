@@ -15,7 +15,10 @@ import {
 	serverTimestamp,
 	addDoc,
 	collection,
-	getDocs
+	getDocs,
+	onSnapshot,
+	query,
+	orderBy
 } from '../fb'
 import { renderToPipeableStream } from 'react-dom/server'
 
@@ -30,35 +33,45 @@ function User() {
 		onAuthStateChanged(auth, async (usr) => {
 			if (usr) {
 				setId(usr.uid)
-				const snap = await getDoc(doc(firestore, 'users', usr.uid))
-				setData(snap.data())
-				const x = await getDocs(collection(firestore, 'users', usr.uid, 'reports'))
-				setReports(
-					x.docs.map((doc) => ({
-						...doc.data(),
-						id: doc.id
-					}))
-				)
+
+				// user data
+				onSnapshot(doc(firestore, 'users', usr.uid), (snap) => {
+					setData(snap.data())
+				})
+
+				// user reports
+				onSnapshot(query(collection(firestore, 'users', usr.uid, 'reports'), orderBy('time')), (snap) => {
+					setReports(
+						snap.docs.map((doc) => ({
+							...doc.data(),
+							id: doc.id
+						}))
+					)
+				})
 			} else {
 				window.location.href = '/userLogin'
 			}
 		})
 	}, [])
 
-	async function upload() {
-		console.log('uploading')
-
+	async function upload(e) {
+		e.preventDefault()
 		try {
-			const imgref = ref(storage, newUpload.name)
+			const filename = e.target.elements.filename.value
+
+			const imgref = ref(storage, filename)
+
 			// upload img to fb storage
 			await uploadBytes(imgref, newUpload)
 
 			// also keep track in firestore
 			await addDoc(collection(firestore, 'users', id, 'reports'), {
-				file: newUpload.name,
+				file: filename,
 				url: await getDownloadURL(imgref),
-				time: serverTimestamp()
+				time: new Date()
 			})
+
+			setNewUpload(null)
 		} catch (err) {
 			console.log(err)
 		}
@@ -83,9 +96,10 @@ function User() {
 	}
 
 	return (
-		<>
-			Dashboard
+		<div className='m-5'>
+			<h1>Dashboard</h1>
 			<br />
+			{/* data */}
 			{data ? (
 				<form onSubmit={edit}>
 					<div>Name: {editMode ? <input id='name' defaultValue={data.name} /> : <span>{data.name}</span>}</div>
@@ -114,22 +128,45 @@ function User() {
 			) : (
 				<p>Loading...</p>
 			)}
+			<br />
+			{/* reports */}
 			<div>
-				Reports:
-				<br />
-				{reports ? reports.map((i) => <img key={i.id} src={i.url} height='50' alt={i.id} />) : 'Loading...'}
+				<h2>Reports:</h2>
+				{reports
+					? reports.map((i) => (
+							<a href={i.url} target='_blank' key={i.id}>
+								<img src={i.url} height='50' alt={i.id} />
+								<div>
+									<small>{i.file}</small>
+									<br />
+									<small>{i.time.toDate().toISOString().split('T')[0]}</small>
+								</div>
+								<br />
+							</a>
+					  ))
+					: 'Loading...'}
 			</div>
-			<div>
-				<input
-					className='form-control form-control-lg'
-					type='file'
-					onChange={(e) => {
-						setNewUpload(e.target.files[0])
-					}}
-				/>
-				<button onClick={upload}>Upload report</button>
-			</div>
-		</>
+			<br />
+			<p>Upload report: </p>
+			<form onSubmit={upload}>
+				{
+					<input
+						type='file'
+						accept='image/*,.pdf'
+						onChange={(e) => {
+							setNewUpload(e.target.files[0])
+						}}
+					/>
+				}
+
+				{newUpload && (
+					<div className='input-group'>
+						<input id='filename' className='form-control' defaultValue={newUpload ? newUpload.name : ''} />
+						<button className='btn btn-primary'>Upload</button>
+					</div>
+				)}
+			</form>
+		</div>
 	)
 }
 
