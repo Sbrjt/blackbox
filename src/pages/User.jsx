@@ -20,7 +20,6 @@ import {
 	query,
 	orderBy
 } from '../fb'
-import { renderToPipeableStream } from 'react-dom/server'
 
 function User() {
 	const [id, setId] = useState()
@@ -102,11 +101,11 @@ function User() {
 			{/* data */}
 			{data ? (
 				<form onSubmit={edit}>
-					<div>Name: {editMode ? <input id='name' defaultValue={data.name} /> : <span>{data.name}</span>}</div>
-					<div>Email: {editMode ? <input id='email' defaultValue={data.email} /> : <span>{data.email}</span>}</div>
-					<div>DOB: {editMode ? <input id='dob' defaultValue={data.dob} /> : <span>{data.dob}</span>}</div>
-					<div>Gender: {editMode ? <input id='gender' defaultValue={data.gender} /> : <span>{data.gender}</span>}</div>
-					<div>Blood Group: {editMode ? <input id='bloodGroup' defaultValue={data.bloodGroup} /> : <span>{data.bloodGroup}</span>}</div>
+					<div>Name: {editMode ? <input name='name' defaultValue={data.name} /> : <span>{data.name}</span>}</div>
+					<div>Email: {editMode ? <input name='email' defaultValue={data.email} /> : <span>{data.email}</span>}</div>
+					<div>DOB: {editMode ? <input name='dob' defaultValue={data.dob} /> : <span>{data.dob}</span>}</div>
+					<div>Gender: {editMode ? <input name='gender' defaultValue={data.gender} /> : <span>{data.gender}</span>}</div>
+					<div>Blood Group: {editMode ? <input name='bloodGroup' defaultValue={data.bloodGroup} /> : <span>{data.bloodGroup}</span>}</div>
 					{editMode && <button>Submit</button>}
 					{editMode && (
 						<button type='button' onClick={() => setEditMode(false)}>
@@ -134,15 +133,17 @@ function User() {
 				<h2>Reports:</h2>
 				{reports
 					? reports.map((i) => (
-							<a href={i.url} target='_blank' rel='noreferrer' key={i.id}>
-								<img src={i.url} height='50' alt={i.id} />
+							<div key={i.id}>
+								<a href={i.url} target='_blank' rel='noreferrer'>
+									<img src={i.url} height='50' alt={i.id} />
+								</a>
 								<div>
 									<small>{i.file}</small>
 									<br />
 									<small>{i.time.toDate().toISOString().split('T')[0]}</small>
 								</div>
 								<br />
-							</a>
+							</div>
 					  ))
 					: 'Loading...'}
 			</div>

@@ -13,10 +13,7 @@ function RegisterUser() {
 
 			await setDoc(doc(firestore, 'users', usr.user.uid), {
 				name: name.value,
-				email: usr.user.email,
-				dob: '',
-				bloodGroup: '',
-				gender: ''
+				email: usr.user.email
 			})
 
 			window.location.href = '/user'

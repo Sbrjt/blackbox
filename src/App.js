@@ -6,6 +6,7 @@ import RegisterUser from './pages/RegisterUser'
 import LoginHospital from './pages/LoginHospital'
 import RegisterHospital from './pages/RegisterHospital'
 import User from './pages/User'
+import Prescription from './pages/Prescription'
 
 function App() {
 	return (
@@ -17,6 +18,7 @@ function App() {
 				<Route path='/hospitalLogin' element={<LoginHospital />} />
 				<Route path='/hospitalRegister' element={<RegisterHospital />} />
 				<Route path='/user' element={<User />} />
+				<Route path='/pres' element={<Prescription />} />
 				<Route path='*' element={<Home />} />
 			</Routes>
 		</Router>
