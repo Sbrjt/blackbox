@@ -1,23 +1,21 @@
 import { useEffect, useState } from 'react'
-import { doc, firestore, getDoc } from '../fb'
+import { doc, firestore, getDoc, storage, uploadBytes, ref, getDownloadURL, addDoc, collection } from '../fb'
 import CreatableSelect from 'react-select/creatable'
-
-// const drugList = Array.from(
-// 	new Set((await (await fetch('https://api.fda.gov/drug/label.json?count=openfda.brand_name.exact&limit=38647')).json()).results.map((i) => i.term))
-// )
+import { pdf } from '@react-pdf/renderer'
+import Pdf from './Pdf'
 
 function Prescription() {
-	const [patientData, setPatientData] = useState()
+	const [patient, setPatient] = useState()
 	const [drugList, setDrugList] = useState()
 	const [addPills, setAddPills] = useState(false)
 	const [pills, setPills] = useState([])
 
 	useEffect(() => {
 		;(async () => {
-			const response = await fetch('https://api.fda.gov/drug/label.json?count=openfda.brand_name.exact&limit=38647')
-			const data = await response.json()
-			const uniqueDrugNames = Array.from(new Set(data.results.map((i) => i.term)))
-			setDrugList(uniqueDrugNames)
+			const res = await fetch('https://api.fda.gov/drug/label.json?count=openfda.brand_name.exact&limit=38647')
+			const json = await res.json()
+			const drugs = Array.from(new Set(json.results.map((i) => i.term)))
+			setDrugList(drugs)
 		})()
 	}, [])
 
@@ -27,7 +25,7 @@ function Prescription() {
 
 		try {
 			const snap = await getDoc(doc(firestore, 'users', id.value))
-			setPatientData(snap.data())
+			setPatient({ ...snap.data(), id: id.value })
 		} catch (err) {
 			alert('Patient not found!')
 			console.log(err)
@@ -47,6 +45,23 @@ function Prescription() {
 		}
 
 		setPills((prev) => [...prev, newpill])
+		setAddPills(false)
+	}
+
+	async function writePrescription() {
+		const blob = await pdf(<Pdf pills={pills} patient={patient} />).toBlob()
+		const url = URL.createObjectURL(blob)
+		window.open(url)
+
+		const fileRef = ref(storage, 'filename')
+		await uploadBytes(fileRef, blob)
+
+		await addDoc(collection(firestore, 'users', patient.id, 'prescriptions'), {
+			pills,
+			time: new Date(),
+			url: await getDownloadURL(fileRef),
+			doctor: 'xyz'
+		})
 	}
 
 	return (
@@ -56,13 +71,13 @@ function Prescription() {
 				<button>Go</button>
 			</form>
 
-			{patientData && (
+			{patient && (
 				<div>
-					<div>Name: {patientData.name}</div>
-					<div>Email: {patientData.email}</div>
-					<div>DOB: {patientData.dob}</div>
-					<div>Gender: {patientData.gender}</div>
-					<div>Blood Group: {patientData.bloodGroup}</div>
+					<div>Name: {patient.name}</div>
+					<div>Email: {patient.email}</div>
+					<div>DOB: {patient.dob}</div>
+					<div>Gender: {patient.gender}</div>
+					<div>Blood Group: {patient.bloodGroup}</div>
 				</div>
 			)}
 			<br />
@@ -82,6 +97,7 @@ function Prescription() {
 			<br />
 
 			{!addPills && <button onClick={() => setAddPills(true)}>Add pill</button>}
+
 			{addPills && (
 				<form onSubmit={addPill}>
 					<button className='btn btn-primary'>
@@ -144,7 +160,7 @@ function Prescription() {
 								isMulti
 								placeholder={'When/How'}
 								options={[
-									{ value: 'Daily', label: 'Daily' },
+									{ value: 'Anytime', label: 'Anytime' },
 									{ value: 'Before meal', label: 'Before meal' },
 									{ value: 'After meal', label: 'After meal' },
 									{ value: 'Before breakfast', label: 'Before breakfast' },
@@ -160,6 +176,8 @@ function Prescription() {
 					</div>
 				</form>
 			)}
+			<br />
+			<button onClick={writePrescription}>OK</button>
 		</div>
 	)
 }

@@ -58,9 +58,8 @@ function User() {
 		try {
 			const filename = e.target.elements.filename.value
 
-			const imgref = ref(storage, filename)
-
 			// upload img to fb storage
+			const imgref = ref(storage, filename)
 			await uploadBytes(imgref, newUpload)
 
 			// also keep track in firestore
