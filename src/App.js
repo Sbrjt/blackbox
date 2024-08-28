@@ -3,7 +3,7 @@ import Home from './pages/Home'
 import LoginUser from './pages/LoginUser'
 import LoginHospital from './pages/LoginHospital'
 import RegisterHospital from './pages/RegisterHospital'
-import User from './pages/User'
+import User from './pages/UserHome'
 import Prescription from './pages/Prescription'
 import Pdf from './pages/Pdf'
 
