@@ -18,13 +18,13 @@ function User() {
 					<div className="collapse navbar-collapse" id="navbarNav">
 						<ul className="navbar-nav ms-auto">
 							<li className="nav-item mx-4">
-								<a className="nav-link mx-2" href="#">Home</a>
+								<a className="nav-link mx-2" href="/user">Home</a>
 							</li>
 							<li className="nav-item mx-4">
 								<a className="nav-link mx-2" href="#">Reports</a>
 							</li>
 							<li className="nav-item mx-4">
-								<a className="nav-link mx-2" href="#">Medicine</a>
+								<a className="nav-link mx-2" href="/pres">Medicine</a>
 							</li>
 							<li className="nav-item mx-4">
 								<a className="nav-link mx-2" href="#">Scheduler</a>
@@ -80,7 +80,7 @@ function User() {
 							</div>
 							<hr style={{ color: '#343a40', height: '2px', width: '100%' }} />
 							<div className="c-footer" style={{ fontFamily: 'Nunito, sans-serif', fontWeight: '700', fontSize: '35px' }}>
-								<a href="#" style={{ textDecoration: 'none' }}>
+								<a href="/pres" style={{ textDecoration: 'none' }}>
 									<p style={{ color: 'darkblue' }}>
 										Medicines <img style={{ width: '45px', height: '45px', margin: '0px' }} src="./images/double_arrow.svg" alt="arrow" />
 									</p>
