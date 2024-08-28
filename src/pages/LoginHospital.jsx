@@ -11,31 +11,34 @@ import {
 } from "../fb";
 import "../css/LoginHospital.css";
 function LoginHospital() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   async function login(e) {
-    e.preventDefault();
-    const { email, pwd } = e.target.elements;
+    e.preventDefault()
+    const { email, pwd } = e.target.elements
 
-    let usr;
+    let usr
 
     try {
       // Sign in user
-      usr = await signInWithEmailAndPassword(auth, email.value, pwd.value);
-      console.log("sign in: ", usr.user.email);
+      usr = await signInWithEmailAndPassword(auth, email.value, pwd.value)
+      console.log('sign in: ', usr.user.email)
     } catch (err) {
-      alert("Bad Credintioals");
+      alert("Bad Credintioals")
+
     }
   }
 
   onAuthStateChanged(auth, (usr) => {
     if (usr) {
-      setIsLoggedIn(true);
+
+      setIsLoggedIn(true)
     } else {
-      setIsLoggedIn(false);
+      setIsLoggedIn(false)
       // console.log("user logged out")
     }
-  });
+  })
 
   return (
     <>
@@ -80,12 +83,12 @@ function LoginHospital() {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item mx-4">
-                <a className="nav-link fs-5 fw-bold mx-2" href="#">
+                <a className="nav-link fs-5 fw-bold mx-2" href="/userLogin">
                   User
                 </a>
               </li>
               <li className="nav-item mx-4">
-                <a className="nav-link fs-5 fw-bold mx-2" href="#">
+                <a className="nav-link fs-5 fw-bold mx-2" href="hospitalLogin">
                   Hospital
                 </a>
               </li>
@@ -211,7 +214,7 @@ function LoginHospital() {
                 {isLoggedIn && (
                   <button
                     onClick={() => {
-                      signOut(auth);
+                      signOut(auth)
                     }}
                   >
                     Log out
@@ -230,7 +233,7 @@ function LoginHospital() {
         </div>
       </div>
     </>
-  );
+  )
 }
 
 export default LoginHospital;

@@ -1,165 +1,256 @@
-// import { useEffect, useState } from 'react'
-// import {
-// 	auth,
-// 	doc,
-// 	firestore,
-// 	onAuthStateChanged,
-// 	getDoc,
-// 	storage,
-// 	uploadBytes,
-// 	ref,
-// 	getDownloadURL,
-// 	arrayUnion,
-// 	updateDoc,
-// 	setDoc,
-// 	serverTimestamp,
-// 	addDoc,
-// 	collection,
-// 	getDocs,
-// 	onSnapshot,
-// 	query,
-// 	orderBy
-// } from '../fb'
-// // const [id, setId] = useState()
-// // const [data, setData] = useState('')
-// // const [editMode, setEditMode] = useState(false)
-// // const [newUpload, setNewUpload] = useState()
-// // const [reports, setReports] = useState()
+import { useEffect, useState } from 'react'
+import {
+	auth,
+	doc,
+	firestore,
+	onAuthStateChanged,
+	getDoc,
+	storage,
+	uploadBytes,
+	ref,
+	getDownloadURL,
+	arrayUnion,
+	updateDoc,
+	setDoc,
+	serverTimestamp,
+	addDoc,
+	collection,
+	getDocs,
+	onSnapshot,
+	query,
+	orderBy
+} from '../fb'
+import '../css/UserProfile.css'
 
-// // useEffect(() => {
-// //     onAuthStateChanged(auth, async (usr) => {
-// //         if (usr) {
-// //             setId(usr.uid)
+function UserProfile() {
+	const [id, setId] = useState()
+	const [data, setData] = useState('')
+	const [editMode, setEditMode] = useState(false)
+	const [newUpload, setNewUpload] = useState()
+	const [reports, setReports] = useState()
 
-// //             // user data
-// //             onSnapshot(doc(firestore, 'users', usr.uid), (snap) => {
-// //                 setData(snap.data())
-// //             })
+	useEffect(() => {
+		onAuthStateChanged(auth, async (usr) => {
+			if (usr) {
+				setId(usr.uid)
 
-// //             // user reports
-// //             onSnapshot(query(collection(firestore, 'users', usr.uid, 'reports'), orderBy('time')), (snap) => {
-// //                 setReports(
-// //                     snap.docs.map((doc) => ({
-// //                         ...doc.data(),
-// //                         id: doc.id
-// //                     }))
-// //                 )
-// //             })
-// //         } else {
-// //             window.location.href = '/userLogin'
-// //         }
-// //     })
-// // }, [])
+				// user data
+				onSnapshot(doc(firestore, 'users', usr.uid), (snap) => {
+					setData({ ...snap.data(), id: snap.id })
+				})
 
-// // async function upload(e) {
-// //     e.preventDefault()
-// //     try {
-// //         const filename = e.target.elements.filename.value
+				// user reports
+				onSnapshot(query(collection(firestore, 'users', usr.uid, 'reports'), orderBy('time')), (snap) => {
+					setReports(
+						snap.docs.map((doc) => ({
+							...doc.data(),
+							id: doc.id
+						}))
+					)
+				})
+			} else {
+				window.location.href = '/userLogin'
+			}
+		})
+	}, [])
 
-// //         // upload img to fb storage
-// //         const imgref = ref(storage, filename)
-// //         await uploadBytes(imgref, newUpload)
+	// async function upload(e) {
+	// 	e.preventDefault()
+	// 	try {
+	// 		const filename = e.target.elements.filename.value
 
-// //         // also keep track in firestore
-// //         await addDoc(collection(firestore, 'users', id, 'reports'), {
-// //             file: filename,
-// //             url: await getDownloadURL(imgref),
-// //             time: new Date()
-// //         })
+	// 		// upload img to fb storage
+	// 		const imgref = ref(storage, filename)
+	// 		await uploadBytes(imgref, newUpload)
 
-// //         setNewUpload(null)
-// //     } catch (err) {
-// //         console.log(err)
-// //     }
-// // }
+	// 		// also keep track in firestore
+	// 		await addDoc(collection(firestore, 'users', id, 'reports'), {
+	// 			file: filename,
+	// 			url: await getDownloadURL(imgref),
+	// 			time: new Date()
+	// 		})
 
-// // async function edit(e) {
-// //     e.preventDefault()
-// //     const { name, email, dob, gender, bloodGroup } = e.target.elements
+	// 		setNewUpload(null)
+	// 	} catch (err) {
+	// 		console.log(err)
+	// 	}
+	// }
 
-// //     try {
-// //         await updateDoc(doc(firestore, 'users', id), {
-// //             name: name.value,
-// //             email: email.value,
-// //             dob: dob.value,
-// //             bloodGroup: bloodGroup.value,
-// //             gender: gender.value
-// //         })
-// //         setEditMode(false)
-// //     } catch (err) {
-// //         console.log(err)
-// //     }
-// // }
+	async function edit(e) {
+		e.preventDefault()
+		const { name, age, father, mother, email, phone, address, dob, gender, weight, height, blood } = e.target.elements
 
+		try {
+			await updateDoc(doc(firestore, 'users', id), {
+				name: name.value,
+				age: age.value,
+				father: father.value,
+				mother: mother.value,
+				email: email.value,
+				phone: phone.value,
+				address: address.value,
+				dob: dob.value,
+				gender: gender.value,
+				weight: weight.value,
+				height: height.value,
+				blood: blood.value
+			})
+			setEditMode(false)
+		} catch (err) {
+			console.log(err)
+		}
+	}
 
-// 	{/* <h1>Dashboard</h1>
-// 			<br />*/}
-// 			{/* data
-// 			{data ? (
-// 				<form onSubmit={edit}>
-// 					<div>Name: {editMode ? <input name='name' defaultValue={data.name} /> : <span>{data.name}</span>}</div>
-// 					<div>Email: {editMode ? <input name='email' defaultValue={data.email} /> : <span>{data.email}</span>}</div>
-// 					<div>DOB: {editMode ? <input name='dob' defaultValue={data.dob} /> : <span>{data.dob}</span>}</div>
-// 					<div>Gender: {editMode ? <input name='gender' defaultValue={data.gender} /> : <span>{data.gender}</span>}</div>
-// 					<div>Blood Group: {editMode ? <input name='bloodGroup' defaultValue={data.bloodGroup} /> : <span>{data.bloodGroup}</span>}</div>
-// 					{editMode && <button>Submit</button>}
-// 					{editMode && (
-// 						<button type='button' onClick={() => setEditMode(false)}>
-// 							Cancel
-// 						</button>
-// 					)}
-// 					{!editMode && (
-// 						<button
-// 							type='button'
-// 							onClick={() => {
-// 								setEditMode(true)
-// 								console.log(editMode)
-// 							}}
-// 						>
-// 							Edit
-// 						</button>
-// 					)}
-// 				</form>
-// 			) : (
-// 				<p>Loading...</p>
-// 			)}
-// 			<br />
-// 			reports
-// 			<div>
-// 				<h2>Reports:</h2>
-// 				{reports
-// 					? reports.map((i) => (
-// 						<div key={i.id}>
-// 							<a href={i.url} target='_blank' rel='noreferrer'>
-// 								<img src={i.url} height='50' alt={i.id} />
-// 							</a>
-// 							<div>
-// 								<small>{i.file}</small>
-// 								<br />
-// 								<small>{i.time.toDate().toISOString().split('T')[0]}</small>
-// 							</div>
-// 							<br />
-// 						</div>
-// 					))
-// 					: 'Loading...'}
-// 			</div>
-// 			<br />
-// 			<p>Upload report: </p>
-// 			<form onSubmit={upload}>
-// 				{
-// 					<input
-// 						type='file'
-// 						accept='image/*,.pdf'
-// 						onChange={(e) => {
-// 							setNewUpload(e.target.files[0])
-// 						}}
-// 					/>
-// 				}
+	return (
+		<>
+			<div className='navBar'>
+				<div id='logoImage'></div>
+				<div id='homeDiv'>
+					<a id='home' className='options'>
+						Home
+					</a>
+				</div>
+				<div id='reportsDiv'>
+					<a id='reports' className='options'>
+						Reports
+					</a>
+				</div>
+				<div id='medicineDiv'>
+					<a id='medicine' className='options'>
+						Medicine
+					</a>
+				</div>
+				<div id='schedulerDiv'>
+					<a id='scheduler' className='options'>
+						Scheduler
+					</a>
+				</div>
+				<div id='helpDiv'>
+					<a id='help' className='options'>
+						Help
+					</a>
+				</div>
+				<button id='account'>
+					<img src='./images/avatar.svg' id='avatar' />
+				</button>
+			</div>
 
-// 				{newUpload && (
-// 					<div className='input-group'>
-// 						<input id='filename' className='form-control' defaultValue={newUpload ? newUpload.name : ''} />
-// 						<button className='btn btn-primary'>Upload</button>
-// 					</div>
-// 				)}
-// 			</form> */}
+			<div className='body'>
+				<div id='profileImg'>
+					<img src='./images/avatar.svg' id='Img' />
+					<div id='name'>
+						<h3 className='name'>
+							Patient Id:
+							<span className='n'>
+								<p>{data.id}</p>
+							</span>
+						</h3>
+						<br />
+						<h3 className='name'>
+							Hospital Name:
+							<span className='n'>
+								<p>hospital name</p>
+							</span>
+						</h3>
+					</div>
+				</div>
+				<form onSubmit={edit}>
+					{!editMode && (
+						<button
+							type='button'
+							onClick={() => {
+								setEditMode(true)
+							}}
+						>
+							Edit
+						</button>
+					)}
+					{editMode && (
+						<>
+							{' '}
+							<button
+								type='button'
+								onClick={() => {
+									setEditMode(false)
+								}}
+							>
+								Cancel
+							</button>
+							<button>Submit</button>
+						</>
+					)}
+					<div className='personalInformation'>
+						<div>Name: </div>
+						<h3 className='pInfo'>
+							Name:
+							<span className='info'>{editMode ? <input name='name' defaultValue={data.name} /> : <p>{data.name}</p>}</span>
+						</h3>
+						<br />
+						<h3 className='pInfo'>
+							Age:
+							<span className='info'>{editMode ? <input name='age' defaultValue={data.age} /> : <p>{data.age}</p>}</span>
+						</h3>
+						<br />
+						<h3 className='pInfo'>
+							Father's Name:
+							<span className='info'>{editMode ? <input name='father' defaultValue={data.father} /> : <p>{data.father}</p>}</span>
+						</h3>
+						<br />
+						<h3 className='pInfo'>
+							Mother's Name:
+							<span className='info'>{editMode ? <input name='mother' defaultValue={data.mother} /> : <p>{data.mother}</p>}</span>
+						</h3>
+						<br />
+						<h3 className='pInfo'>
+							Email Id:
+							<span className='info'>{editMode ? <input name='email' defaultValue={data.email} /> : <p>{data.email}</p>}</span>
+						</h3>
+						<br />
+						<h3 className='pInfo'>
+							Phone:
+							<span className='info'>{editMode ? <input name='phone' defaultValue={data.phone} /> : <p>{data.phone}</p>}</span>
+						</h3>
+						<br />
+						<br />
+						<h3 className='pInfo'>
+							Address:
+							<span className='info'>{editMode ? <input name='address' defaultValue={data.address} /> : <p>{data.address}</p>}</span>
+						</h3>
+						<br />
+					</div>
+					<div className='medicalInformation'>
+						<h3 className='pInfo'>
+							DOB:
+							<span className='info'>{editMode ? <input name='dob' defaultValue={data.dob} /> : <p>{data.dob}</p>}</span>
+						</h3>
+						<br />
+						<h3 className='pInfo'>
+							Gender:
+							<span className='info'>{editMode ? <input name='gender' defaultValue={data.gender} /> : <p>{data.gender}</p>}</span>
+						</h3>
+						<br />
+						<h3 className='pInfo'>
+							Weight:
+							<span className='info'>{editMode ? <input name='weight' defaultValue={data.weight} /> : <p>{data.weight}</p>}</span>
+						</h3>
+						<br />
+						<h3 className='pInfo'>
+							Height:
+							<span className='info'>{editMode ? <input name='height' defaultValue={data.height} /> : <p>{data.height}</p>}</span>
+						</h3>
+						<br />
+						<br />
+						<h3 className='pInfo'>
+							Blood Groop:
+							<span className='info'>{editMode ? <input name='blood' defaultValue={data.blood} /> : <p>{data.blood}</p>}</span>
+						</h3>
+						<br />
+						<br />
+					</div>
+				</form>
+			</div>
+		</>
+	)
+}
+
+export default UserProfile
