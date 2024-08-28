@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import Home from './pages/Home'
-import LoginUser from './pages/LoginUser'
-import RegisterUser from './pages/RegisterUser'
+import Home from './components/home/Home'
+import LoginUser from './components/user_login/LoginUser'
+import RegisterUser from './components/user_register/RegisterUser'
 
-import LoginHospital from './pages/LoginHospital'
-import RegisterHospital from './pages/RegisterHospital'
-import User from './pages/User'
+import LoginHospital from './components/hospital_login/LoginHospital'
+import RegisterHospital from './components/hospital_register/RegisterHospital'
+import User from './components/user/User'
 
 function App() {
 	return (

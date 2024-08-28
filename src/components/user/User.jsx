@@ -19,7 +19,7 @@ import {
 	onSnapshot,
 	query,
 	orderBy
-} from '../fb'
+} from '../../fb'
 import { renderToPipeableStream } from 'react-dom/server'
 
 function User() {

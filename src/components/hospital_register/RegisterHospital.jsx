@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, setDoc, doc, firestore, onAuthStateChanged, signOut } from '../fb'
+import { auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, setDoc, doc, firestore, onAuthStateChanged, signOut } from '../../fb'
 
 function RegisterHospital() {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
