@@ -1,27 +1,31 @@
 import { useState } from 'react'
 import { auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, setDoc, doc, firestore, onAuthStateChanged, signOut } from '../fb'
+import '../css/LoginUser.css'
 
 function LoginUser() {
-	const [isLoggedIn, setIsLoggedIn] = useState(false)
+	const [reg, setReg] = useState(false)
 
 	async function login(e) {
 		e.preventDefault()
 		const { email, pwd } = e.target.elements
-
-		try {
-			const usr = await signInWithEmailAndPassword(auth, email.value, pwd.value)
-			window.location.href = '/user'
-		} catch (err) {
-			console.log(err)
-		}
+		const usr = await signInWithEmailAndPassword(auth, email.value, pwd.value)
 	}
 
+	async function register(e) {
+		e.preventDefault()
+		const { name, email, pwd } = e.target.elements
+		const usr = await createUserWithEmailAndPassword(auth, email.value, pwd.value)
+
+		await setDoc(doc(firestore, 'users', usr.user.uid), {
+			name: name.value,
+			email: usr.user.email
+		})
+	}
+
+	// if user is logged in redirect to dashboard
 	onAuthStateChanged(auth, (usr) => {
 		if (usr) {
-			setIsLoggedIn(true)
 			window.location.href = '/user'
-		} else {
-			setIsLoggedIn(false)
 		}
 	})
 
@@ -36,7 +40,7 @@ function LoginUser() {
 					<button>LoginUser</button>
 				</form>
 			)}
-			{/* {isLoggedIn && (
+			{isLoggedIn && (
 				<button
 					onClick={() => {
 						signOut(auth)
@@ -44,7 +48,7 @@ function LoginUser() {
 				>
 					Log out
 				</button>
-			)} */}
+			)}
 		</>
 	)
 }

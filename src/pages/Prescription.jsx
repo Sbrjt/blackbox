@@ -16,6 +16,7 @@ function Prescription() {
 			const json = await res.json()
 			const drugs = Array.from(new Set(json.results.map((i) => i.term)))
 			setDrugList(drugs)
+			console.log(drugList)
 		})()
 	}, [])
 
@@ -137,7 +138,6 @@ function Prescription() {
 						</div>
 					</div>
 					<br />
-					can
 					<div className='row'>
 						{/* Dosage */}
 						<div className='col-2'>
