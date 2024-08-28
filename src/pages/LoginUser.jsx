@@ -35,9 +35,9 @@ function LoginUser() {
 				<div>
 					<nav className='navbar navbar-expand-lg' style={{ backgroundColor: '#0056b3' }}>
 						<div className='container-fluid'>
-							<a className='navbar-brand fw-semibold fs-10' href='#'>
+							<div className='navbar-brand fw-semibold fs-10' href='#'>
 								Navbar
-							</a>
+							</div>
 							<button
 								className='navbar-toggler'
 								type='button'
@@ -52,12 +52,12 @@ function LoginUser() {
 							<div className='collapse navbar-collapse' id='navbarNav'>
 								<ul className='navbar-nav ms-auto'>
 									<li className='nav-item mx-4'>
-										<a className='nav-link fs-5 fw-bold mx-2' aria-current='page' href='#'>
+										<a className='nav-link fs-5 fw-bold mx-2' aria-current='page' href='/userLogin'>
 											User
 										</a>
 									</li>
 									<li className='nav-item mx-4'>
-										<a className='nav-link fs-5 fw-bold mx-2' href='#'>
+										<a className='nav-link fs-5 fw-bold mx-2' href="/hospitalLogin">
 											Hospital
 										</a>
 									</li>
