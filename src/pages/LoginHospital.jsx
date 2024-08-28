@@ -2,35 +2,35 @@ import { useState } from 'react'
 import { auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, setDoc, doc, firestore, onAuthStateChanged, signOut } from '../fb'
 import "../css/LoginHospital.css"
 function LoginHospital() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-    async function login(e) {
-        e.preventDefault()
-        const { email, pwd } = e.target.elements
+  async function login(e) {
+    e.preventDefault()
+    const { email, pwd } = e.target.elements
 
-        let usr
+    let usr
 
-        try {
-            // Sign in user
-            usr = await signInWithEmailAndPassword(auth, email.value, pwd.value)
-            console.log('sign in: ', usr.user.email)
-        } catch (err) {
-            alert("Bad Credintioals")
-        }
+    try {
+      // Sign in user
+      usr = await signInWithEmailAndPassword(auth, email.value, pwd.value)
+      console.log('sign in: ', usr.user.email)
+    } catch (err) {
+      alert("Bad Credintioals")
     }
+  }
 
-    onAuthStateChanged(auth, (usr) => {
-        if (usr) {
-            setIsLoggedIn(true)
-        } else {
-            setIsLoggedIn(false)
-            // console.log("user logged out")
-        }
-    })
+  onAuthStateChanged(auth, (usr) => {
+    if (usr) {
+      setIsLoggedIn(true)
+    } else {
+      setIsLoggedIn(false)
+      // console.log("user logged out")
+    }
+  })
 
-    return (
-        <>
-            {/* {!isLoggedIn && (
+  return (
+    <>
+      {/* {!isLoggedIn && (
                 <><form onSubmit={login}>
                     <input id='email' placeholder='email' required />
                     <br></br>
@@ -49,9 +49,9 @@ function LoginHospital() {
                     Log out
                 </button>
             )} */}
-            <nav
+      <nav
         className="navbar navbar-expand-lg"
-        style={{backgroundColor: "#0056b3;"}}
+        style={{ backgroundColor: "#0056b3;" }}
       >
         <div className="container-fluid">
           <a className="navbar-brand fw-semibold fs-10" href="#">
@@ -71,12 +71,12 @@ function LoginHospital() {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item mx-4">
-                <a className="nav-link fs-5 fw-bold mx-2" href="#">
+                <a className="nav-link fs-5 fw-bold mx-2" href="/userLogin">
                   User
                 </a>
               </li>
               <li className="nav-item mx-4">
-                <a className="nav-link fs-5 fw-bold mx-2" href="#">
+                <a className="nav-link fs-5 fw-bold mx-2" href="hospitalLogin">
                   Hospital
                 </a>
               </li>
@@ -99,18 +99,18 @@ function LoginHospital() {
         <div className="row align-items-center">
           <div
             className="col-lg-6 text-center text-lg-start mb-4 mb-lg-0"
-            style={{marginLeft:"5px;"}}
+            style={{ marginLeft: "5px;" }}
           >
             <div className="hero-text">
               <h1>Welcome!..</h1>
-              <p style={{color: "black", fontWeight: "bold"}}>
+              <p style={{ color: "black", fontWeight: "bold" }}>
                 Secure Access To Your Patients
                 <br />
                 Complete Health Journey...
               </p>
             </div>
             <img
-              style={{maxWidth: "60%", height: "auto"}}
+              style={{ maxWidth: "60%", height: "auto" }}
               className="../hero-img"
               src="./images/medical1.svg"
               alt="Medical Illustration"
@@ -119,7 +119,7 @@ function LoginHospital() {
           <div className="col-lg-4 offset-lg-1">
             <div
               className="card card-custom mx-auto"
-              style={{width: "100%", maxWidth: "300px"}}
+              style={{ width: "100%", maxWidth: "300px" }}
             >
               <div className="card-body text-center">
                 {/* <!-- Profile Picture --> */}
@@ -170,24 +170,24 @@ function LoginHospital() {
                   </button>
                 )} */}
                 {!isLoggedIn && (
-                <><form onSubmit={login}>
+                  <><form onSubmit={login}>
                     <input className="mb-3" id='email' placeholder='email' required />
                     <br></br>
                     <input className="mb-3" id='pwd' placeholder='password' required />
                     <br></br>
                     <button>LoginHospital</button>
-                </form><a href='/HospitalRegister'>New Here?... Register our hospital</a></>
-            )}
-            {isLoggedIn && (
+                  </form><a href='/hospitalRegister'>New Here?... Register our hospital</a></>
+                )}
+                {isLoggedIn && (
 
-                <button
+                  <button
                     onClick={() => {
-                        signOut(auth)
+                      signOut(auth)
                     }}
-                >
+                  >
                     Log out
-                </button>
-            )}
+                  </button>
+                )}
               </div>
             </div>
 
@@ -200,8 +200,8 @@ function LoginHospital() {
           </div>
         </div>
       </div>
-        </>
-    )
+    </>
+  )
 }
 
 export default LoginHospital
