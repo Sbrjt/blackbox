@@ -19,6 +19,7 @@ function LoginUser() {
 	onAuthStateChanged(auth, (usr) => {
 		if (usr) {
 			setIsLoggedIn(true)
+			window.location.href = '/user'
 		} else {
 			setIsLoggedIn(false)
 		}
@@ -35,7 +36,7 @@ function LoginUser() {
 					<button>LoginUser</button>
 				</form>
 			)}
-			{isLoggedIn && (
+			{/* {isLoggedIn && (
 				<button
 					onClick={() => {
 						signOut(auth)
@@ -43,7 +44,7 @@ function LoginUser() {
 				>
 					Log out
 				</button>
-			)}
+			)} */}
 		</>
 	)
 }
