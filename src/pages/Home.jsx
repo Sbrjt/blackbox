@@ -5,10 +5,6 @@ function Home() {
 				User Login
 			</a>
 			<br></br>
-			<a className='btn btn-primary' href='/userRegister'>
-				User Register
-			</a>
-			<br></br>
 			<a className='btn btn-primary' href='/hospitalLogin'>
 				Hospital Login
 			</a>
