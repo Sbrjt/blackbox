@@ -1,0 +1,182 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    scrollbar-width: thin;
+    overflow-x: hidden;
+}
+.navBar{
+    width: 100vw;
+    height: 8vh;
+    background-color: aqua;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    background: rgb(39,131,183);
+    background: linear-gradient(90deg, rgba(39,131,183,1) 0%, rgba(1,183,166,1) 100%, rgba(0,212,255,1) 100%);
+}
+#avatar{
+    height: 6vh;
+}
+.options{
+    margin-left: 3vw;
+    margin-right: 3vw;
+    font-size: 3vh;
+    font-family: monospace;
+    font-weight: bolder;
+}
+#account{
+    height: 8vh;
+    width: 4vw;
+    background: none;
+    border: unset;
+    margin-right: 1.5vw;
+}
+#medicineDiv{
+    background-color: rgba(0, 0, 0, 0.224);
+    height: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sideOptions{
+    width: 16vw;
+    height: 100vh;
+    border: none;
+    border-right: 1px solid black;
+    
+}
+.above{
+    width: 16vw;
+    height: 40vh;
+    border: none;
+    border-bottom: 1px solid black;
+}
+#opt1,#opt2,#opt3,#opt4{
+    position: relative;
+    left: 4vw;
+    margin-top: 5vh;
+    font-size: 3.5vh;
+}
+.below{
+    width: 16vw;
+    height: 50vh;
+}
+#opt5,#opt6,#opt7{
+    position: relative;
+    left: 4vw;
+    margin-top: 5vh;
+    font-size: 3.5vh;
+}
+input[type="radio"]{
+    width: 3vh;
+    height: 3vh;
+    border: 2px solid #ccc;
+}
+.mainBody{
+    border: 1px solid black;
+    height: 100vh;
+    width: 84vw;
+    position: absolute;
+    top: 8vh;
+    left: 16vw;
+}
+.addMed{
+    width: 76vw;
+    height: 10vh;
+    background-color: unset;
+    margin-left: 4vw;
+    border-radius: 20px;
+    margin-top: 7vh;
+    display: flex;
+    border: 1px solid black;
+    overflow: hidden;
+}
+#plusSvg{
+    height: 7vh;
+    margin: 1.5vh;
+}
+#text{
+    font-size: 3.2vh;
+    margin: 3.5vh;
+    margin-top: 3.7vh;
+    margin-left: 3vw;
+    font-family: Arial, Helvetica, sans-serif;
+    height: 3.3vh;
+    overflow: hidden;
+}
+.addMed2{
+    width: 76vw;
+    height: 20vh;
+    background-color: unset;
+    margin-left: 4vw;
+    border-radius: 20px;
+    margin-top: 3vh;
+    display: flex;
+    border: 1px solid black;
+}
+#medName{
+    width: 35vw;
+    height: 3.7vh;
+    margin-top: 3vh;
+    position: relative;
+    left: 3vw;
+    border: 1px solid rgba(84, 82, 82, 0.292);
+    border-radius: 6px;
+    font-size: 2.5vh;
+}
+.t{
+    width: 60vw;
+    overflow: hidden;
+    display: flex;
+    position: relative;
+    left: 8vw;
+}
+#daily,#weekly,#asReq{
+    margin-left: 5vw;
+    margin-top: 3vh;
+    font-size: 3.2vh;
+}
+#check8{
+    border: 1px solid rgba(84, 82, 82, 0.292);
+}
+#per{
+    width: 8vw;
+    height: 3.7vh;
+    border: none;
+    border-radius: 6px;
+    font-size: 2.5vh;
+    position: relative;
+    top: 10vh;
+    right: 57vw;
+    border: 1px solid rgba(84, 82, 82, 0.292);
+}
+#day{
+    width: 8vw;
+    height: 3.7vh;
+    border: none;
+    border-radius: 6px;
+    font-size: 2.5vh;
+    position: relative;
+    top: 15vh;
+    right: 65vw;
+    border: 1px solid rgba(84, 82, 82, 0.292);
+}
+.addedmed{
+    width: 76vw;
+    height: 16vh;
+    background-color: unset;
+    margin-left: 4vw;
+    border-radius: 20px;
+    margin-top: 3vh;
+    display: flex;
+    border: 1px solid black;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 3vh;
+}
+#addedMedName{
+    position: relative;
+    right: 2vw;
+}
