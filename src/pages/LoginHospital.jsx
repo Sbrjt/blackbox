@@ -1,7 +1,17 @@
-import { useState } from 'react'
-import { auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, setDoc, doc, firestore, onAuthStateChanged, signOut } from '../fb'
-import "../css/LoginHospital.css"
+import { useState } from "react";
+import {
+  auth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  setDoc,
+  doc,
+  firestore,
+  onAuthStateChanged,
+  signOut,
+} from "../fb";
+import "../css/LoginHospital.css";
 function LoginHospital() {
+  
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   async function login(e) {
@@ -16,11 +26,13 @@ function LoginHospital() {
       console.log('sign in: ', usr.user.email)
     } catch (err) {
       alert("Bad Credintioals")
+
     }
   }
 
   onAuthStateChanged(auth, (usr) => {
     if (usr) {
+
       setIsLoggedIn(true)
     } else {
       setIsLoggedIn(false)
@@ -170,16 +182,36 @@ function LoginHospital() {
                   </button>
                 )} */}
                 {!isLoggedIn && (
-                  <><form onSubmit={login}>
-                    <input className="mb-3" id='email' placeholder='email' required />
-                    <br></br>
-                    <input className="mb-3" id='pwd' placeholder='password' required />
-                    <br></br>
-                    <button>LoginHospital</button>
-                  </form><a href='/hospitalRegister'>New Here?... Register our hospital</a></>
+                  <>
+                    <form onSubmit={login}>
+                      <input
+                        className="mb-3"
+                        id="email"
+                        placeholder="email"
+                        required
+                      />
+                      <br></br>
+                      <input
+                        className="mb-3"
+                        id="pwd"
+                        placeholder="password"
+                        required
+                      />
+                      <br></br>
+                      <button
+                        type="submit"
+                        className="btn btn-custom w-100"
+                        style={{ backgroundColor: "darkblue" }}
+                      >
+                        Login Hospital
+                      </button>
+                    </form>
+                    <a href="/HospitalRegister">
+                      New Here?... Register our hospital
+                    </a>
+                  </>
                 )}
                 {isLoggedIn && (
-
                   <button
                     onClick={() => {
                       signOut(auth)
@@ -204,4 +236,4 @@ function LoginHospital() {
   )
 }
 
-export default LoginHospital
+export default LoginHospital;
