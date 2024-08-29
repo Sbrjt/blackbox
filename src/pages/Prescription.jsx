@@ -15,6 +15,7 @@ import { pdf } from "@react-pdf/renderer";
 import Pdf from "./Pdf";
 
 import "../css/Prescription.css";
+import Navbar from "./Navbar";
 function Prescription() {
   const [patient, setPatient] = useState();
   const [drugList, setDrugList] = useState();
@@ -82,63 +83,41 @@ function Prescription() {
 
   return (
     <div>
-  <nav className="navbar navbar-expand-lg" style={{ backgroundColor: '#0056b3', height: '60px' }}>
-				<div className="container-fluid">
-					<a className="navbar-brand fw-semibold fs-10" href="#">
-						<img src="./images/arrow_back.svg" alt="arrow" style={{ marginLeft: '10px', height: '40px', width: '40px' }} />
-					</a>
-					<a className="navbar-brand fw-semibold fs-10" href="#">
-						<img src="./images/login.png" alt="Logo" style={{ height: '40px', width: '40px' }} />
-					</a>
-					<button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-						<span className="navbar-toggler-icon"></span>
-					</button>
-					<div className="collapse navbar-collapse" id="navbarNav">
-						<ul className="navbar-nav ms-auto">
-							<li className="nav-item mx-4">
-								<a className="nav-link mx-2" href="/user">Home</a>
-							</li>
-							<li className="nav-item mx-4">
-								<a className="nav-link mx-2" href="#">Reports</a>
-							</li>
-							<li className="nav-item mx-4">
-								<a className="nav-link mx-2" href="/Prescription">Medicine</a>
-							</li>
-							<li className="nav-item mx-4">
-								<a className="nav-link mx-2" href="#">Scheduler</a>
-							</li>
-							<li className="nav-item mx-4">
-								<a className="nav-link mx-2" href="#">Help</a>
-							</li>
-							<li className="nav-item mx-4">
-								<a className="nav-link fw-bold mx-2" href="#">
-									<img src="./images/login.png" alt="user details" style={{ width: '40px', height: '40px' }} />
-								</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</nav>
+      <Navbar/>
+      <div className="mainBody m-4">
+        <form onSubmit={getPatient} className="d-flex align-items-center">
+          <input
+            name="id"
+            className="form-control me-2"
+            placeholder="Enter patient id"
+            required
+          />
+          <button className="btn btn-primary">Go</button>
+        </form>
 
-  <div className="mainBody m-4">
-    <form onSubmit={getPatient} className="d-flex align-items-center">
-      <input name="id" className="form-control me-2" placeholder="Enter patient id" required />
-      <button className="btn btn-primary">Go</button>
-    </form>
+        {patient && (
+          <div className="mt-4">
+            <div>
+              <strong>Name:</strong> {patient.name}
+            </div>
+            <div>
+              <strong>Email:</strong> {patient.email}
+            </div>
+            <div>
+              <strong>DOB:</strong> {patient.dob}
+            </div>
+            <div>
+              <strong>Gender:</strong> {patient.gender}
+            </div>
+            <div>
+              <strong>Blood Group:</strong> {patient.bloodGroup}
+            </div>
+          </div>
+        )}
 
-    {patient && (
-      <div className="mt-4">
-        <div><strong>Name:</strong> {patient.name}</div>
-        <div><strong>Email:</strong> {patient.email}</div>
-        <div><strong>DOB:</strong> {patient.dob}</div>
-        <div><strong>Gender:</strong> {patient.gender}</div>
-        <div><strong>Blood Group:</strong> {patient.bloodGroup}</div>
-      </div>
-    )}
+        <br />
 
-    <br />
-
-    {!addPills && (
+        {!addPills && (
           <div className="addMed">
             {/* <img src="plus.svg" id="plusSvg" /> */}
             <button
@@ -150,7 +129,7 @@ function Prescription() {
           </div>
         )}
 
-    {addPills && (
+        {addPills && (
           <form onSubmit={addPill}>
             <button className="btn btn-primary">
               <i className="bi bi-plus-circle me-2"></i>
@@ -231,14 +210,13 @@ function Prescription() {
                   <option value="time">time</option>
                 </select>
               </div>
-              Instruction
-              <div className="col">
+              <div className="col ">
                 <CreatableSelect
                   name="instruction"
                   isMulti
                   placeholder={"When/How"}
                   options={[
-                    { value: "Anytime", label: "Anytime" },
+                    { value: "Daily", label: "Daily" },
                     { value: "Before meal", label: "Before meal" },
                     { value: "After meal", label: "After meal" },
                     { value: "Before breakfast", label: "Before breakfast" },
@@ -255,31 +233,36 @@ function Prescription() {
           </form>
         )}
 
-    <div className="addedmed mt-4">
-      <table className="table table-striped table-responsive">
-        <thead>
-          <tr>
-            <th>Drug</th>
-            <th>Dosage</th>
-            <th>Quantity & Unit</th>
-            <th>Instruction</th>
-          </tr>
-        </thead>
-        <tbody>
-          {pills.map((i) => (
-            <tr key={i.drug}>
-              <td>{i.drug}</td>
-              <td>{i.dosage}</td>
-              <td>{i.qty} {i.unit}{parseInt(i.qty) > 1 ? "s" : ""}</td>
-              <td>{i.instruction.join(", ")}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+        <div className="addedmed mt-4">
+          <table className="table table-striped table-responsive">
+            <thead>
+              <tr>
+                <th>Drug</th>
+                <th>Dosage</th>
+                <th>Quantity & Unit</th>
+                <th>Instruction</th>
+              </tr>
+            </thead>
+            <tbody>
+              {pills.map((i) => (
+                <tr key={i.drug}>
+                  <td>{i.drug}</td>
+                  <td>{i.dosage}</td>
+                  <td>
+                    {i.qty} {i.unit}
+                    {parseInt(i.qty) > 1 ? "s" : ""}
+                  </td>
+                  <td>{i.instruction.join(", ")}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <button className="btn btn-success" onClick={writePrescription}>
+          OK
+        </button>
+      </div>
     </div>
-	<button className="btn btn-success" onClick={writePrescription}>OK</button>
-  </div>
-</div>
   );
 }
 
