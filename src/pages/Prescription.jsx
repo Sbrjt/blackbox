@@ -1,85 +1,72 @@
-import { useEffect, useState } from "react";
-import {
-  doc,
-  firestore,
-  getDoc,
-  storage,
-  uploadBytes,
-  ref,
-  getDownloadURL,
-  addDoc,
-  collection,
-} from "../fb";
-import CreatableSelect from "react-select/creatable";
-import { pdf } from "@react-pdf/renderer";
-import Pdf from "./Pdf";
+import { useEffect, useState } from 'react'
+import { doc, firestore, getDoc, storage, uploadBytes, ref, getDownloadURL, addDoc, collection } from '../fb'
+import CreatableSelect from 'react-select/creatable'
+import { pdf } from '@react-pdf/renderer'
+import Pdf from './Pdf'
+
 
 import "../css/Prescription.css";
 import Navbar from "./Navbar";
 function Prescription() {
-  const [patient, setPatient] = useState();
-  const [drugList, setDrugList] = useState();
-  const [addPills, setAddPills] = useState(false);
-  const [pills, setPills] = useState([]);
+	const [patient, setPatient] = useState()
+	const [drugList, setDrugList] = useState()
+	const [addPills, setAddPills] = useState(false)
+	const [pills, setPills] = useState([])
 
-  useEffect(() => {
-    (async () => {
-      const res = await fetch(
-        "https://api.fda.gov/drug/label.json?count=openfda.brand_name.exact&limit=38647"
-      );
-      const json = await res.json();
-      const drugs = Array.from(new Set(json.results.map((i) => i.term)));
-      setDrugList(drugs);
-      console.log(drugList);
-    })();
-  }, []);
+	useEffect(() => {
+		;(async () => {
+			const res = await fetch('https://api.fda.gov/drug/label.json?count=openfda.brand_name.exact&limit=38647')
+			const json = await res.json()
+			const drugs = Array.from(new Set(json.results.map((i) => i.term)))
+			setDrugList(drugs)
+			console.log(drugList)
+		})()
+	}, [])
 
-  async function getPatient(e) {
-    e.preventDefault();
-    const { id } = e.target.elements;
+	async function getPatient(e) {
+		e.preventDefault()
+		const { id } = e.target.elements
 
-    try {
-      const snap = await getDoc(doc(firestore, "users", id.value));
-      setPatient({ ...snap.data(), id: id.value });
-    } catch (err) {
-      alert("Patient not found!");
-      console.log(err);
-    }
-  }
+		try {
+			const snap = await getDoc(doc(firestore, 'users', id.value))
+			setPatient({ ...snap.data(), id: id.value })
+		} catch (err) {
+			alert('Patient not found!')
+			console.log(err)
+		}
+	}
 
-  async function addPill(e) {
-    e.preventDefault();
-    const { drug, qty, unit, dosage, instruction } = e.target.elements;
+	async function addPill(e) {
+		e.preventDefault()
+		const { drug, qty, unit, dosage, instruction } = e.target.elements
 
-    const newpill = {
-      drug: drug.value,
-      qty: qty.value,
-      unit: unit.value,
-      dosage: dosage.value,
-      instruction: instruction.value
-        ? [instruction.value]
-        : Array.from(instruction).map((i) => i.value),
-    };
+		const newpill = {
+			drug: drug.value,
+			qty: qty.value,
+			unit: unit.value,
+			dosage: dosage.value,
+			instruction: instruction.value ? [instruction.value] : Array.from(instruction).map((i) => i.value)
+		}
 
-    setPills((prev) => [...prev, newpill]);
-    setAddPills(false);
-  }
+		setPills((prev) => [...prev, newpill])
+		setAddPills(false)
+	}
 
-  async function writePrescription() {
-    const blob = await pdf(<Pdf pills={pills} patient={patient} />).toBlob();
-    const url = URL.createObjectURL(blob);
-    window.open(url);
+	async function writePrescription() {
+		const blob = await pdf(<Pdf pills={pills} patient={patient} />).toBlob()
+		const url = URL.createObjectURL(blob)
+		window.open(url)
 
-    const fileRef = ref(storage, "filename");
-    await uploadBytes(fileRef, blob);
+		const fileRef = ref(storage, 'filename')
+		await uploadBytes(fileRef, blob)
 
-    await addDoc(collection(firestore, "users", patient.id, "prescriptions"), {
-      pills,
-      time: new Date(),
-      url: await getDownloadURL(fileRef),
-      doctor: "xyz",
-    });
-  }
+		await addDoc(collection(firestore, 'users', patient.id, 'prescriptions'), {
+			pills,
+			time: new Date(),
+			url: await getDownloadURL(fileRef),
+			doctor: 'xyz'
+		})
+	}
 
   return (
     <div>
@@ -264,6 +251,7 @@ function Prescription() {
       </div>
     </div>
   );
+
 }
 
-export default Prescription;
+export default Prescription
