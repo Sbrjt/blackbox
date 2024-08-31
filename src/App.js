@@ -7,6 +7,7 @@ import UserProfile from './pages/UserProfile'
 import RegisterHospital from './pages/RegisterHospital'
 import Prescription from './pages/Prescription'
 import Pdf from './pages/Pdf'
+import UserReports from './pages/UserReports'
 
 function App() {
 	return (
@@ -16,6 +17,7 @@ function App() {
 				<Route path='/userLogin' element={<LoginUser />} />
 				<Route path='/user' element={<UserHome />} />
 				<Route path='/userprofile' element={<UserProfile />} />
+				<Route path='/userreports' element={<UserReports />} />
 				<Route path='/hospitalLogin' element={<LoginHospital />} />
 				<Route path='/hospitalRegister' element={<RegisterHospital />} />
 				<Route path='/pres' element={<Prescription />} />
