@@ -64,12 +64,16 @@ function Prescription() {
 		const fileUrl = await getDownloadURL(fileRef)
 
 		// to firestore
-		await addDoc(collection(firestore, 'users', patient.id, 'prescriptions'), {
+		const prescriptionRef = await addDoc(collection(firestore, 'users', patient.id, 'prescriptions'), {
 			pills,
 			time: time,
 			url: fileUrl,
 			doctor: 'doc_name'
 		})
+
+		for (let i of pills) {
+			await addDoc(collection(firestore, 'users', patient.id, 'prescriptions', prescriptionRef.id, 'pills'), i)
+		}
 	}
 
 	return (
