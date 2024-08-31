@@ -5,11 +5,6 @@
     overflow-x: hidden;
 }
 
-.navbar-brand img {
-    height: 40px;
-    width: 40px;
-}
-
 .addMed {
     display: flex;
     align-items: center;
@@ -49,8 +44,7 @@
     .addedmed img {
         height: 30px;
     }
-
+}
     .table-responsive {
         font-size: 0.9rem;
     }
-}
