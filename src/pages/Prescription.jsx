@@ -53,17 +53,22 @@ function Prescription() {
 
 	async function writePrescription() {
 		const blob = await pdf(<Pdf pills={pills} patient={patient} />).toBlob()
-		const url = URL.createObjectURL(blob)
-		window.open(url)
+		window.open(URL.createObjectURL(blob))
 
-		const fileRef = ref(storage, 'filename')
+		const time = new Date()
+		const fileName = 'doc_name_' + time.getTime()
+
+		// to firebase storage
+		const fileRef = ref(storage, fileName)
 		await uploadBytes(fileRef, blob)
+		const fileUrl = await getDownloadURL(fileRef)
 
+		// to firestore
 		await addDoc(collection(firestore, 'users', patient.id, 'prescriptions'), {
 			pills,
-			time: new Date(),
-			url: await getDownloadURL(fileRef),
-			doctor: 'xyz'
+			time: time,
+			url: fileUrl,
+			doctor: 'doc_name'
 		})
 	}
 

@@ -81,7 +81,7 @@ function UserReports() {
 								<div>
 									<small>{i.file}</small>
 									<br />
-									<small>{i.time.toDate().toISOString().split('T')[0]}</small>
+									<small>{i.time.toDate().toLocaleDateString('en-CA')}</small>
 								</div>
 								<br />
 							</div>
