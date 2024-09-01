@@ -48,24 +48,20 @@ function UserReports() {
 
 	async function upload(e) {
 		e.preventDefault()
-		try {
-			const filename = e.target.elements.filename.value
+		const filename = e.target.elements.filename.value
 
-			// upload img to fb storage
-			const imgref = ref(storage, filename)
-			await uploadBytes(imgref, newUpload)
+		// upload img to fb storage
+		const imgref = ref(storage, filename)
+		await uploadBytes(imgref, newUpload)
 
-			// also keep track in firestore
-			await addDoc(collection(firestore, 'users', id, 'reports'), {
-				file: filename,
-				url: await getDownloadURL(imgref),
-				time: new Date()
-			})
+		// also keep track in firestore
+		await addDoc(collection(firestore, 'users', id, 'reports'), {
+			file: filename,
+			url: await getDownloadURL(imgref),
+			time: new Date()
+		})
 
-			setNewUpload(null)
-		} catch (err) {
-			console.log(err)
-		}
+		setNewUpload(null)
 	}
 
 	return (

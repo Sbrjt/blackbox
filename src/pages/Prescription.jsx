@@ -41,7 +41,7 @@ function Prescription() {
 
 		const newpill = {
 			drug: drug.value,
-			qty: qty.value,
+			qty: parseInt(qty.value),
 			unit: unit.value,
 			dosage: dosage.value,
 			instruction: instruction.value ? [instruction.value] : Array.from(instruction).map((i) => i.value)
@@ -51,7 +51,7 @@ function Prescription() {
 		setAddPills(false)
 	}
 
-	async function writePrescription() {
+	async function createPrescription() {
 		const blob = await pdf(<Pdf pills={pills} patient={patient} />).toBlob()
 		window.open(URL.createObjectURL(blob))
 
@@ -66,7 +66,7 @@ function Prescription() {
 		// to firestore
 		const prescriptionRef = await addDoc(collection(firestore, 'users', patient.id, 'prescriptions'), {
 			pills,
-			time: time,
+			date: time,
 			url: fileUrl,
 			doctor: 'doc_name'
 		})
@@ -217,7 +217,7 @@ function Prescription() {
 						</tbody>
 					</table>
 				</div>
-				<button className='btn btn-success' onClick={writePrescription}>
+				<button className='btn btn-success' onClick={createPrescription}>
 					OK
 				</button>
 			</div>
