@@ -77,7 +77,7 @@ function UserReports() {
   };
   return (
     <>
-	<Navbar />
+	<Navbar/>
       {/* <div>
         
         <h2>Reports:</h2>
@@ -150,6 +150,7 @@ function UserReports() {
                         height: "100%",
                         opacity: 0, // Make input transparent
                         cursor: "pointer", // Show pointer curso
+                        overflow:"hidden"
                       }}
                     />
                     <img
@@ -164,7 +165,7 @@ function UserReports() {
                     />
                   </div>
                 }
-                <div className="input-group">
+                <div className="input-group  overflow-hidden">
                   <input
                     id="filename"
                     className="form-control"

@@ -99,13 +99,14 @@ function Scheduler() {
 
 	return (
 		<>
-			<h1>Scheduler</h1>
+			<Navbar/>
 			<button
 				onClick={() => {
 					setShowPrescriptions(true)
 					setSelectedPrescription()
 					setShowOtc()
 				}}
+				className='btn btn-primary'
 			>
 				Add from prescription
 			</button>
@@ -116,6 +117,7 @@ function Scheduler() {
 					setShowPrescriptions()
 					setSelectedPrescription()
 				}}
+				className='btn btn-primary'
 			>
 				Add OTC
 			</button>
@@ -195,7 +197,7 @@ function Scheduler() {
 				  ))
 				: 'Loading...'}
 				
-	<Navbar/>
+	
     <div className="mainBody">
 	
 	{showPrescriptions ? (
