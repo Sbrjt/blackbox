@@ -20,7 +20,6 @@ import {
 	query,
 	orderBy
 } from '../fb'
-import Navbar from './Navbar'
 
 import data from '../data'
 
@@ -123,7 +122,12 @@ function Scheduler() {
 							)
 					)}
 					<button>Submit</button>
-					<button onSubmit={() => setShowPrescribedPill(false)} type='button'>
+					<button
+						onClick={() => {
+							setShowPrescribedPill(false)
+						}}
+						type='button'
+					>
 						Cancel
 					</button>
 				</form>
