@@ -20,6 +20,7 @@ import {
 	query,
 	orderBy
 } from '../fb'
+import Navbar from './Navbar'
 
 import data from '../data'
 
