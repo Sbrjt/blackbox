@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { doc, firestore, getDoc, storage, uploadBytes, ref, getDownloadURL, addDoc, collection } from '../fb'
+import { doc, firestore, getDoc, storage, uploadBytes, ref, getDownloadURL, addDoc, collection, updateDoc } from '../fb'
 import CreatableSelect from 'react-select/creatable'
 import { pdf } from '@react-pdf/renderer'
 import Pdf from './Pdf'
@@ -51,27 +51,28 @@ function Prescription() {
 	}
 
 	async function createPrescription() {
+		// create pdf
 		const blob = await pdf(<Pdf pills={pills} patient={patient} />).toBlob()
 		window.open(URL.createObjectURL(blob))
 
-		const time = new Date()
-		const fileName = 'doc_name_' + time.getTime()
+		// initialize an empty doc in reports collection
+		const docRef = await addDoc(collection(firestore, 'users', patient.id, 'reports'), {})
 
-		// to firebase storage
-		const fileRef = ref(storage, fileName)
+		// upload pdf to fb storage
+		const fileRef = ref(storage, docRef.id)
 		await uploadBytes(fileRef, blob)
-		const fileUrl = await getDownloadURL(fileRef)
+		const presUrl = await getDownloadURL(fileRef)
 
-		// to firestore
-		const prescriptionRef = await addDoc(collection(firestore, 'users', patient.id, 'prescriptions'), {
-			pills,
-			date: time,
-			url: fileUrl,
-			doctor: 'doc_name'
+		// add prescription pdf to reports
+		await updateDoc(doc(firestore, 'users', patient.id, 'reports', docRef.id), {
+			file: 'doc_name',
+			url: await presUrl,
+			date: new Date()
 		})
 
+		// add pills to medicines collection
 		for (let i of pills) {
-			await addDoc(collection(firestore, 'users', patient.id, 'prescriptions', prescriptionRef.id, 'pills'), i)
+			await addDoc(collection(firestore, 'users', patient.id, 'medicines'), { ...i, prescription: presUrl })
 		}
 	}
 

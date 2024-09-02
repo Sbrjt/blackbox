@@ -27,9 +27,8 @@ function Scheduler() {
 	const [id, setId] = useState()
 	const [schedule, setSchedule] = useState([])
 
-	const [showPrescriptions, setShowPrescriptions] = useState(false)
-	const [prescriptionsData, setPrescriptionsData] = useState([])
-	const [selectedPrescription, setSelectedPrescription] = useState()
+	const [showPrescribedPill, setShowPrescribedPill] = useState(false)
+	const [prescribedPills, setPrescribedPill] = useState([])
 
 	const [showOtc, setShowOtc] = useState(false)
 
@@ -38,8 +37,8 @@ function Scheduler() {
 			if (usr) {
 				setId(usr.uid)
 
-				onSnapshot(query(collection(firestore, 'users', usr.uid, 'prescriptions'), orderBy('date')), (snap) => {
-					setPrescriptionsData(
+				onSnapshot(query(collection(firestore, 'users', usr.uid, 'medicines')), (snap) => {
+					setPrescribedPill(
 						snap.docs.map((doc) => ({
 							...doc.data(),
 							id: doc.id
@@ -65,15 +64,11 @@ function Scheduler() {
 
 		for (let i of elements) {
 			if (i.tagName === 'INPUT' && i.value) {
-				await addDoc(
-					collection(firestore, 'users', id, 'schedule'),
-
-					{ drug: i.getAttribute('data-drug'), time: i.value }
-				)
+				await addDoc(collection(firestore, 'users', id, 'schedule'), { drug: i.getAttribute('data-drug'), time: i.value })
 			}
 		}
 
-		setSelectedPrescription()
+		setShowPrescribedPill(false)
 	}
 
 	async function addScheduleFromOtc(e) {
@@ -86,7 +81,7 @@ function Scheduler() {
 			{ drug: drug.value, time: time.value }
 		)
 
-		setSelectedPrescription()
+		setShowOtc(false)
 	}
 
 	// converts 24-hr time format to 12-hr
@@ -100,65 +95,34 @@ function Scheduler() {
 			<h1>Scheduler</h1>
 			<button
 				onClick={() => {
-					setShowPrescriptions(true)
-					setSelectedPrescription()
-					setShowOtc()
+					setShowPrescribedPill(true)
+					setShowOtc(false)
 				}}
 			>
-				Add from prescription
+				Show prescribed pill
 			</button>
 			&nbsp;
 			<button
 				onClick={() => {
 					setShowOtc(true)
-					setShowPrescriptions()
-					setSelectedPrescription()
+					setShowPrescribedPill(false)
 				}}
 			>
 				Add OTC
 			</button>
-			{showPrescriptions && (
-				<>
-					{prescriptionsData?.map((i) => (
-						<div key={i.id}>
-							<button
-								onClick={() => {
-									setSelectedPrescription(i)
-									setShowPrescriptions(false)
-								}}
-							>
-								<span>{i.doctor}</span>
-								<br />
-								<span>{i.date.toDate().toLocaleDateString('en-CA')}</span>
-							</button>
-						</div>
-					))}
-				</>
-			)}
-			{selectedPrescription && (
+			{showPrescribedPill && (
 				<form onSubmit={addScheduleFromPres}>
-					{selectedPrescription?.pills?.map((i, k) => (
-						<div key={k}>
-							<span>{i.drug} </span>
-							<span>{i.qty} </span>
-							<span>{i.unit} </span>
-							<span>{i.dosage} </span>
-							<br />
-							{[...Array(i.qty)].map((_, j) => (
-								<span key={j}>
+					{prescribedPills?.map(
+						(i) =>
+							i.dosage === 'Daily' && (
+								<div key={i.id}>
+									<span>{i.drug} </span>
 									<input data-drug={i.drug} type='time' />
-								</span>
-							))}
-						</div>
-					))}
+								</div>
+							)
+					)}
 					<button>Submit</button>
-					<button
-						type='button'
-						onClick={() => {
-							setSelectedPrescription()
-							setShowPrescriptions()
-						}}
-					>
+					<button onSubmit={() => setShowPrescribedPill(false)} type='button'>
 						Cancel
 					</button>
 				</form>
@@ -168,7 +132,7 @@ function Scheduler() {
 					<input list='drugs' name='drug' placeholder='Medicine' />
 					<input type='time' name='time' />
 					<datalist id='drugs'>
-						{data.map((i) => (
+						{data?.map((i) => (
 							<option value={i} key={i} />
 						))}
 					</datalist>

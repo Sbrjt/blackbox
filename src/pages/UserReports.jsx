@@ -32,7 +32,7 @@ function UserReports() {
 			if (usr) {
 				setId(usr.uid)
 
-				onSnapshot(query(collection(firestore, 'users', usr.uid, 'reports'), orderBy('time')), (snap) => {
+				onSnapshot(query(collection(firestore, 'users', usr.uid, 'reports'), orderBy('date')), (snap) => {
 					setReports(
 						snap.docs.map((doc) => ({
 							...doc.data(),
@@ -50,15 +50,18 @@ function UserReports() {
 		e.preventDefault()
 		const filename = e.target.elements.filename.value
 
-		// upload img to fb storage
-		const imgref = ref(storage, filename)
-		await uploadBytes(imgref, newUpload)
+		// initialize an empty doc in reports collection
+		const docRef = await addDoc(collection(firestore, 'users', id, 'reports'), {})
+
+		// upload pdf to fb storage
+		const fileRef = ref(storage, docRef.id)
+		await uploadBytes(fileRef, newUpload)
 
 		// also keep track in firestore
-		await addDoc(collection(firestore, 'users', id, 'reports'), {
+		await updateDoc(doc(firestore, 'users', id, 'reports', docRef.id), {
 			file: filename,
-			url: await getDownloadURL(imgref),
-			time: new Date()
+			url: await getDownloadURL(fileRef),
+			date: new Date()
 		})
 
 		setNewUpload(null)
@@ -77,7 +80,7 @@ function UserReports() {
 								<div>
 									<small>{i.file}</small>
 									<br />
-									<small>{i.time.toDate().toLocaleDateString('en-CA')}</small>
+									<small>{i.date.toDate().toLocaleDateString('en-CA')}</small>
 								</div>
 								<br />
 							</div>
