@@ -168,8 +168,9 @@ function Prescription() {
 									<option value='time'>time</option>
 								</select>
 							</div>
-							<div className='col '>
+							<div className='col overflow-hidden'>
 								<CreatableSelect
+								    className='overflow-auto'
 									name='instruction'
 									isMulti
 									placeholder={'When/How'}

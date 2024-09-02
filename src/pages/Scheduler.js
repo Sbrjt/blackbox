@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import "../css/scheduler.css"
 import {
 	auth,
 	doc,
@@ -20,6 +21,7 @@ import {
 	query,
 	orderBy
 } from '../fb'
+import Navbar from './Navbar'
 
 import data from '../data'
 
@@ -192,6 +194,47 @@ function Scheduler() {
 						</div>
 				  ))
 				: 'Loading...'}
+				
+	<Navbar/>
+    <div className="mainBody">
+	
+	{showPrescriptions ? (
+        <ul className="list">
+            <li>
+                <div className="liItem">
+                    <img src="stopwatch.svg" className="bellIcon"/>
+                    <p className="medicineName">Medicine Name</p>
+                    <p className="ammount">Ammount</p>
+                    <p className="time">Time</p>
+                </div>
+            </li>
+            <li>
+                <div className="liItem">
+                    <img src="bellIcon.svg" className="bellIcon"/>
+                    <p className="medicineName">Medicine Name</p>
+                    <p className="ammount">Ammount</p>
+                    <p className="time">Time</p>
+                </div>
+            </li>
+            <li>
+                <div className="liItem">
+                    <img src="bellIcon.svg" className="bellIcon"/>
+                    <p className="medicineName">Medicine Name</p>
+                    <p className="ammount">Ammount</p>
+                    <p className="time">Time</p>
+                </div>
+            </li>
+            <li>
+                <div className="liItem">
+                    <img src="bellIcon.svg" className="bellIcon"/>
+                    <p className="medicineName">Medicine Name</p>
+                    <p className="ammount">Ammount</p>
+                    <p className="time">Time</p>
+                </div>
+            </li>
+        </ul>
+		):''}
+    </div>
 		</>
 	)
 }
