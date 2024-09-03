@@ -124,14 +124,14 @@ function UserReports() {
 						? reports.map((i) => (
 								<div className='col-md-3' key={i.id}>
 									<div className='card1'>
-										<img src='/images/pdf.png' className='card-img-top' alt='Medical Report 2' />
-										<div className='card-body'>
-											<h5 className='card-title'>{i.file}</h5>
-											<small>{i.date.toDate().toLocaleDateString('en-CA')}</small>
-											<a href={i.url} target='_blank' rel='noreferrer' className='btn btn-primary'>
+										<a href={i.url} target='_blank' rel='noreferrer' style={{ textDecoration: 'none' }}>
+											<img src='/images/pdf.png' className='card-img-top' alt='Medical Report 2' />
+											<div className='card-body'>
+												<h5 className='card-title'>{i.file}</h5>
+												<small>{i.date.toDate().toLocaleDateString('en-CA')}</small>
 												View PDF
-											</a>
-										</div>
+											</div>
+										</a>
 									</div>
 								</div>
 						  ))
