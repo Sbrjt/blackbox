@@ -1,15 +1,15 @@
 function Home() {
 	return (
 		<>
-			<a className='btn btn-primary' href='userLogin'>
+			<a className='btn btn-primary' href='user/login'>
 				User Login
 			</a>
 			<br></br>
-			<a className='btn btn-primary' href='/hospitalLogin'>
+			<a className='btn btn-primary' href='/hospital/login'>
 				Hospital Login
 			</a>
 			<br></br>
-			<a className='btn btn-primary' href='/hospitalRegister'>
+			<a className='btn btn-primary' href='/hospital/register'>
 				Hospital Register
 			</a>
 		</>

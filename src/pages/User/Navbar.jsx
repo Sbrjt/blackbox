@@ -5,12 +5,12 @@ const Navbar = () => {
 				<div className='container-fluid'>
 					{/* Back Arrow Icon */}
 					<a className='navbar-brand fw-semibold fs-10' href='#'>
-						<img src='./images/arrow_back.svg' alt='arrow' style={{ marginLeft: '10px', height: '40px', width: '40px' }} />
+						<img src='/images/arrow_back.svg' alt='arrow' style={{ marginLeft: '10px', height: '40px', width: '40px' }} />
 					</a>
 
 					{/* Logo */}
 					<a className='navbar-brand fw-semibold fs-10' href='#'>
-						<img src='./images/login.png' alt='Logo' style={{ height: '40px', width: '40px' }} />
+						<img src='/images/login.png' alt='Logo' style={{ height: '40px', width: '40px' }} />
 					</a>
 
 					{/* Navbar Toggler */}
@@ -30,22 +30,22 @@ const Navbar = () => {
 					<div className='collapse navbar-collapse' id='navbarNav'>
 						<ul className='navbar-nav ms-auto'>
 							<li className='nav-item mx-4'>
-								<a className='nav-link mx-2' href='/user'>
+								<a className='nav-link mx-2' href='./home'>
 									Home
 								</a>
 							</li>
 							<li className='nav-item mx-4'>
-								<a className='nav-link mx-2' href='/userreports'>
+								<a className='nav-link mx-2' href='./reports'>
 									Reports
 								</a>
 							</li>
-							<li className='nav-item mx-4'>
-								<a className='nav-link mx-2' href='/pres'>
+							{/* <li className='nav-item mx-4'>
+								<a className='nav-link mx-2' href='./pres'>
 									Medicine
 								</a>
-							</li>
+							</li> */}
 							<li className='nav-item mx-4'>
-								<a className='nav-link mx-2' href='/scheduler'>
+								<a className='nav-link mx-2' href='./scheduler'>
 									Scheduler
 								</a>
 							</li>
@@ -55,8 +55,8 @@ const Navbar = () => {
 								</a>
 							</li>
 							<li className='nav-item mx-4'>
-								<a className='nav-link fw-bold mx-2' href='/userProfile'>
-									<img src='./images/avatar.svg' alt='user details' style={{ width: '40px', height: '40px' }} />
+								<a className='nav-link fw-bold mx-2' href='./profile'>
+									<img src='/images/avatar.svg' alt='user details' style={{ width: '40px', height: '40px' }} />
 								</a>
 							</li>
 						</ul>

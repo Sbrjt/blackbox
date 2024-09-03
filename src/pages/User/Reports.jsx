@@ -42,7 +42,7 @@ function UserReports() {
 					)
 				})
 			} else {
-				window.location.href = '/userLogin'
+				// window.location.href = '/userLogin'
 			}
 		})
 	}, [])

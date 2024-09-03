@@ -103,14 +103,14 @@ function LoginHospital() {
 								Complete Health Journey...
 							</p>
 						</div>
-						<img style={{ maxWidth: '60%', height: 'auto' }} className='../hero-img' src='./images/medical1.svg' alt='Medical Illustration' />
+						<img style={{ maxWidth: '60%', height: 'auto' }} className='../hero-img' src='/images/medical1.svg' alt='Medical Illustration' />
 					</div>
 					<div className='col-lg-4 offset-lg-1'>
 						<div className='card card-custom mx-auto' style={{ width: '100%', maxWidth: '300px' }}>
 							<div className='card-body text-center'>
 								{/* <!-- Profile Picture --> */}
 								<div className='mb-4'>
-									<img src='./images/login.png' alt='Profile Picture' className='rounded-circle profile-img' />
+									<img src='/images/login.png' alt='Profile Picture' className='rounded-circle profile-img' />
 								</div>
 								{/* <!-- Username --> */}
 								{/* {!isLoggedIn && (

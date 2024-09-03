@@ -50,7 +50,7 @@ function UserProfile() {
 					)
 				})
 			} else {
-				window.location.href = '/userLogin'
+				// window.location.href = '/userLogin'
 			}
 		})
 	}, [])
@@ -132,13 +132,13 @@ function UserProfile() {
 					</a>
 				</div>
 				<button id='account'>
-					<img src='./images/avatar.svg' id='avatar' />
+					<img src='/images/avatar.svg' id='avatar' />
 				</button>
 			</div> */}
 
 			<div className='body'>
 				<div id='profileImg'>
-					<img src='./images/avatar.svg' id='Img' />
+					<img src='/images/avatar.svg' id='Img' />
 					<div id='name' className='overflow-visible'>
 						<h3 className='pInfo overflow-hidden'>
 							Name:
