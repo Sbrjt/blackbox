@@ -129,7 +129,6 @@ function UserReports() {
 											<div className='card-body'>
 												<h5 className='card-title'>{i.file}</h5>
 												<small>{i.date.toDate().toLocaleDateString('en-CA')}</small>
-												View PDF
 											</div>
 										</a>
 									</div>
