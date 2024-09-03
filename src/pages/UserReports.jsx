@@ -20,7 +20,8 @@ import {
 	query,
 	orderBy
 } from '../fb'
-// import '../css/UserProfile.css'
+import Navbar from './Navbar'
+import '../css/report.css'
 
 function UserReports() {
 	const [id, setId] = useState()
@@ -49,13 +50,16 @@ function UserReports() {
 	async function upload(e) {
 		e.preventDefault()
 		const filename = e.target.elements.filename.value
-
 		// initialize an empty doc in reports collection
 		const docRef = await addDoc(collection(firestore, 'users', id, 'reports'), {})
-
 		// upload pdf to fb storage
 		const fileRef = ref(storage, docRef.id)
 		await uploadBytes(fileRef, newUpload)
+    await addDoc(collection(firestore, "users", id, "reports"), {
+      file: filename,
+      url: await getDownloadURL(fileRef),
+      time: new Date(),
+    });
     setNewUpload(null);
   }
   const handleFileChange = (e) => {
@@ -152,143 +156,143 @@ function UserReports() {
 }
 
 export default UserReports;
- {/* <div>
+  // <div>
         
-        <h2>Reports:</h2>
-        {reports
-          ? reports.map((i) => (
-              <div key={i.id}>
-                <a href={i.url} target="_blank" rel="noreferrer">
-                  <img src={i.url} height="50" alt={i.id} />
-                </a>
-                <div>
-                  <small>{i.file}</small>
-                  <br />
-                  <small>{i.time.toDate().toLocaleDateString("en-CA")}</small>
-                </div>
-                <br />
-              </div>
-            ))
-          : "Loading..."}
-      </div> */}
-      {/* <form onSubmit={upload}>
-        {
-          <input
-            type="file"
-            accept="image/*,.pdf"
-            onChange={(e) => {
-              setNewUpload(e.target.files[0]);
-            }}
-          />
-        }
+  //       <h2>Reports:</h2>
+  //       {reports
+  //         ? reports.map((i) => (
+  //             <div key={i.id}>
+  //               <a href={i.url} target="_blank" rel="noreferrer">
+  //                 <img src={i.url} height="50" alt={i.id} />
+  //               </a>
+  //               <div>
+  //                 <small>{i.file}</small>
+  //                 <br />
+  //                 <small>{i.time.toDate().toLocaleDateString("en-CA")}</small>
+  //               </div>
+  //               <br />
+  //             </div>
+  //           ))
+  //         : "Loading..."}
+  //     </div> 
+  //     <form onSubmit={upload}>
+  //       {
+  //         <input
+  //           type="file"
+  //           accept="image/*,.pdf"
+  //           onChange={(e) => {
+  //             setNewUpload(e.target.files[0]);
+  //           }}
+  //         />
+  //       }
 
-        {newUpload && (
-          <div className="input-group">
-            <input
-              id="filename"
-              className="form-control"
-              defaultValue={newUpload ? newUpload.name : ""}
-            />
-            <button className="btn btn-primary">Upload</button>
-          </div>
-        )}
-      </form> */}
-      {/* //html codes  */}
-       {/* {reports
-          ? reports.map((i) => (
-              <div key={i.id}>
-                <a href={i.url} target="_blank" rel="noreferrer">
-                  <img src={i.url} height="50" alt={i.id} />
-                </a>
-                <div>
-                  <small>{i.file}</small>
-                  <br />
-                  <small>{i.time.toDate().toLocaleDateString("en-CA")}</small>
-                </div>
-                <br />
-              </div>
-            ))
-          : "Loading..."} */}{/* <div className="col-md-3">
-            <div className="card1">
-              <img
-                src="/images/pdf.png"
-                className="card-img-top"
-                alt="Medical Report 3"
-              />
-              <div className="card-body">
-                <h5 className="card-title">Medical Report 3</h5>
-                <a href="#" className="btn btn-primary">
-                  View PDF
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-3">
-            <div className="card1">
-              <img
-                src="/images/pdf.png"
-                className="card-img-top"
-                alt="Medical Report 4"
-              />
-              <div className="card-body">
-                <h5 className="card-title">Medical Report 4</h5>
-                <a href="#" className="btn btn-primary">
-                  View PDF
-                </a>
-              </div>
-            </div>
-          </div> */}
-          {/* <!-- Repeat the card blocks as needed --> */}
-		// also keep track in firestore
-		await updateDoc(doc(firestore, 'users', id, 'reports', docRef.id), {
-			file: filename,
-			url: await getDownloadURL(fileRef),
-			date: new Date()
-		})
+  //       {newUpload && (
+  //         <div className="input-group">
+  //           <input
+  //             id="filename"
+  //             className="form-control"
+  //             defaultValue={newUpload ? newUpload.name : ""}
+  //           />
+  //           <button className="btn btn-primary">Upload</button>
+  //         </div>
+  //       )}
+  //     </form> 
+  //      //html codes   {reports
+  //         ? reports.map((i) => (
+  //             <div key={i.id}>
+  //               <a href={i.url} target="_blank" rel="noreferrer">
+  //                 <img src={i.url} height="50" alt={i.id} />
+  //               </a>
+  //               <div>
+  //                 <small>{i.file}</small>
+  //                 <br />
+  //                 <small>{i.time.toDate().toLocaleDateString("en-CA")}</small>
+  //               </div>
+  //               <br />
+  //             </div>
+  //           ))
+  //         : "Loading..."}  
+  // <div className="col-md-3">
+  //           <div className="card1">
+  //             <img
+  //               src="/images/pdf.png"
+  //               className="card-img-top"
+  //               alt="Medical Report 3"
+  //             />
+  //             <div className="card-body">
+  //               <h5 className="card-title">Medical Report 3</h5>
+  //               <a href="#" className="btn btn-primary">
+  //                 View PDF
+  //               </a>
+  //             </div>
+  //           </div>
+  //         </div>
+  //         <div className="col-md-3">
+  //           <div className="card1">
+  //             <img
+  //               src="/images/pdf.png"
+  //               className="card-img-top"
+  //               alt="Medical Report 4"
+  //             />
+  //             <div className="card-body">
+  //               <h5 className="card-title">Medical Report 4</h5>
+  //               <a href="#" className="btn btn-primary">
+  //                 View PDF
+  //               </a>
+  //             </div>
+  //           </div>
+  //         <//div> 
+          // Repeat the card blocks as needed 
+	// 	also keep track in firestore
+	// 	await updateDoc(doc(firestore, 'users', id, 'reports', docRef.id), {
+	// 		file: filename,
+	// 		url: await getDownloadURL(fileRef),
+	// 		date: new Date()
+	// 	})
 
-		setNewUpload(null)
-	}
+	// 	setNewUpload(null)
+	// }
 
-	return (
-		<>
-			<div>
-				<h2>Reports:</h2>
-				{reports
-					? reports.map((i) => (
-							<div key={i.id}>
-								<a href={i.url} target='_blank' rel='noreferrer'>
-									<img src={i.url} height='50' alt={i.id} />
-								</a>
-								<div>
-									<small>{i.file}</small>
-									<br />
-									<small>{i.date.toDate().toLocaleDateString('en-CA')}</small>
-								</div>
-								<br />
-							</div>
-					  ))
-					: 'Loading...'}
-			</div>
-			<form onSubmit={upload}>
-				{
-					<input
-						type='file'
-						accept='image/*,.pdf'
-						onChange={(e) => {
-							setNewUpload(e.target.files[0])
-						}}
-					/>
-				}
+// 	return (
+// 		<>
+// 			<div>
+// 				<h2>Reports:</h2>
+// 				{reports
+// 					? reports.map((i) => (
+// 							<div key={i.id}>
+// 								<a href={i.url} target='_blank' rel='noreferrer'>
+// 									<img src={i.url} height='50' alt={i.id} />
+// 								</a>
+// 								<div>
+// 									<small>{i.file}</small>
+// 									<br />
+// 									<small>{i.date.toDate().toLocaleDateString('en-CA')}</small>
+// 								</div>
+// 								<br />
+// 							</div>
+// 					  ))
+// 					: 'Loading...'}
+// 			</div>
+// 			<form onSubmit={upload}>
+// 				{
+// 					<input
+// 						type='file'
+// 						accept='image/*,.pdf'
+// 						onChange={(e) => {
+// 							setNewUpload(e.target.files[0])
+// 						}}
+// 					/>
+// 				}
 
-				{newUpload && (
-					<div className='input-group'>
-						<input id='filename' className='form-control' defaultValue={newUpload ? newUpload.name : ''} />
-						<button className='btn btn-primary'>Upload</button>
-					</div>
-				)}
-			</form>{' '}
-		</>
-	)
-}
+// 				{newUpload && (
+// 					<div className='input-group'>
+// 						<input id='filename' className='form-control' defaultValue={newUpload ? newUpload.name : ''} />
+// 						<button className='btn btn-primary'>Upload</button>
+// 					</div>
+// 				)}
+// 			</form>{' '}
+// 		</>
+// 	)
+// }
 
-export default UserReports
+// export default UserReports
