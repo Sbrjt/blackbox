@@ -3,7 +3,7 @@ import React from "react";
 const Navbar = () => {
   return (
     <div>
-      <nav className="navbar navbar-expand-lg" style={{marginBottom:'0px', backgroundColor: '#0056b3', height: '60px' }}>
+      <nav className="navbar navbar-expand-lg overflow-hidden" style={{marginBottom:'0px', backgroundColor: '#0056b3', height: '60px' }}>
       <div className="container-fluid">
         {/* Back Arrow Icon */}
         <a className="navbar-brand fw-semibold fs-10" href="#">
@@ -55,7 +55,7 @@ const Navbar = () => {
               </a>
             </li>
             <li className="nav-item mx-4">
-              <a className="nav-link mx-2" href="scheduler">
+              <a className="nav-link mx-2" href="/scheduler">
                 Scheduler
               </a>
             </li>
@@ -65,9 +65,9 @@ const Navbar = () => {
               </a>
             </li>
             <li className="nav-item mx-4">
-              <a className="nav-link fw-bold mx-2" href="#">
+              <a className="nav-link fw-bold mx-2" href="/userProfile">
                 <img
-                  src="./images/login.png"
+                  src="./images/avatar.svg"
                   alt="user details"
                   style={{ width: '40px', height: '40px' }}
                 />

@@ -22,6 +22,7 @@ import {
 } from '../fb'
 
 import data from '../data'
+import Navbar from './Navbar'
 
 function Scheduler() {
 	const [id, setId] = useState()
