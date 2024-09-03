@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-import { doc, firestore, getDoc, storage, uploadBytes, ref, getDownloadURL, addDoc, collection, updateDoc } from '../fb'
+import { doc, firestore, getDoc, storage, uploadBytes, ref, getDownloadURL, addDoc, collection, updateDoc } from '../../fb'
 import CreatableSelect from 'react-select/creatable'
 import { pdf } from '@react-pdf/renderer'
 import Pdf from './Pdf'
 
-import '../css/Prescription.css'
-import Navbar from './Navbar'
+import './css/Prescription.css'
+
 function Prescription() {
 	const [patient, setPatient] = useState()
 	const [drugList, setDrugList] = useState()
@@ -78,7 +78,6 @@ function Prescription() {
 
 	return (
 		<div>
-			<Navbar />
 			<div className='mainBody m-4'>
 				<form onSubmit={getPatient} className='d-flex align-items-center'>
 					<input name='id' className='form-control me-2' placeholder='Enter patient id' required />
@@ -171,7 +170,7 @@ function Prescription() {
 							</div>
 							<div className='col overflow-hidden'>
 								<CreatableSelect
-								    className='overflow-auto'
+									className='overflow-auto'
 									name='instruction'
 									isMulti
 									placeholder={'When/How'}

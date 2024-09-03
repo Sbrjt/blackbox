@@ -19,10 +19,9 @@ import {
 	onSnapshot,
 	query,
 	orderBy
-} from '../fb'
+} from '../../fb'
 
-import data from '../data'
-import Navbar from './Navbar'
+import data from '../../data'
 
 function Scheduler() {
 	const [id, setId] = useState()
@@ -97,7 +96,6 @@ function Scheduler() {
 
 	return (
 		<>
-			<Navbar />
 			<button
 				onClick={() => {
 					setShowPrescribedPill(true)

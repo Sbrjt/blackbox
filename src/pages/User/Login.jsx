@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, setDoc, doc, firestore, onAuthStateChanged, signOut } from '../fb'
-import '../css/LoginUser.css'
+import { auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, setDoc, doc, firestore, onAuthStateChanged, signOut } from '../../fb'
+// import '../css/LoginUser.css'
 
 function LoginUser() {
 	const [reg, setReg] = useState(false)
@@ -25,7 +25,9 @@ function LoginUser() {
 	// if user is logged in redirect to dashboard
 	onAuthStateChanged(auth, (usr) => {
 		if (usr) {
-			window.location.href = '/user'
+			console.log(usr)
+
+			// window.location.href = '/user'
 		}
 	})
 
@@ -33,49 +35,6 @@ function LoginUser() {
 		<>
 			{reg && (
 				<div>
-					<nav className='navbar navbar-expand-lg' style={{ backgroundColor: '#0056b3' }}>
-						<div className='container-fluid'>
-							<div className='navbar-brand fw-semibold fs-10' href='#'>
-								Navbar
-							</div>
-							<button
-								className='navbar-toggler'
-								type='button'
-								data-bs-toggle='collapse'
-								data-bs-target='#navbarNav'
-								aria-controls='navbarNav'
-								aria-expanded='false'
-								aria-label='Toggle navigation'
-							>
-								<span className='navbar-toggler-icon'></span>
-							</button>
-							<div className='collapse navbar-collapse' id='navbarNav'>
-								<ul className='navbar-nav ms-auto'>
-									<li className='nav-item mx-4'>
-										<a className='nav-link fs-5 fw-bold mx-2' aria-current='page' href='/userLogin'>
-											User
-										</a>
-									</li>
-									<li className='nav-item mx-4'>
-										<a className='nav-link fs-5 fw-bold mx-2' href="/hospitalLogin">
-											Hospital
-										</a>
-									</li>
-									<li className='nav-item mx-4'>
-										<a className='nav-link fs-5 fw-bold mx-2' href='#'>
-											About Us
-										</a>
-									</li>
-									<li className='nav-item mx-4'>
-										<a className='nav-link fs-5 fw-bold mx-2' href='#'>
-											Help
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</nav>
-
 					<div className='container mt-4 content'>
 						<div className='row align-items-center'>
 							<div className='col-lg-6 text-center text-lg-start mb-4 mb-lg-0' style={{ marginLeft: '5px' }}>
@@ -137,49 +96,6 @@ function LoginUser() {
 
 			{!reg && (
 				<div>
-					<nav className='navbar navbar-expand-lg' style={{ backgroundColor: '#0056b3' }}>
-						<div className='container-fluid'>
-							<a className='navbar-brand fw-semibold fs-10' href='#'>
-								Navbar
-							</a>
-							<button
-								className='navbar-toggler'
-								type='button'
-								data-bs-toggle='collapse'
-								data-bs-target='#navbarNav'
-								aria-controls='navbarNav'
-								aria-expanded='false'
-								aria-label='Toggle navigation'
-							>
-								<span className='navbar-toggler-icon'></span>
-							</button>
-							<div className='collapse navbar-collapse' id='navbarNav'>
-								<ul className='navbar-nav ms-auto'>
-									<li className='nav-item mx-4'>
-										<a className='nav-link fs-5 fw-bold mx-2' aria-current='page' href='#'>
-											User
-										</a>
-									</li>
-									<li className='nav-item mx-4'>
-										<a className='nav-link fs-5 fw-bold mx-2' href='#'>
-											Hospital
-										</a>
-									</li>
-									<li className='nav-item mx-4'>
-										<a className='nav-link fs-5 fw-bold mx-2' href='#'>
-											About Us
-										</a>
-									</li>
-									<li className='nav-item mx-4'>
-										<a className='nav-link fs-5 fw-bold mx-2' href='#'>
-											Help
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</nav>
-
 					<div className='container mt-4 content'>
 						<div className='row align-items-center'>
 							<div className='col-lg-6 text-center text-lg-start mb-4 mb-lg-0' style={{ marginLeft: '5px' }}>
@@ -243,7 +159,7 @@ function LoginUser() {
 			)}
 
 			{/* <button
-				onClick={() => {
+				// onClick={() => {
 					signOut(auth)
 				}}
 			>

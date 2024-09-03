@@ -19,9 +19,9 @@ import {
 	onSnapshot,
 	query,
 	orderBy
-} from '../fb'
+} from '../../fb'
 import Navbar from './Navbar'
-import '../css/report.css'
+import './css/report.css'
 
 function UserReports() {
 	const [id, setId] = useState()
