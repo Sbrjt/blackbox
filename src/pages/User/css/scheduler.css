@@ -1,19 +1,13 @@
 *{
     padding: 0px;
     margin: 0px;
-    scrollbar-width: thin;
     overflow-x: hidden;
+    scrollbar-width: thin;
 }
-.navBar{
-    width: 100vw;
-    height: 8vh;
-    background-color: aqua;
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    background: rgb(39,131,183);
-    background: linear-gradient(90deg, rgba(39,131,183,1) 0%, rgba(1,183,166,1) 100%, rgba(0,212,255,1) 100%);
+body{
+    background-color: rgba(147, 223, 243, 0.575);
 }
+
 #avatar{
     height: 6vh;
 }
@@ -38,18 +32,24 @@
     justify-content: center;
     align-items: center;
 }
-li{
+#scheduler{
+    height: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* li{
     display: inline-block;
     position: relative;
-    left: 20vw;
-}
+    left: 8vw;
+} */
 .list{
-    width: 90vw;
+    width: 100vw;
     position: absolute;
     margin: 3vh;
 }
 .liItem{
-    width: 60vw;
+    width: 80vw;
     height: 10vh;
     display: flex;
     flex-direction: row;
@@ -62,11 +62,14 @@ li{
 .bellIcon{
     height: 4.5vh;
     position: relative;
-    right: 7vw;
+    right: 5vw;
 }
 .medicineName{
     position: relative;
-    right: 12vw;
+    font-size: 3vh;
+}
+.patientName{
+    position: relative;
     font-size: 3vh;
 }
 .ammount{
@@ -77,46 +80,63 @@ li{
     position: relative;
     font-size: 3vh;
 }
-
-
 @media(max-width: 570px){
     li{
         display: inline-block;
         position: relative;
-        left: 2vw;
+        left: 3.5vw;
     }
     .list{
-        width: 94vw;
+        width: 96vw;
         position: absolute;
-        margin: 3vh;
+        margin-top: 3vh;
     }
     .liItem{
-        width: 82vw;
-        height: 10vh;
+        width: 92vw;
+        height: 12vh;
         display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
+        flex-wrap: wrap;
         border: 1px solid rgba(0, 0, 0, 0.559);
-        align-items: center;
         border-radius: 20px;
         margin-top: 3vh;
     }
     .bellIcon{
-        height: 4vh;
+        height: 4.5vh;
         position: relative;
-        left: -2vw;
+        left: 1vw;
+        top: 3vh;
     }
     .medicineName{
-        position: relative;
-        right: 4vw;
         font-size: 2.5vh;
+        height: 3vh;
+        width: 35vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .patientName{
+        font-size: 2.5vh;
+        height: 3vh;
+        width: 30vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     .ammount{
-        position: relative;
         font-size: 2.5vh;
+        height: 3vh;
+        width: 20vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
     }
     .time{
-        position: relative;
         font-size: 2.5vh;
+        height: 3vh;
+        width: 20vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
