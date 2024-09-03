@@ -78,48 +78,7 @@ function UserReports() {
   return (
     <>
 	<Navbar/>
-      {/* <div>
-        
-        <h2>Reports:</h2>
-        {reports
-          ? reports.map((i) => (
-              <div key={i.id}>
-                <a href={i.url} target="_blank" rel="noreferrer">
-                  <img src={i.url} height="50" alt={i.id} />
-                </a>
-                <div>
-                  <small>{i.file}</small>
-                  <br />
-                  <small>{i.time.toDate().toLocaleDateString("en-CA")}</small>
-                </div>
-                <br />
-              </div>
-            ))
-          : "Loading..."}
-      </div> */}
-      {/* <form onSubmit={upload}>
-        {
-          <input
-            type="file"
-            accept="image/*,.pdf"
-            onChange={(e) => {
-              setNewUpload(e.target.files[0]);
-            }}
-          />
-        }
-
-        {newUpload && (
-          <div className="input-group">
-            <input
-              id="filename"
-              className="form-control"
-              defaultValue={newUpload ? newUpload.name : ""}
-            />
-            <button className="btn btn-primary">Upload</button>
-          </div>
-        )}
-      </form> */}
-      {/* //html codes  */}
+     
 
       <div className="container content">
         <div className="row">
@@ -177,21 +136,7 @@ function UserReports() {
             </div>
           </div>
 
-		  {/* {reports
-          ? reports.map((i) => (
-              <div key={i.id}>
-                <a href={i.url} target="_blank" rel="noreferrer">
-                  <img src={i.url} height="50" alt={i.id} />
-                </a>
-                <div>
-                  <small>{i.file}</small>
-                  <br />
-                  <small>{i.time.toDate().toLocaleDateString("en-CA")}</small>
-                </div>
-                <br />
-              </div>
-            ))
-          : "Loading..."} */}
+		 
 		  {reports
 			? reports.map((i) => (
           <div className="col-md-3" key={i.id}>
@@ -212,7 +157,71 @@ function UserReports() {
           </div>
 		))
 		: "Loading..."}
-          {/* <div className="col-md-3">
+          
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default UserReports;
+ {/* <div>
+        
+        <h2>Reports:</h2>
+        {reports
+          ? reports.map((i) => (
+              <div key={i.id}>
+                <a href={i.url} target="_blank" rel="noreferrer">
+                  <img src={i.url} height="50" alt={i.id} />
+                </a>
+                <div>
+                  <small>{i.file}</small>
+                  <br />
+                  <small>{i.time.toDate().toLocaleDateString("en-CA")}</small>
+                </div>
+                <br />
+              </div>
+            ))
+          : "Loading..."}
+      </div> */}
+      {/* <form onSubmit={upload}>
+        {
+          <input
+            type="file"
+            accept="image/*,.pdf"
+            onChange={(e) => {
+              setNewUpload(e.target.files[0]);
+            }}
+          />
+        }
+
+        {newUpload && (
+          <div className="input-group">
+            <input
+              id="filename"
+              className="form-control"
+              defaultValue={newUpload ? newUpload.name : ""}
+            />
+            <button className="btn btn-primary">Upload</button>
+          </div>
+        )}
+      </form> */}
+      {/* //html codes  */}
+       {/* {reports
+          ? reports.map((i) => (
+              <div key={i.id}>
+                <a href={i.url} target="_blank" rel="noreferrer">
+                  <img src={i.url} height="50" alt={i.id} />
+                </a>
+                <div>
+                  <small>{i.file}</small>
+                  <br />
+                  <small>{i.time.toDate().toLocaleDateString("en-CA")}</small>
+                </div>
+                <br />
+              </div>
+            ))
+          : "Loading..."} */}{/* <div className="col-md-3">
             <div className="card1">
               <img
                 src="/images/pdf.png"
@@ -243,10 +252,3 @@ function UserReports() {
             </div>
           </div> */}
           {/* <!-- Repeat the card blocks as needed --> */}
-        </div>
-      </div>
-    </>
-  );
-}
-
-export default UserReports;
