@@ -99,7 +99,7 @@ function Scheduler() {
 			<button
 				onClick={() => {
 					setShowPrescribedPill(true)
-					setShowOtc(false)
+					// setShowOtc(false)
 				}}
 				className='btn btn-primary'
 			>
