@@ -10,9 +10,6 @@ function App() {
 				<Route path='/' element={<Home />} />
 				<Route path='/user/*' element={<User />} />
 				<Route path='/hospital/*' element={<Hospital />} />
-				{/* <Route path='/hospitalLogin' element={<LoginHospital />} />
-				<Route path='/hospitalRegister' element={<RegisterHospital />} />
-				<Route path='/pres' element={<Prescription />} /> */}
 				<Route path='*' element={<Home />} />
 			</Routes>
 		</Router>

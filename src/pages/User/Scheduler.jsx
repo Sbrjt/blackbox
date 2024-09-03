@@ -30,7 +30,7 @@ function Scheduler() {
 	const [showPrescribedPill, setShowPrescribedPill] = useState(false)
 	const [medicines, setMedicines] = useState([])
 
-	const [showOtc, setShowOtc] = useState(false)
+	// const [showOtc, setShowOtc] = useState(false)
 
 	useEffect(() => {
 		onAuthStateChanged(auth, async (usr) => {

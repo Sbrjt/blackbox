@@ -68,8 +68,6 @@ function UserReports() {
 	}
 	return (
 		<>
-			<Navbar />
-
 			<div className='container content'>
 				<div className='row'>
 					<div className='col-md-3'>
