@@ -28,7 +28,7 @@ function Scheduler() {
 	const [schedule, setSchedule] = useState([])
 
 	const [showPrescribedPill, setShowPrescribedPill] = useState(false)
-	const [prescribedPills, setPrescribedPill] = useState([])
+	const [medicines, setMedicines] = useState([])
 
 	const [showOtc, setShowOtc] = useState(false)
 
@@ -38,7 +38,7 @@ function Scheduler() {
 				setId(usr.uid)
 
 				onSnapshot(query(collection(firestore, 'users', usr.uid, 'medicines')), (snap) => {
-					setPrescribedPill(
+					setMedicines(
 						snap.docs.map((doc) => ({
 							...doc.data(),
 							id: doc.id
@@ -64,25 +64,29 @@ function Scheduler() {
 
 		for (let i of elements) {
 			if (i.tagName === 'INPUT' && i.value) {
-				await addDoc(collection(firestore, 'users', id, 'schedule'), { drug: i.getAttribute('data-drug'), time: i.value })
+				try {
+					await updateDoc(doc(firestore, 'users', id, 'medicines', i.getAttribute('data-id')), { time: i.value })
+				} catch (error) {
+					console.log(error)
+				}
 			}
 		}
 
 		setShowPrescribedPill(false)
 	}
 
-	async function addScheduleFromOtc(e) {
-		e.preventDefault()
-		const { drug, time } = e.target.elements
+	// async function addScheduleFromOtc(e) {
+	// 	e.preventDefault()
+	// 	const { drug, time } = e.target.elements
 
-		await addDoc(
-			collection(firestore, 'users', id, 'schedule'),
+	// 	await addDoc(
+	// 		collection(firestore, 'users', id, 'medicines'),
 
-			{ drug: drug.value, time: time.value }
-		)
+	// 		{ drug: drug.value, time: time.value }
+	// 	)
 
-		setShowOtc(false)
-	}
+	// 	setShowOtc(false)
+	// }
 
 	// converts 24-hr time format to 12-hr
 	function formatTime(t) {
@@ -99,25 +103,24 @@ function Scheduler() {
 					setShowOtc(false)
 				}}
 			>
-				Show prescribed pill
+				Show prescribed pills
 			</button>
-			&nbsp;
-			<button
+			{/* <button
 				onClick={() => {
 					setShowOtc(true)
 					setShowPrescribedPill(false)
 				}}
 			>
 				Add OTC
-			</button>
+			</button> */}
 			{showPrescribedPill && (
 				<form onSubmit={addScheduleFromPres}>
-					{prescribedPills?.map(
+					{medicines?.map(
 						(i) =>
 							i.dosage === 'Daily' && (
 								<div key={i.id}>
 									<span>{i.drug} </span>
-									<input data-drug={i.drug} type='time' />
+									<input data-id={i.id} type='time' />
 								</div>
 							)
 					)}
@@ -132,7 +135,7 @@ function Scheduler() {
 					</button>
 				</form>
 			)}
-			{showOtc && (
+			{/* {showOtc && (
 				<form onSubmit={addScheduleFromOtc}>
 					<input list='drugs' name='drug' placeholder='Medicine' />
 					<input type='time' name='time' />
@@ -152,14 +155,17 @@ function Scheduler() {
 						Cancel
 					</button>
 				</form>
-			)}
-			{schedule
-				? schedule.map((i) => (
-						<div key={i.id}>
-							<span>{i.drug} </span>
-							<span>{formatTime(i.time)}</span>
-						</div>
-				  ))
+			)} */}
+			{medicines
+				? medicines.map(
+						(i) =>
+							i.time && (
+								<div key={i.id}>
+									<span>{i.drug} </span>
+									<span>{formatTime(i.time)}</span>
+								</div>
+							)
+				  )
 				: 'Loading...'}
 		</>
 	)
