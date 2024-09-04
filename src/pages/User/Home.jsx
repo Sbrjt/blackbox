@@ -20,7 +20,7 @@ function Home() {
 				<div className='container my-4'>
 					<div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5'>
 						<div className='col'>
-							<a href='./reports' style={{ textDecoration: 'none' }}>
+							<a href='/user/reports' style={{ textDecoration: 'none' }}>
 								<div className='card h-100 custom-rounded-card'>
 									<img src='/images/Records.svg' className='card-img-top' alt='Card Image 1' />
 									<div className='card-body overflow-hidden'>
@@ -40,7 +40,7 @@ function Home() {
 							</a>
 						</div>
 						<div className='col'>
-							<a href='./prescription' style={{ textDecoration: 'none' }}>
+							<a href='/user/prescription' style={{ textDecoration: 'none' }}>
 								<div className='card h-100 custom-rounded-card'>
 									<img src='/images/medicine_Bottle_code.svg' className='card-img-top' alt='Card Image 2' />
 									<div className='card-body'>
@@ -60,7 +60,7 @@ function Home() {
 							</a>
 						</div>
 						<div className='col'>
-							<a href='./scheduler' style={{ textDecoration: 'none' }}>
+							<a href='/user/scheduler' style={{ textDecoration: 'none' }}>
 								<div className='card h-100 custom-rounded-card'>
 									<img src='/images/stopwatch.svg' className='card-img-top' alt='Card Image 3' />
 									<div className='card-body'>
