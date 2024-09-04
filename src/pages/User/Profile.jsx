@@ -21,69 +21,26 @@ import {
 	orderBy
 } from '../../fb'
 import './css/UserProfile.css'
-import Navbar from './Navbar'
 
-function UserProfile() {
-	const [id, setId] = useState()
+function UserProfile({ userId }) {
 	const [data, setData] = useState('')
 	const [editMode, setEditMode] = useState(false)
-	const [newUpload, setNewUpload] = useState()
-	const [reports, setReports] = useState()
 
 	useEffect(() => {
-		onAuthStateChanged(auth, async (usr) => {
-			if (usr) {
-				setId(usr.uid)
-
-				// user data
-				onSnapshot(doc(firestore, 'users', usr.uid), (snap) => {
-					setData({ ...snap.data(), id: snap.id })
-				})
-
-				// user reports
-				onSnapshot(query(collection(firestore, 'users', usr.uid, 'reports'), orderBy('time')), (snap) => {
-					setReports(
-						snap.docs.map((doc) => ({
-							...doc.data(),
-							id: doc.id
-						}))
-					)
-				})
-			} else {
-				// window.location.href = '/userLogin'
-			}
-		})
-	}, [])
-
-	// async function upload(e) {
-	// 	e.preventDefault()
-	// 	try {
-	// 		const filename = e.target.elements.filename.value
-
-	// 		// upload img to fb storage
-	// 		const imgref = ref(storage, filename)
-	// 		await uploadBytes(imgref, newUpload)
-
-	// 		// also keep track in firestore
-	// 		await addDoc(collection(firestore, 'users', id, 'reports'), {
-	// 			file: filename,
-	// 			url: await getDownloadURL(imgref),
-	// 			time: new Date()
-	// 		})
-
-	// 		setNewUpload(null)
-	// 	} catch (err) {
-	// 		console.log(err)
-	// 	}
-	// }
+		if (userId) {
+			onSnapshot(doc(firestore, 'users', userId), (snap) => {
+				setData({ ...snap.data(), id: snap.id })
+			})
+		}
+	}, [userId])
 
 	async function edit(e) {
 		e.preventDefault()
-		const { name, age, father, mother, email, phone, address, dob, gender, weight, height, blood } = e.target.elements
+
+		const { age, father, mother, email, phone, address, dob, gender, weight, height, blood } = e.target.elements
 
 		try {
-			await updateDoc(doc(firestore, 'users', id), {
-				name: name.value,
+			await updateDoc(doc(firestore, 'users', userId), {
 				age: age.value,
 				father: father.value,
 				mother: mother.value,
@@ -96,6 +53,7 @@ function UserProfile() {
 				height: height.value,
 				blood: blood.value
 			})
+
 			setEditMode(false)
 		} catch (err) {
 			console.log(err)
@@ -104,38 +62,6 @@ function UserProfile() {
 
 	return (
 		<>
-			{/* <div className='navBar'>
-				<div id='logoImage'></div>
-				<div id='homeDiv'>
-					<a id='home' className='options'>
-						Home
-					</a>
-				</div>
-				<div id='reportsDiv'>
-					<a id='reports' className='options'>
-						Reports
-					</a>
-				</div>
-				<div id='medicineDiv'>
-					<a id='medicine' className='options'>
-						Medicine
-					</a>
-				</div>
-				<div id='schedulerDiv'>
-					<a id='scheduler' className='options'>
-						Scheduler
-					</a>
-				</div>
-				<div id='helpDiv'>
-					<a id='help' className='options'>
-						Help
-					</a>
-				</div>
-				<button id='account'>
-					<img src='/images/avatar.svg' id='avatar' />
-				</button>
-			</div> */}
-
 			<div className='body'>
 				<div id='profileImg'>
 					<img src='/images/avatar.svg' id='Img' />
@@ -143,7 +69,7 @@ function UserProfile() {
 						<h3 className='pInfo overflow-hidden'>
 							Name:
 							<span className='info'>
-								{editMode ? <input name='name' defaultValue={data.name} /> : <p className='overflow-hidden'>{data.name}</p>}
+								<p className='overflow-hidden'>{data.name}</p>
 							</span>
 						</h3>
 						<br />

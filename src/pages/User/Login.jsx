@@ -2,34 +2,35 @@ import { useState } from 'react'
 import { auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, setDoc, doc, firestore, onAuthStateChanged, signOut } from '../../fb'
 // import '../css/LoginUser.css'
 
-function LoginUser() {
+function LoginUser(userId = { id }) {
 	const [reg, setReg] = useState(false)
 
 	async function login(e) {
 		e.preventDefault()
 		const { email, pwd } = e.target.elements
-		const usr = await signInWithEmailAndPassword(auth, email.value, pwd.value)
+		try {
+			await signInWithEmailAndPassword(auth, email.value, pwd.value)
+			window.location.href = '/user'
+		} catch (err) {
+			alert(err)
+		}
 	}
 
 	async function register(e) {
 		e.preventDefault()
 		const { name, email, pwd } = e.target.elements
-		const usr = await createUserWithEmailAndPassword(auth, email.value, pwd.value)
+		try {
+			await createUserWithEmailAndPassword(auth, email.value, pwd.value)
+			window.location.href = '/user'
+		} catch (err) {
+			alert(err)
+		}
 
 		await setDoc(doc(firestore, 'users', usr.user.uid), {
 			name: name.value,
 			email: usr.user.email
 		})
 	}
-
-	// if user is logged in redirect to dashboard
-	onAuthStateChanged(auth, (usr) => {
-		if (usr) {
-			console.log(usr)
-
-			// window.location.href = '/user'
-		}
-	})
 
 	return (
 		<>

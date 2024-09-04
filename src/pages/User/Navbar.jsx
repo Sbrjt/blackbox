@@ -1,4 +1,6 @@
-const Navbar = () => {
+import { auth, signOut } from '../../fb'
+
+const Navbar = ({ userId }) => {
 	return (
 		<div>
 			<nav className='navbar navbar-expand-lg overflow-hidden' style={{ marginBottom: '0px', backgroundColor: '#0056b3', height: '60px' }}>
@@ -30,22 +32,22 @@ const Navbar = () => {
 					<div className='collapse navbar-collapse' id='navbarNav'>
 						<ul className='navbar-nav ms-auto'>
 							<li className='nav-item mx-4'>
-								<a className='nav-link mx-2' href='./home'>
+								<a className='nav-link mx-2' href='/user/home'>
 									Home
 								</a>
 							</li>
 							<li className='nav-item mx-4'>
-								<a className='nav-link mx-2' href='./reports'>
+								<a className='nav-link mx-2' href='/user/reports'>
 									Reports
 								</a>
 							</li>
 							{/* <li className='nav-item mx-4'>
-								<a className='nav-link mx-2' href='./pres'>
+								<a className='nav-link mx-2' href='/user/pres'>
 									Medicine
 								</a>
 							</li> */}
 							<li className='nav-item mx-4'>
-								<a className='nav-link mx-2' href='./scheduler'>
+								<a className='nav-link mx-2' href='/user/scheduler'>
 									Scheduler
 								</a>
 							</li>
@@ -54,8 +56,21 @@ const Navbar = () => {
 									Help
 								</a>
 							</li>
+							{userId ? (
+								<li className='nav-item mx-4'>
+									<button className='nav-link mx-2 m-0' onClick={() => signOut(auth)}>
+										Logout
+									</button>
+								</li>
+							) : (
+								<li className='nav-item mx-4'>
+									<a className='nav-link mx-2' href='/user/login'>
+										Login
+									</a>
+								</li>
+							)}
 							<li className='nav-item mx-4'>
-								<a className='nav-link fw-bold mx-2' href='./profile'>
+								<a className='nav-link fw-bold mx-2' href='/user/profile'>
 									<img src='/images/avatar.svg' alt='user details' style={{ width: '40px', height: '40px' }} />
 								</a>
 							</li>

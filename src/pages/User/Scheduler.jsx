@@ -23,7 +23,7 @@ import {
 
 import data from '../../data'
 
-function Scheduler() {
+function Scheduler({ userId }) {
 	const [id, setId] = useState()
 	const [schedule, setSchedule] = useState([])
 
