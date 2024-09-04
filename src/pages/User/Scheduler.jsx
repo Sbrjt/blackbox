@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import './css/scheduler.css'
 import {
 	auth,
 	doc,
@@ -23,7 +24,7 @@ import {
 
 import data from '../../data'
 
-function Scheduler({ userId }) {
+function Scheduler() {
 	const [id, setId] = useState()
 	const [schedule, setSchedule] = useState([])
 
@@ -157,17 +158,47 @@ function Scheduler({ userId }) {
 					</button>
 				</form>
 			)} */}
-			{medicines
-				? medicines.map(
-						(i) =>
-							i.time && (
-								<div key={i.id}>
-									<span>{i.drug} </span>
-									<span>{formatTime(i.time)}</span>
-								</div>
-							)
-				  )
-				: 'Loading...'}
+			<div className='mainBody'>
+				<ul className='list'>
+					<li
+						style={{
+							display: 'inline-block',
+							position: 'relative',
+							left: '8vw'
+						}}
+					>
+						<div className='liItem'>
+							<img src='bellIcon.svg' className='bellIcon' />
+							<p className='patientName'>Patient Name</p>
+							<p className='medicineName'>Medicine Name</p>
+							<p className='ammount'>Ammount</p>
+							<p className='time'>Time</p>
+						</div>
+					</li>
+					<li
+						style={{
+							display: 'inline-block',
+							position: 'relative',
+							left: '8vw'
+						}}
+					>
+						{medicines
+							? medicines.map(
+									(i) =>
+										i.time && (
+											<div className='liItem' key={i.id}>
+												<img src='bellIcon.svg' className='bellIcon' />
+												<p className='patientName'>Patient Name</p>
+												<p className='medicineName'>{i.drug}</p>
+												<p className='ammount'>Ammount</p>
+												<p className='time'>{formatTime(i.time)}</p>
+											</div>
+										)
+							  )
+							: 'Loading...'}
+					</li>
+				</ul>
+			</div>
 		</>
 	)
 }
