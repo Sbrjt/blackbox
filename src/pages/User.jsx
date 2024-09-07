@@ -7,6 +7,7 @@ import Login from './User/Login'
 import Profile from './User/Profile'
 import Scheduler from './User/Scheduler'
 import Reports from './User/Reports'
+import Medicine from './User/Medicine'
 
 function User() {
 	const [id, setId] = useState()
@@ -29,6 +30,7 @@ function User() {
 				<Route path='profile' element={<Profile userId={id} />} />
 				<Route path='scheduler' element={<Scheduler userId={id} />} />
 				<Route path='reports' element={<Reports userId={id} />} />
+				<Route path='medicine' element={<Medicine userId={id} />} />
 				<Route path='*' element={<Home userId={id} />} />
 			</Routes>
 		</>
