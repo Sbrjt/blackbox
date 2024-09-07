@@ -1,9 +1,9 @@
 import { auth, signOut } from '../../fb'
 
-const Navbar = ({ userId }) => {
+const Navbar = ({ hospitalId }) => {
 	return (
 		<>
-			<nav className='navbar navbar-expand-lg navbar-light' style={{ backgroundColor: 'rgba(2, 7, 17, 0.9)' }}>
+<nav className='navbar navbar-expand-lg navbar-light' style={{ backgroundColor: 'rgba(2, 7, 17, 0.9)' }}>
 				<div className='container-fluid'>
 					<a className='navbar-brand' href='/user/profile'>
 						<img src='/images/login.png' alt='Logo' width='40' height='40' className='d-inline-block align-text-top' />
@@ -28,7 +28,7 @@ const Navbar = ({ userId }) => {
 										className='nav-link'
 										style={{ color: '#95a8f3', fontSize: '1.6rem', fontFamily: "'Nunito', sans-serif", fontWeight: 800 }}
 										aria-current='page'
-										href='/user/home'
+										href='/hospital/login'
 									>
 										Home
 									</a>
@@ -37,9 +37,9 @@ const Navbar = ({ userId }) => {
 									<a
 										className='nav-link'
 										style={{ color: '#95a8f3', fontSize: '1.6rem', fontFamily: "'Nunito', sans-serif", fontWeight: 800 }}
-										href='/user/reports'
+										href='/hospital/prescription'
 									>
-										Reports
+										Prescription
 									</a>
 								</li>
 								<li className='nav-item mx-4'>
@@ -47,9 +47,9 @@ const Navbar = ({ userId }) => {
 										className='nav-link'
 										style={{ color: '#95a8f3', fontSize: '1.6rem', fontFamily: "'Nunito', sans-serif", fontWeight: 800 }}
 										aria-current='page'
-										href='/user/scheduler'
+										href='/hospital/patients'
 									>
-										Scheduler
+										Users
 									</a>
 								</li>
 								<li className='nav-item mx-4'>
@@ -63,7 +63,7 @@ const Navbar = ({ userId }) => {
 								</li>
 							</ul>
 						</div>
-						{userId ? (
+						{hospitalId ? (
 							<div className='d-flex align-items-center'>
 								<button
 									className='btn btn-outline-success'
@@ -100,8 +100,8 @@ const Navbar = ({ userId }) => {
 					</div>
 				</div>
 			</nav>
-		</>
-	)
-}
-
-export default Navbar
+            </>
+            	)
+            }
+            
+            export default Navbar
