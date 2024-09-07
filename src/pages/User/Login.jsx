@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, setDoc, doc, firestore, onAuthStateChanged, signOut } from '../../fb'
-// import '../css/LoginUser.css'
 
 function LoginUser(userId = { id }) {
 	const [reg, setReg] = useState(false)
@@ -47,8 +46,8 @@ function LoginUser(userId = { id }) {
 								<img style={{ maxWidth: '60%', height: 'auto' }} className='hero-img' src='/images/medical2.svg' alt='Medical Illustration' />
 							</div>
 							<div className='col-lg-4 offset-lg-1'>
-								<div className='card card-custom mx-auto' style={{ width: '100%', maxWidth: '300px' }}>
-									<div className='card-body text-center'>
+								<div className='card-custom mx-auto' style={{ width: '100%', maxWidth: '300px' }}>
+									<div className=' text-center'>
 										<form onSubmit={register}>
 											<div className='mb-4'>
 												<img src='/images/login.png' alt='Profile Picture' className='rounded-circle profile-img' />
@@ -113,8 +112,8 @@ function LoginUser(userId = { id }) {
 								/>
 							</div>
 							<div className='col-lg-4 offset-lg-1'>
-								<div className='card card-custom mx-auto' style={{ width: '100%', maxWidth: '300px' }}>
-									<div className='card-body text-center'>
+								<div className='card-custom mx-auto' style={{ width: '100%', maxWidth: '300px' }}>
+									<div className=' text-center'>
 										<form onSubmit={login}>
 											<div className='mb-4'>
 												<img src='/images/login.png' alt='Profile Picture' className='rounded-circle profile-img' />

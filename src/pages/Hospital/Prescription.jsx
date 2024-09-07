@@ -23,13 +23,22 @@ function Prescription() {
 		e.preventDefault()
 		const { id } = e.target.elements
 
-		try {
-			const snap = await getDoc(doc(firestore, 'users', id.value))
+		const snap = await getDoc(doc(firestore, 'users', id.value))
+
+		if (snap.exists()) {
 			setPatient({ ...snap.data(), id: id.value })
-		} catch (err) {
-			alert('Patient not found!')
-			console.log(err)
+		} else {
+			alert('User not found')
 		}
+
+		// try {
+		// 	snap = await getDoc(doc(firestore, 'users', id.value))
+		// } catch (err) {
+		// 	alert('Patient not found!')
+		// 	console.log(err)
+		// }
+
+		// if (snap.exists()) setPatient({ ...snap.data(), id: id.value })
 	}
 
 	async function addPill(e) {
@@ -75,149 +84,141 @@ function Prescription() {
 	}
 
 	return (
-		<div>
-			<div className='mainBody m-4'>
-				<form onSubmit={getPatient} className='d-flex align-items-center'>
-					<input name='id' className='form-control me-2' placeholder='Enter patient id' required />
+		<div className='bg-light h-100'>
+			<div className='container px-4 py-5'>
+				<h2 className='pb-2 border-bottom mb-4'>Prescription</h2>
+
+				<form onSubmit={getPatient} className='d-flex align-items-center col-5 my-4'>
+					<input name='id' className='form-control me-2' placeholder='Enter patient id' required defaultValue={'o5MWcFo5etQcGohwy5FX4gdfmg13'} />
 					<button className='btn btn-primary'>Go</button>
 				</form>
 
 				{patient && (
-					<div className='mt-4'>
-						<div>
-							<strong>Name:</strong> {patient.name}
+					<>
+						<div className='my-4'>
+							<div>
+								<strong>Name:</strong> {patient.name}
+							</div>
+							<div>
+								<strong>Email:</strong> {patient.email}
+							</div>
+							<div>
+								<strong>DOB:</strong> {patient.dob}
+							</div>
+							<div>
+								<strong>Gender:</strong> {patient.gender}
+							</div>
+							<div>
+								<strong>Blood Group:</strong> {patient.bloodGroup}
+							</div>
 						</div>
-						<div>
-							<strong>Email:</strong> {patient.email}
-						</div>
-						<div>
-							<strong>DOB:</strong> {patient.dob}
-						</div>
-						<div>
-							<strong>Gender:</strong> {patient.gender}
-						</div>
-						<div>
-							<strong>Blood Group:</strong> {patient.bloodGroup}
-						</div>
-					</div>
-				)}
 
-				<br />
+						<form onSubmit={addPill}>
+							<button className='btn btn-success mb-2'>
+								<i className='bi bi-plus-circle me-2'></i>
+								Add pill
+							</button>
+							{/* <button className='btn btn-danger ms-3' type='button' onClick={() => setAddPills(false)}>
+									Cancel
+								</button> */}
 
-				{!addPills && (
-					<div className='addMed'>
-						{/* <img src="plus.svg" id="plusSvg" /> */}
-						<button className='btn btn-success' onClick={() => setAddPills(true)}>
-							Add Pill
+							<div className='row py-3 my-auto'>
+								<div className='col me-5'>
+									<input list='drugs' name='drug' placeholder='Medicine' className='form-control' />
+									<datalist id='drugs'>
+										{drugList.map((i) => (
+											<option value={i} key={i} />
+										))}
+									</datalist>
+								</div>
+								<div className='d-flex justify-content-between col-5 my-auto'>
+									<div className='form-check'>
+										<input className='form-check-input' type='radio' name='dosage' value='Daily' id='daily' defaultChecked />
+										<label className='form-check-label' htmlFor='daily'>
+											Daily
+										</label>
+									</div>
+									<div className='form-check'>
+										<input className='form-check-input' type='radio' name='dosage' value='Weekly' id='weekly' />
+										<label className='form-check-label' htmlFor='weekly'>
+											Weekly
+										</label>
+									</div>
+									<div className='form-check'>
+										<input className='form-check-input' type='radio' name='dosage' value='As required' id='asrequired' />
+										<label className='form-check-label' htmlFor='asrequired'>
+											As required
+										</label>
+									</div>
+								</div>
+							</div>
+
+							<div className='row mb-2'>
+								<div className='col-2'>
+									<input name='qty' className='form-control' defaultValue={1} />
+								</div>
+								<div className='col-5'>
+									<select name='unit' className='form-select' defaultValue='pill'>
+										<option value='pill'>pill</option>
+										<option value='tsp'>tsp</option>
+										<option value='puff'>puff</option>
+										<option value='item'>item</option>
+										<option value='time'>time</option>
+									</select>
+								</div>
+								<div className='col'>
+									<CreatableSelect
+										name='instruction'
+										isMulti
+										placeholder={'When/How'}
+										options={[
+											{ value: 'Morning', label: 'Morning' },
+											{ value: 'Before Breakfast', label: 'Before Breakfast' },
+											{ value: 'After Breakfast', label: 'After Breakfast' },
+											{ value: 'Before Lunch', label: 'Before Lunch' },
+											{ value: 'After Lunch', label: 'After Lunch' },
+											{ value: 'Evening', label: 'Evening' },
+											{ value: 'Before Dinner', label: 'Before Dinner' },
+											{ value: 'After Dinner', label: 'After Dinner' },
+											{ value: 'Before Bed', label: 'Before Bed' }
+										]}
+									/>
+								</div>
+							</div>
+						</form>
+
+						{pills.length > 0 && (
+							<div className='addedmed mt-4'>
+								<table className='table table-hover table-responsive p-5'>
+									<thead>
+										<tr>
+											<th>Drug</th>
+											<th>Dosage</th>
+											<th>Qty</th>
+											<th>Instructions</th>
+										</tr>
+									</thead>
+									<tbody>
+										{pills.map((i) => (
+											<tr key={i.drug}>
+												<td>{i.drug}</td>
+												<td>{i.dosage}</td>
+												<td>
+													{i.qty} {i.unit}
+													{parseInt(i.qty) > 1 ? 's' : ''}
+												</td>
+												<td>{i.instruction.join(', ')}</td>
+											</tr>
+										))}
+									</tbody>
+								</table>
+							</div>
+						)}
+						<button className='btn btn-primary  btn-lg my-4' onClick={createPrescription}>
+							Done <i class='bi bi-check-lg'></i>
 						</button>
-					</div>
+					</>
 				)}
-
-				{addPills && (
-					<form onSubmit={addPill}>
-						<button className='btn btn-primary'>
-							<i className='bi bi-plus-circle me-2'></i>
-							Add
-						</button>
-						<button className='btn btn-danger ms-3' type='button' onClick={() => setAddPills(false)}>
-							Cancel
-						</button>
-						<br />
-						<br />
-						<input list='drugs' name='drug' placeholder='Medicine' className='form-control' />
-						<datalist id='drugs'>
-							{drugList.map((i) => (
-								<option value={i} key={i} />
-							))}
-						</datalist>
-						<br />
-						<div className='d-flex justify-content-between'>
-							<div className='form-check'>
-								<input className='form-check-input' type='radio' name='dosage' value='Daily' id='daily' defaultChecked />
-								<label className='form-check-label' htmlFor='daily'>
-									Daily
-								</label>
-							</div>
-							<div className='form-check'>
-								<input className='form-check-input' type='radio' name='dosage' value='Weekly' id='weekly' />
-								<label className='form-check-label' htmlFor='weekly'>
-									Weekly
-								</label>
-							</div>
-							<div className='form-check'>
-								<input className='form-check-input' type='radio' name='dosage' value='As required' id='asrequired' />
-								<label className='form-check-label' htmlFor='asrequired'>
-									As required
-								</label>
-							</div>
-						</div>
-						<br />
-						<div className='row'>
-							Dosage
-							<div className='col-2'>
-								<input name='qty' className='form-control' defaultValue={1} />
-							</div>
-							<div className='col-5'>
-								<select name='unit' className='form-select' defaultValue='pill'>
-									<option value='pill'>pill</option>
-									<option value='tsp'>tsp</option>
-									<option value='puff'>puff</option>
-									<option value='item'>item</option>
-									<option value='time'>time</option>
-								</select>
-							</div>
-							<div className='col overflow-hidden'>
-								<CreatableSelect
-									className='overflow-auto'
-									name='instruction'
-									isMulti
-									placeholder={'When/How'}
-									options={[
-										{ value: 'Daily', label: 'Daily' },
-										{ value: 'Before meal', label: 'Before meal' },
-										{ value: 'After meal', label: 'After meal' },
-										{ value: 'Before breakfast', label: 'Before breakfast' },
-										{ value: 'After breakfast', label: 'After breakfast' },
-										{ value: 'Before lunch', label: 'Before lunch' },
-										{ value: 'After lunch', label: 'After lunch' },
-										{ value: 'Before dinner', label: 'Before dinner' },
-										{ value: 'After dinner', label: 'After dinner' },
-										{ value: 'Before bed', label: 'Before sleep' }
-									]}
-								/>
-							</div>
-						</div>
-					</form>
-				)}
-
-				<div className='addedmed mt-4'>
-					<table className='table table-striped table-responsive'>
-						<thead>
-							<tr>
-								<th>Drug</th>
-								<th>Dosage</th>
-								<th>Quantity & Unit</th>
-								<th>Instruction</th>
-							</tr>
-						</thead>
-						<tbody>
-							{pills.map((i) => (
-								<tr key={i.drug}>
-									<td>{i.drug}</td>
-									<td>{i.dosage}</td>
-									<td>
-										{i.qty} {i.unit}
-										{parseInt(i.qty) > 1 ? 's' : ''}
-									</td>
-									<td>{i.instruction.join(', ')}</td>
-								</tr>
-							))}
-						</tbody>
-					</table>
-				</div>
-				<button className='btn btn-success' onClick={createPrescription}>
-					OK
-				</button>
 			</div>
 		</div>
 	)

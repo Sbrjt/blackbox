@@ -52,7 +52,7 @@ function Patient({ hospitalId }) {
 					</div>
 				</div>
 
-				<div className='bg-white rounded-4 p-5 card'>
+				<div className='bg-white rounded-4 py-5 card'>
 					<div className=' text-center'>
 						<img src='/images/avatar.svg' className='img-fluid' alt='...' />
 						<h2 className='card-title mt-3 mb-0'>{patient?.name}</h2>

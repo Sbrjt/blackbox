@@ -2,83 +2,104 @@ import { auth, signOut } from '../../fb'
 
 const Navbar = ({ userId }) => {
 	return (
-		<div>
-			<nav className='navbar navbar-expand-lg overflow-hidden' style={{ marginBottom: '0px', backgroundColor: '#0056b3', height: '60px' }}>
+		<>
+			<nav className='navbar navbar-expand-lg navbar-light' style={{ backgroundColor: 'rgba(2, 7, 17, 0.9)' }}>
 				<div className='container-fluid'>
-					{/* Back Arrow Icon */}
-					<a className='navbar-brand fw-semibold fs-10' href='#'>
-						<img src='/images/arrow_back.svg' alt='arrow' style={{ marginLeft: '10px', height: '40px', width: '40px' }} />
+					<a className='navbar-brand' href='#'>
+						<img src='/images/login.png' alt='Logo' width='40' height='40' className='d-inline-block align-text-top' />
 					</a>
-
-					{/* Logo */}
-					<a className='navbar-brand fw-semibold fs-10' href='#'>
-						<img src='/images/login.png' alt='Logo' style={{ height: '40px', width: '40px' }} />
-					</a>
-
-					{/* Navbar Toggler */}
 					<button
+						style={{ backgroundColor: '#95a8f3' }}
 						className='navbar-toggler'
 						type='button'
 						data-bs-toggle='collapse'
-						data-bs-target='#navbarNav'
-						aria-controls='navbarNav'
+						data-bs-target='#navbarSupportedContent'
+						aria-controls='navbarSupportedContent'
 						aria-expanded='false'
 						aria-label='Toggle navigation'
 					>
 						<span className='navbar-toggler-icon'></span>
 					</button>
-
-					{/* Navbar Links */}
-					<div className='collapse navbar-collapse' id='navbarNav'>
-						<ul className='navbar-nav ms-auto'>
-							<li className='nav-item mx-4'>
-								<a className='nav-link mx-2' href='/user/home'>
-									Home
-								</a>
-							</li>
-							<li className='nav-item mx-4'>
-								<a className='nav-link mx-2' href='/user/reports'>
-									Reports
-								</a>
-							</li>
-							{/* <li className='nav-item mx-4'>
-								<a className='nav-link mx-2' href='/user/pres'>
-									Medicine
-								</a>
-							</li> */}
-							<li className='nav-item mx-4'>
-								<a className='nav-link mx-2' href='/user/scheduler'>
-									Scheduler
-								</a>
-							</li>
-							<li className='nav-item mx-4'>
-								<a className='nav-link mx-2' href='#'>
-									Help
-								</a>
-							</li>
-							{userId ? (
+					<div className='collapse navbar-collapse' id='navbarSupportedContent'>
+						<div className='d-flex flex-grow-1 justify-content-center'>
+							<ul className='navbar-nav me-auto mb-2 mb-lg-0'>
 								<li className='nav-item mx-4'>
-									<button className='nav-link mx-2 m-0' onClick={() => signOut(auth)}>
-										Logout
-									</button>
-								</li>
-							) : (
-								<li className='nav-item mx-4'>
-									<a className='nav-link mx-2' href='/user/login'>
-										Login
+									<a
+										className='nav-link'
+										style={{ color: '#95a8f3', fontSize: '1.6rem', fontFamily: "'Nunito', sans-serif", fontWeight: 800 }}
+										aria-current='page'
+										href='/user/home'
+									>
+										Home
 									</a>
 								</li>
-							)}
-							<li className='nav-item mx-4'>
-								<a className='nav-link fw-bold mx-2' href='/user/profile'>
-									<img src='/images/avatar.svg' alt='user details' style={{ width: '40px', height: '40px' }} />
-								</a>
-							</li>
-						</ul>
+								<li className='nav-item mx-4'>
+									<a
+										className='nav-link'
+										style={{ color: '#95a8f3', fontSize: '1.6rem', fontFamily: "'Nunito', sans-serif", fontWeight: 800 }}
+										href='/user/reports'
+									>
+										Reports
+									</a>
+								</li>
+								<li className='nav-item mx-4'>
+									<a
+										className='nav-link'
+										style={{ color: '#95a8f3', fontSize: '1.6rem', fontFamily: "'Nunito', sans-serif", fontWeight: 800 }}
+										aria-current='page'
+										href='/user/scheduler'
+									>
+										Scheduler
+									</a>
+								</li>
+								<li className='nav-item mx-4'>
+									<a
+										className='nav-link'
+										style={{ color: '#95a8f3', fontSize: '1.6rem', fontFamily: "'Nunito', sans-serif", fontWeight: 800 }}
+										href='#'
+									>
+										Help
+									</a>
+								</li>
+							</ul>
+						</div>
+						{userId ? (
+							<div className='d-flex align-items-center'>
+								<button
+									className='btn btn-outline-success'
+									style={{
+										backgroundColor: '#95a8f3',
+										width: '100px',
+										fontSize: '1.4rem',
+										fontFamily: "'Nunito', sans-serif",
+										fontWeight: 800,
+										color: 'rgba(2, 7, 17, 0.9)'
+									}}
+									type='submit'
+								>
+									Logout
+								</button>
+							</div>
+						) : (
+							<button
+								className='btn btn-outline-success'
+								style={{
+									backgroundColor: '#95a8f3',
+									width: '100px',
+									fontSize: '1.4rem',
+									fontFamily: "'Nunito', sans-serif",
+									fontWeight: 800,
+									color: 'rgba(2, 7, 17, 0.9)'
+								}}
+								type='submit'
+							>
+								Login
+							</button>
+						)}
 					</div>
 				</div>
 			</nav>
-		</div>
+		</>
 	)
 }
 

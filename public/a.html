@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Include Bootstrap CSS (Make sure Bootstrap is loaded) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Include Bootstrap JavaScript and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <!-- Include Bootstrap CSS (Make sure Bootstrap is loaded) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Landing Page</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .xyz {
+            text-decoration: none;
+            font-size: 1.5rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .xyz::after {
+            content: "";
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            bottom: 1px;
+            left: 50%;
+            background-color: #4368fc;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+
+        .xyz:hover::after {
+            width: 100%;
+            left: 0%;
+        }
+
+        .xyz:hover {
+            color: #4368fc;
+        }
+
+
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes bounceIn {
+            from {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+
+            to {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes appear {
+            form {
+                opacity: 0;
+                scale: 0.5;
+            }
+
+            to {
+                opacity: 1;
+                scale: 1;
+            }
+        }
+    </style>
+</head>
+
+<body style="font-family: 'Roboto', sans-serif; background-color: #95a8f3; overflow-x: hidden; color: #03071f;">
+    <div class="container" style="max-width: 100%; margin: auto; min-height: 100vh; display: flex; flex-direction: column;">
+        <nav style="padding: 0.7rem 2rem; display: flex; align-items: center; justify-content: space-between; background-color: rgba(2, 7, 17, 0.9); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); backdrop-filter: blur(8px); transition: background-color 0.3s ease; position: fixed; width: 100%; left: 50%; transform: translateX(-50%); z-index: 1000;" class="navbar navbar-expand-md">
+
+            <div style="font-size: 1.8rem; font-weight: 700; color: #95a8f3; transition: color 0.3s ease;" class="navbar-brand">
+                Logo
+            </div>
+
+            <button style="border: none; background: transparent; background-color: #95a8f3;" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul style="margin: 0; list-style: none; display: flex; align-items: center; gap: 5rem;" class="navbar-nav ms-auto">
+
+                    <li class="nav-item mx-4">
+                        <a class="nav-link xyz" style="color: #95a8f3;" href="#home">
+                            Home
+                        </a>
+                    </li>
+
+                    <li class="nav-item mx-4">
+                        <a class="nav-link xyz" style="color: #95a8f3;" href="#services">
+                            Services
+                        </a>
+                    </li>
+
+                    <li class="nav-item xyz mx-4">
+                        <a class="nav-link xyz" style="color: #95a8f3;" href="#insights">
+                            Insights
+                        </a>
+                    </li>
+
+                    <li class="nav-item mx-4">
+                        <a class="nav-link xyz" style="color: #95a8f3;" href="#">
+                            About Us
+                        </a>
+                    </li>
+
+                    <li class="nav-item mx-4 mb-5 mb-sm-0">
+                        <a style="text-decoration: none; color: #03071f;" href="#register">
+                            <button style="font-size: 20px; font-weight: bold; color: #03071f; background-color: #95a8f3; border-radius: 20px; border: none; padding: 0.5rem 1rem;" class="btn btn-primary ms-md-3">
+                                Register Now
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <section id="home" class="pt-5 mt-5" style="margin-left: auto;">
+            <header class="container" style="min-height: 0vh;">
+                <div class="row align-items-center">
+                    <div class="col-md-6  mb-md-0 text-center text-md-left">
+                        <div class="content">
+                            <h1 class="display-4 mb-4 mt-5" style="opacity: 0; transform: translateY(20px); animation: fadeInUp 2s forwards 0.5s; font-weight: 700; font-size: 5rem;">
+                                MediCare
+                            </h1>
+                            <p class="lead mb-4" style="opacity: 0; transform: translateY(20px); animation: fadeInUp 1s forwards 0.8s; font-size: 1.2rem;">
+                                Get access to fast, reliable, and professional medical services around the clock. Your health, our priority.
+                            </p>
+                            <button class="btn btn-lg" style="
+                  padding: 0.75rem 1.5rem;
+                  border-radius: 50px;
+                  transition: background-color 0.3s ease, transform 0.3s ease;
+                  animation: bounceIn 1.5s ease forwards;
+                  background-color: #081722;
+                  color: #95a8f3;
+                ">
+                                Show Services
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-flex justify-content-center">
+                        <div class="image pt-5" style="opacity: 0; transform: scale(0.95); animation: fadeInScale 1s forwards 1s;">
+                            <img src="images/header-bg.png" alt="Medical Services" class="img-fluid rounded-3" style="width: 80%; height: 100%;" />
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </section>
+
+
+
+        <section id="services" class="pt-5 pb-5" style="background-color: #081722; border-radius: 20px;">
+            <div class="container" style="min-height: 40vh;">
+                <h2 class="text-center mb-4" style="color: #95a8f3; font-size: 2.5rem; font-weight: 700;">Our
+                    Services</h2>
+                <div class="row text-center">
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="service-card p-4" style="background-color: rgba(2, 7, 17, 0.9); border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease;">
+                            <img src="images/prescription.png" alt="Prescription" style="width: 150px; height: 150px; margin-bottom: 1.5rem;">
+                            <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #b0bec5;">Patient Management</h3>
+                            <p style="font-size: 1rem; color: #b0bec5; line-height: 1.5;">Comprehensive health checkups to
+                                ensure your well-being.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="service-card p-4" style="background-color: rgba(2, 7, 17, 0.9); border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease;">
+                            <img src="images/inventory.png" alt="Inventory Control" style="width: 150px; height: 150px; margin-bottom: 1.5rem;"></i>
+                            <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #b0bec5;">Inventory Control</h3>
+                            <p style="font-size: 1rem; color: #b0bec5; line-height: 1.5;">Keep yourself and your loved ones
+                                protected with our vaccination services.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="service-card p-4" style="background-color: rgba(2, 7, 17, 0.9); border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease;">
+                            <img src="images/bill.png" alt="Billing and Insurance" style="width: 150px; height: 150px; margin-bottom: 1.5rem;"></i>
+                            <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #b0bec5;">Billing and Insurance</h3>
+                            <p style="font-size: 1rem; color: #b0bec5; line-height: 1.5;">24/7 emergency services to address
+                                your urgent medical needs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <br><br>
+
+        <section id="insights" class="py-5 text-center" style="background-color: #081722; border-radius: 20px;">
+            <div class="container">
+                <h2 class="display-4 mb-4" style="color: #7589fc; font-size: 2.5rem; font-weight: 700;">Insights</h2>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card border-0 shadow-sm rounded" style="background-color: #030812; min-height: 600px;">
+                            <div class="card-img-top " style="width: 80%; border-radius: 12px; background-color: #7589fc; margin: auto; margin-top: 30px;">
+                                <img src="images/health-check.png" alt="Blog 1" class="img-fluid rounded" style="margin: 10px; width: 90%; height: 90%; background-color: #7589fc;">
+                            </div>
+                            <div class="card-body text-left">
+                                <h3 class="card-title text-light">Importance of Regular Checkups</h3>
+                                <p class="card-text text-light">
+                                    Discover why regular health checkups are essential for maintaining your well-being and catching
+                                    potential issues early.
+                                </p>
+                                <a href="#" class="btn btn-primary" style="color: #030812; font-weight: 700;">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card border-0 shadow-sm rounded" style="background-color: #030812; min-height: 600px;">
+                            <div class="card-img-top" style="width: 80%; border-radius: 12px; background-color: #7589fc; margin: auto; margin-top: 30px;">
+                                <img src="images/syringe.png" alt="Blog 2" class="img-fluid rounded" style="margin: 10px; width: 90%; height: 90%; background-color: #7589fc;">
+                            </div>
+                            <div class="card-body text-left">
+                                <h3 class="card-title text-light">How Vaccinations Work</h3>
+                                <p class="card-text text-light">
+                                    A deep dive into how vaccinations help protect you and your community from dangerous diseases.
+                                </p>
+                                <a href="#" class="btn btn-primary" style="color: #030812; font-weight: 700;">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card border-0 shadow-sm rounded" style="background-color: #030812; min-height: 600px;">
+                            <div class="card-img-top" style="width: 80%; border-radius: 12px; background-color: #7589fc; margin: auto; margin-top: 30px;">
+                                <img src="images/emergency-services.png" alt="Blog 3" class="img-fluid rounded" style="margin: 10px; width: 90%; height: 90%; background-color: #7589fc;">
+                            </div>
+                            <div class="card-body text-left">
+                                <h3 class="card-title text-light">Emergency Services: What to Expect</h3>
+                                <p class="card-text text-light">
+                                    Learn about the steps you should take and what to expect when you require emergency medical services.
+                                </p>
+                                <a href="#" class="btn btn-primary" style="color: #030812; font-weight: 700;">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <br><br><br><br>
+
+        <section id="register" class="py-5" style="background-color: #081722; border-radius: 12px;">
+            <div class="container" style="min-height: 50vh;">
+                <h2 class="text-center mb-4" style="color: #95a8f3; font-size: 2.5rem; font-weight: 700;">Register
+                    Now</h2>
+                <div class="row text-center">
+                    <div class="col-md-6 mb-1 d-flex flex-column align-items-center">
+                        <div class="register-card p-4" style="background-color: rgba(2, 7, 17, 0.9); border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                            <h3 style="color: #7589fc; font-weight: 500; font-size: 2rem;">For Users</h3>
+                            <img src="images/login.png" alt="User" style="width: 150px; height: 150px; margin-top: 20px; margin-bottom: 20px;">
+                            <p style="color: #7589fc;">"Access personalized medical services tailored just for you"</p>
+                            <button class="btn btn-primary" style="color: #030812; font-weight: 700;" onclick="window.location.href='userlogin.html'">User Register</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-1 d-flex flex-column align-items-center">
+                        <div class="register-card p-4" style="background-color: rgba(2, 7, 17, 0.9); border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                            <h3 style="color: #7589fc; font-weight: 500; font-size: 2rem;">For Hospitals</h3>
+                            <img src="images/hospital.png" alt="Hospital" style="width: 150px; height: 150px; margin-top: 20px; margin-bottom: 20px;">
+                            <p style="color: #7589fc;">"Partner with us to provide top-notch services to our users"</p>
+                            <button class="btn btn-primary" style="color: #030812; font-weight: 700;" onclick="window.location.href='hospitallogin.html'">Hospital Register</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <br><br>
+
+        <footer style="padding: 0; margin: 0; background-color: rgba(2, 7, 17, 0.9); max-width: 100%; height: 70px;">
+            <p style="color: #7589fc; text-align: center; margin-top: 20px">© 2023 All Rights Reserved. Quick Medical Services
+            </p>
+        </footer>
+    </div>
+</body>
+
+</html>
