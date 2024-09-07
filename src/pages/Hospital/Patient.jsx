@@ -108,39 +108,24 @@ function Patient({ hospitalId }) {
 					</div>
 				</div>
 
-				{/* <!-- Table of reports of user --> */}
 				<h2 className='pb-2 border-bottom'>Patient reports</h2>
 				<div className='p-4 bg-white card table-responsive rounded-3'>
-					<table className='table  table-borderless'>
+					<table className='table table-borderless'>
 						<thead className='thead-light'>
 							<tr>
 								<th scope='col'>Date</th>
-								<th scope='col'>Name of Report</th>
-								<th scope='col'>Documents</th>
+								<th scope='col'>Report</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>01/09/2024</td>
-								<td>Blood Test Report</td>
-								<td>
-									<a href='#'>Document 1</a>
-								</td>
-							</tr>
-							<tr>
-								<td>15/08/2024</td>
-								<td>X-Ray Analysis</td>
-								<td>
-									<a href='#'>Document 2</a>
-								</td>
-							</tr>
-							<tr>
-								<td>05/07/2024</td>
-								<td>ECG Report</td>
-								<td>
-									<a href='#'>Document 3</a>
-								</td>
-							</tr>
+							{reports?.map((i, j) => (
+								<tr id='j'>
+									<td>{i.date.toDate().toLocaleDateString('en-CA')}</td>
+									<td>
+										<a href={i.url}>{i.file}</a>
+									</td>
+								</tr>
+							))}
 						</tbody>
 					</table>
 				</div>

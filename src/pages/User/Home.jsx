@@ -1,111 +1,139 @@
 function Home() {
 	return (
 		<>
-			<div className='container py-4 d-flex flex-column align-items-center min-vh-100 bg-white text-dark'>
-				<p className='mb-0 text-left fs-5 w-100 fw-bold font-nunito'>
-					<i>
-						Our Web-Application is your all-in-one solution for managing health records,
-						<br />
-						medications, and schedules. It ensures that medical information is always organized,
-						<br /> accessible, and secure.
-						<br />
-						<br /> Whether you're tracking personal health or managing patient care,
-						<br /> our platform simplifies the process, helping you stay informed and on top of your health with ease.
-					</i>
-				</p>
-				<div className='container my-4'>
-					<div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5'>
-						{/* Card 1 */}
-						<div className='col'>
-							<a href='/user/reports' className='text-decoration-none'>
-								<div className='border border-dark h-100 rounded-3 border-dark d-flex flex-column justify-content-center align-items-center hover-zoom'>
-									<img
-										src='/images/Records.svg'
-										className='my-3'
-										alt='Card Image 1'
-										style={{
-											height: '200px',
-											width: '200px',
-											objectFit: 'contain'
-										}}
-									/>
-									<div className='overflow-hidden text-center '>
-										<p className='fw-bold fs-5 '>
-											Securely store and
-											<br />
-											access all your medical documents in one place
-										</p>
-									</div>
-									<hr className='my-2 border-2 border-dark' />
-									<div className='c-footer overflow-hidden text-center'>
-										<p className='btn btn-primary fs-3 mb-2'>
-											Reports <img style={{ width: '45px', height: '45px', margin: '0px' }} src='/images/double_arrow.svg' alt='arrow' />
-										</p>
-									</div>
-								</div>
-							</a>
+			<div className='container my-5'>
+				<div className='row align-items-center'>
+					<div className='col-md-6 text-center text-md-start mb-4 mb-md-0'>
+						<img src='/images/DoctorAndPatient.svg' alt='Logo' className='img-fluid' />
+					</div>
+					<div className='col-md-6 text-center text-md-start'>
+						<h1 className='custom-header' style={{ fontFamily: "Nunito', sans-serif", fontWeight: 500 }}>
+							Book your appointments here
+						</h1>
+						<button
+							className='btn custom-btn mt-4'
+							style={{
+								borderRadius: '20px',
+								fontSize: '30px',
+								width: '200px',
+								fontFamily: "'Nunito', sans-serif",
+								fontWeight: 800,
+								backgroundColor: '#03071f',
+								color: '#5970ee'
+							}}
+						>
+							Get Started
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<br />
+			<div className='blogs container p-5' style={{ backgroundColor: '#081722', borderRadius: '20px' }}>
+				<div className='row row-cols-1 row-cols-md-3 g-5'>
+					<div className='col'>
+						<div
+							className='blog-card p-3'
+							style={{ backgroundColor: 'rgba(2, 7, 17, 0.9)', borderRadius: '12px', textAlign: 'left', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)' }}
+						>
+							<div className='mt-3' style={{ backgroundColor: '#7589fc', width: '100%', borderRadius: '12px' }}>
+								<img style={{ margin: '10px', width: '90%', height: '90%' }} src='/images/health-check.png' alt='Blog 1' />
+							</div>
+							<div className='blog-content'>
+								<h3 className='mt-3' style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#b0bec5' }}>
+									Reports
+								</h3>
+								<p style={{ fontSize: '1rem', color: '#b0bec5', lineHeight: '1.5', marginBottom: '1.5rem' }}>
+									Securely store and access all your medical documents in one place.
+								</p>
+								<button
+									className='btn btn-primary'
+									style={{
+										borderRadius: '20px',
+										fontSize: '20px',
+										width: '100px',
+										fontFamily: "'Nunito', sans-serif",
+										fontWeight: 700,
+										backgroundColor: '#95a8f3',
+										color: '#03071f'
+									}}
+								>
+									View
+								</button>
+							</div>
 						</div>
-						{/* Repeat for other cards */}
-						{/* Card 2 */}
-						<div className='col'>
-							<a href='/user/prescription' className='text-decoration-none'>
-								<div className='border border-dark h-100 rounded-3 border-dark d-flex flex-column justify-content-center align-items-center hover-zoom'>
-									<img
-										src='/images/medicine_Bottle_code.svg'
-										className='my-3'
-										alt='Card Image 2'
-										style={{
-											height: '200px',
-											width: '200px',
-											objectFit: 'contain'
-										}}
-									/>
-									<div className='text-center'>
-										<p className='fw-bold fs-5'>
-											Track and manage
-											<br />
-											your medications effortlessly
-										</p>
-									</div>
-									<hr className='my-2 border-2 border-dark' />
-									<div className='c-footer text-center'>
-										<p className='btn btn-primary fs-3 mb-2'>
-											Medicines <img style={{ width: '45px', height: '45px', margin: '0px' }} src='/images/double_arrow.svg' alt='arrow' />
-										</p>
-									</div>
-								</div>
-							</a>
+					</div>
+					<div className='col'>
+						<div
+							className='blog-card p-3'
+							style={{ backgroundColor: 'rgba(2, 7, 17, 0.9)', borderRadius: '12px', textAlign: 'left', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)' }}
+						>
+							<div className='mt-3' style={{ backgroundColor: '#7589fc', width: '100%', borderRadius: '12px' }}>
+								<img style={{ margin: '10px', width: '90%', height: '90%' }} src='/images/syringe.png' alt='Blog 2' />
+							</div>
+							<div className='blog-content'>
+								<h3 className='mt-3' style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#b0bec5' }}>
+									Medicines
+								</h3>
+								<p style={{ fontSize: '1rem', color: '#b0bec5', lineHeight: '1.5', marginBottom: '1.5rem' }}>
+									Keep track of all your medications in one place.
+								</p>
+								<button
+									className='btn btn-primary'
+									style={{
+										borderRadius: '20px',
+										fontSize: '20px',
+										width: '100px',
+										fontFamily: "'Nunito', sans-serif",
+										fontWeight: 700,
+										backgroundColor: '#95a8f3',
+										color: '#03071f'
+									}}
+								>
+									View
+								</button>
+							</div>
 						</div>
-						{/* Card 3 */}
-						<div className='col'>
-							<a href='/user/scheduler' className='text-decoration-none'>
-								<div className='border border-dark h-100 rounded-3 d-flex flex-column justify-content-center align-items-center'>
-									<img
-										src='/images/stopwatch.svg'
-										className='my-3'
-										alt='Card Image 3'
-										style={{
-											height: '200px',
-											width: '200px',
-											objectFit: 'contain'
-										}}
-									/>
-									<div className='card-body text-center'>
-										<p className='fw-bold fs-5'>Stay on schedule with timely reminders for your medications</p>
-									</div>
-									<hr className='my-2 border-2 border-dark' />
-									<div className='text-center '>
-										<p className='btn btn-primary fs-3 mb-2'>
-											Scheduler
-											<img style={{ width: '45px', height: '45px', margin: '0px' }} src='/images/double_arrow.svg' alt='arrow' />
-										</p>
-									</div>
-								</div>
-							</a>
+					</div>
+					<div className='col'>
+						<div
+							className='blog-card p-3'
+							style={{ backgroundColor: 'rgba(2, 7, 17, 0.9)', borderRadius: '12px', textAlign: 'left', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)' }}
+						>
+							<div className='mt-3' style={{ backgroundColor: '#7589fc', width: '100%', borderRadius: '12px' }}>
+								<img style={{ margin: '10px', width: '90%', height: '90%' }} src='/images/schedule.png' alt='Blog 3' />
+							</div>
+							<div className='blog-content'>
+								<h3 className='mt-3' style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#b0bec5' }}>
+									Scheduler
+								</h3>
+								<p style={{ fontSize: '1rem', color: '#b0bec5', lineHeight: '1.5', marginBottom: '1.5rem' }}>
+									Stay on schedules with timely reminders for your medications.
+								</p>
+								<button
+									className='btn btn-primary'
+									style={{
+										borderRadius: '20px',
+										fontSize: '20px',
+										width: '100px',
+										fontFamily: "'Nunito', sans-serif",
+										fontWeight: 700,
+										backgroundColor: '#95a8f3',
+										color: '#03071f'
+									}}
+								>
+									View
+								</button>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+
+			<br />
+			<footer style={{ padding: 0, margin: 0, backgroundColor: 'rgba(2, 7, 17, 0.9)', maxWidth: '100%', height: '70px' }}>
+				<p style={{ color: '#7589fc', textAlign: 'center', marginTop: '20px' }}>© 2023 All Rights Reserved. MediCare</p>
+			</footer>
 		</>
 	)
 }
