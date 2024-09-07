@@ -76,6 +76,7 @@ const Navbar = ({ userId }) => {
 										color: 'rgba(2, 7, 17, 0.9)'
 									}}
 									type='submit'
+									onClick={() => signOut(auth)}
 								>
 									Logout
 								</button>

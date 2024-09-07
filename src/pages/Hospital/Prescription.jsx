@@ -89,7 +89,7 @@ function Prescription() {
 				<h2 className='pb-2 border-bottom mb-4'>Prescription</h2>
 
 				<form onSubmit={getPatient} className='d-flex align-items-center col-5 my-4'>
-					<input name='id' className='form-control me-2' placeholder='Enter patient id' required defaultValue={'o5MWcFo5etQcGohwy5FX4gdfmg13'} />
+					<input name='id' className='form-control me-2' placeholder='Enter patient id' required />
 					<button className='btn btn-primary'>Go</button>
 				</form>
 
