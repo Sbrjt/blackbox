@@ -28,7 +28,7 @@ const Navbar = ({ userId }) => {
 										className='nav-link'
 										style={{ color: '#95a8f3', fontSize: '1.6rem', fontFamily: "'Nunito', sans-serif", fontWeight: 800 }}
 										aria-current='page'
-										href='/user/home'
+										href='/user'
 									>
 										Home
 									</a>
@@ -47,18 +47,18 @@ const Navbar = ({ userId }) => {
 										className='nav-link'
 										style={{ color: '#95a8f3', fontSize: '1.6rem', fontFamily: "'Nunito', sans-serif", fontWeight: 800 }}
 										aria-current='page'
-										href='/user/scheduler'
+										href='/user/medicine'
 									>
-										Scheduler
+										Medicine
 									</a>
 								</li>
 								<li className='nav-item mx-4'>
 									<a
 										className='nav-link'
 										style={{ color: '#95a8f3', fontSize: '1.6rem', fontFamily: "'Nunito', sans-serif", fontWeight: 800 }}
-										href='#'
+										href='/user/appointment'
 									>
-										Help
+										Appointment
 									</a>
 								</li>
 							</ul>
@@ -82,7 +82,7 @@ const Navbar = ({ userId }) => {
 								</button>
 							</div>
 						) : (
-							<button
+							<a
 								className='btn btn-outline-success'
 								style={{
 									backgroundColor: '#95a8f3',
@@ -92,10 +92,10 @@ const Navbar = ({ userId }) => {
 									fontWeight: 800,
 									color: 'rgba(2, 7, 17, 0.9)'
 								}}
-								type='submit'
+								href='/user/login'
 							>
 								Login
-							</button>
+							</a>
 						)}
 					</div>
 				</div>
