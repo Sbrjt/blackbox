@@ -43,10 +43,11 @@ function Prescription() {
 
 	async function addPill(e) {
 		e.preventDefault()
-		const { drug, qty, unit, dosage, instruction } = e.target.elements
+		const { drug, endDate, qty, unit, dosage, instruction } = e.target.elements
 
 		const newpill = {
 			drug: drug.value,
+			endDate: endDate.value,
 			qty: parseInt(qty.value),
 			unit: unit.value,
 			dosage: dosage.value,
@@ -131,7 +132,13 @@ function Prescription() {
 										))}
 									</datalist>
 								</div>
-								<div className='d-flex justify-content-between col-5 my-auto'>
+								<div className='col-3 me-5 '>
+									<div className='input-group'>
+										<span class='input-group-text'>End date</span>
+										<input name='endDate' type='date' className='form-control' />
+									</div>
+								</div>
+								<div className='d-flex justify-content-between col-4 my-auto'>
 									<div className='form-check'>
 										<input className='form-check-input' type='radio' name='dosage' value='Daily' id='daily' defaultChecked />
 										<label className='form-check-label' htmlFor='daily'>
