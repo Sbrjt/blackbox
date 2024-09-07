@@ -117,7 +117,7 @@ function UserReports({ userId }) {
 					</div>
 					{reports?.map((i) => (
 						<div className='col px-3 py-4' key={i.id}>
-							<a href={i.url} target='_blank' rel='noreferrer' style={{ textDecoration: 'none' }} className='card p-5 h-100  rounded-4'>
+							<a href={i.url} target='_blank' rel='noreferrer' style={{ textDecoration: 'none' }} className='card p-5 h-100 rounded-4'>
 								<div className='card-body'>
 									{i.file.endsWith('.pdf') ? (
 										<img src='/images/pdf.png' className='card-img-top img-fluid pb-4' alt='Medical Report 2' />

@@ -3,7 +3,7 @@ import { auth, signOut } from '../../fb'
 const Navbar = ({ hospitalId }) => {
 	return (
 		<>
-<nav className='navbar navbar-expand-lg navbar-light' style={{ backgroundColor: 'rgba(2, 7, 17, 0.9)' }}>
+			<nav className='navbar navbar-expand-lg navbar-light' style={{ backgroundColor: 'rgba(2, 7, 17, 0.9)' }}>
 				<div className='container-fluid'>
 					<a className='navbar-brand' href='/user/profile'>
 						<img src='/images/login.png' alt='Logo' width='40' height='40' className='d-inline-block align-text-top' />
@@ -28,7 +28,7 @@ const Navbar = ({ hospitalId }) => {
 										className='nav-link'
 										style={{ color: '#95a8f3', fontSize: '1.6rem', fontFamily: "'Nunito', sans-serif", fontWeight: 800 }}
 										aria-current='page'
-										href='/hospital/login'
+										href='/hospital'
 									>
 										Home
 									</a>
@@ -49,10 +49,10 @@ const Navbar = ({ hospitalId }) => {
 										aria-current='page'
 										href='/hospital/patients'
 									>
-										Users
+										Patients
 									</a>
 								</li>
-								<li className='nav-item mx-4'>
+								{/* <li className='nav-item mx-4'>
 									<a
 										className='nav-link'
 										style={{ color: '#95a8f3', fontSize: '1.6rem', fontFamily: "'Nunito', sans-serif", fontWeight: 800 }}
@@ -60,7 +60,7 @@ const Navbar = ({ hospitalId }) => {
 									>
 										Help
 									</a>
-								</li>
+								</li> */}
 							</ul>
 						</div>
 						{hospitalId ? (
@@ -100,8 +100,8 @@ const Navbar = ({ hospitalId }) => {
 					</div>
 				</div>
 			</nav>
-            </>
-            	)
-            }
-            
-            export default Navbar
+		</>
+	)
+}
+
+export default Navbar
