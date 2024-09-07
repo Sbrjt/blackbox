@@ -1,13 +1,21 @@
 import { useEffect, useState } from 'react'
-import { doc, firestore, getDoc, collection, setDoc, onSnapshot, orderBy, query } from '../../fb'
+import { doc, firestore, getDoc, collection, setDoc, onSnapshot, orderBy, query, getDocs } from '../../fb'
 
 function Patient({ hospitalId }) {
 	const [patient, setPatient] = useState()
+	const [reports, setReports] = useState()
+	const [medicines, setMedicines] = useState()
 
 	async function getPatient(id) {
 		try {
 			let snap = await getDoc(doc(firestore, 'users', id))
-			setPatient({ ...snap.data(), id: id.value })
+			setPatient({ ...snap.data(), id: id })
+
+			snap = await getDocs(query(collection(firestore, 'users', id, 'reports'), orderBy('date')))
+			setReports(snap.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+
+			snap = await getDocs(query(collection(firestore, 'users', id, 'medicines')))
+			setMedicines(snap.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
 
 			// snap = await getDoc(doc(firestore, 'hospitals', hospitalId, 'users', id))
 			// setPatient({ ...patient, ...snap })
@@ -26,6 +34,8 @@ function Patient({ hospitalId }) {
 
 	return (
 		<div className=' bg-light '>
+			{console.table(reports)}
+			{console.table(medicines)}
 			<div className='container px-4 py-5'>
 				<h2 className='pb-2 border-bottom'>Patient details</h2>
 
@@ -101,8 +111,8 @@ function Patient({ hospitalId }) {
 				{/* <!-- Table of reports of user --> */}
 				<h2 className='pb-2 border-bottom'>Patient reports</h2>
 				<div className='p-4 bg-white card table-responsive rounded-3'>
-					<table class='table  table-borderless'>
-						<thead class='thead-light'>
+					<table className='table  table-borderless'>
+						<thead className='thead-light'>
 							<tr>
 								<th scope='col'>Date</th>
 								<th scope='col'>Name of Report</th>
