@@ -4,8 +4,6 @@ import CreatableSelect from 'react-select/creatable'
 import { pdf } from '@react-pdf/renderer'
 import Pdf from './Pdf'
 
-import './css/Prescription.css'
-
 function Prescription() {
 	const [patient, setPatient] = useState()
 	const [drugList, setDrugList] = useState()

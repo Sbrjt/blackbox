@@ -1,5 +1,3 @@
-import './css/UserHome.css'
-
 function Home() {
 	return (
 		<>

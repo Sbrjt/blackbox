@@ -20,7 +20,6 @@ import {
 	query,
 	orderBy
 } from '../../fb'
-import './css/report.css'
 
 function UserReports({ userId }) {
 	const [newUpload, setNewUpload] = useState()
@@ -70,66 +69,81 @@ function UserReports({ userId }) {
 
 	return (
 		<>
-			<div className='container content'>
-				<div className='row'>
-					<div className='col-md-3'>
-						<div className='card  text-center'>
+			<div className='container  my-4'>
+				<div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 mb-3 text-center '>
+					<div className='col px-3 py-4'>
+						<div className='card border-info h-100 rounded-4'>
 							<form onSubmit={upload}>
-								{!newUpload && (
+								{newUpload ? (
+									<div className='m-3 card-body p-3'>
+										<button className='border-0' style={{ backgroundColor: 'transparent' }}>
+											<i className='bi bi-file-earmark-arrow-up' style={{ fontSize: '9em' }}></i>
+										</button>
+										<input id='filename' className='form-control' defaultValue={newUpload ? newUpload.name : ''} required />
+										<button className='btn btn-primary mt-3'>Upload</button>
+									</div>
+								) : (
 									<button
 										type='button'
-										className='border-0'
+										className='border-0 card-body'
 										style={{ backgroundColor: 'transparent' }}
 										onClick={() => {
 											fileInputRef.current.click()
 										}}
 									>
-										<i className='bi bi-plus-circle' style={{ fontSize: '10em' }}></i>
-										<input
-											type='file'
-											accept='image/*,.pdf'
-											onChange={(e) => {
-												setNewUpload(e.target.files[0])
-											}}
-											className='d-none'
-											ref={fileInputRef}
-										/>
-										<p>Add report</p>
-									</button>
-								)}
-								{newUpload && (
-									<div className='m-3'>
-										<button type='button' className='border-0' style={{ backgroundColor: 'transparent' }}>
-											<i className='bi bi-filetype-pdf' style={{ fontSize: '10em' }}></i>
-										</button>
-										<button className='border-0' style={{ backgroundColor: 'transparent' }}>
-											<i className='bi bi-file-earmark-arrow-up' style={{ fontSize: '10em' }}></i>
-										</button>
-										<div className='input-group '>
-											<input id='filename' className='form-control' defaultValue={newUpload ? newUpload.name : ''} />
-											<button className='btn btn-primary'>Upload</button>
+										<div className='card-body'>
+											{/* <img
+												src='/images/plus-circle.svg'
+												className='card-img-top img-fluid pb-4'
+												alt='Medical Report 2'
+												style={{ width: '100%', height: 'auto' }} // Ensures image fills width while maintaining aspect ratio
+											/> */}
+											<i className='bi bi-plus-circle' style={{ fontSize: '8em' }}></i>
+											<input
+												type='file'
+												accept='image/*,.pdf'
+												onChange={(e) => {
+													setNewUpload(e.target.files[0])
+												}}
+												className='d-none'
+												ref={fileInputRef}
+											/>
+											<h5 className='cabg-white pt-4 px-0'>Add report</h5>
 										</div>
-									</div>
+									</button>
 								)}
 							</form>
 						</div>
 					</div>
-
-					{reports
-						? reports.map((i) => (
-								<div className='col-md-3' key={i.id}>
-									<div className='card1'>
-										<a href={i.url} target='_blank' rel='noreferrer' style={{ textDecoration: 'none' }}>
-											<img src='/images/pdf.png' className='card-img-top' alt='Medical Report 2' />
-											<div className='card-body'>
-												<h5 className='card-title'>{i.file}</h5>
-												<small>{i.date.toDate().toLocaleDateString('en-CA')}</small>
-											</div>
-										</a>
-									</div>
+					{reports?.map((i) => (
+						<div className='col px-3 py-4' key={i.id}>
+							<a href={i.url} target='_blank' rel='noreferrer' style={{ textDecoration: 'none' }} className='card p-5 h-100  rounded-4'>
+								<div className='card-body'>
+									{i.file.endsWith('.pdf') ? (
+										<img src='/images/pdf.png' className='card-img-top img-fluid pb-4' alt='Medical Report 2' />
+									) : (
+										<img src='/images/gallery.png' className='card-img-top img-fluid pb-4' alt='Medical Report 2' />
+									)}
 								</div>
-						  ))
-						: 'Loading...'}
+								<div className='card-footer bg-white pt-4 px-0'>
+									<h5
+										className='card-title'
+										style={{
+											whiteSpace: 'nowrap',
+											overflowX: 'auto',
+											overflowY: 'hidden',
+											msOverflowStyle: 'none',
+											scrollbarWidth: 'none',
+											WebkitOverflowScrolling: 'touch'
+										}}
+									>
+										{i.file}
+									</h5>
+									<small>{i.date.toDate().toLocaleDateString('en-CA')}</small>
+								</div>
+							</a>
+						</div>
+					))}
 				</div>
 			</div>
 		</>

@@ -20,16 +20,17 @@ function LoginUser(userId = { id }) {
 		e.preventDefault()
 		const { name, email, pwd } = e.target.elements
 		try {
-			await createUserWithEmailAndPassword(auth, email.value, pwd.value)
+			const usr = await createUserWithEmailAndPassword(auth, email.value, pwd.value)
+
+			await setDoc(doc(firestore, 'users', usr.user.uid), {
+				name: name.value,
+				email: usr.user.email
+			})
+
 			window.location.href = '/user'
 		} catch (err) {
 			alert(err)
 		}
-
-		await setDoc(doc(firestore, 'users', usr.user.uid), {
-			name: name.value,
-			email: usr.user.email
-		})
 	}
 
 	return (

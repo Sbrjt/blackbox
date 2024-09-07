@@ -20,7 +20,6 @@ import {
 	query,
 	orderBy
 } from '../../fb'
-import './css/UserProfile.css'
 
 function UserProfile({ userId }) {
 	const [data, setData] = useState('')

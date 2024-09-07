@@ -1,10 +1,11 @@
+import { auth, onAuthStateChanged } from '../fb'
+import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Login from './Hospital/Login'
 import Register from './Hospital/Register'
 import Prescription from './Hospital/Prescription'
+import Patient from './Hospital/Patient'
 import Patients from './Hospital/Patients'
-import { useEffect, useState } from 'react'
-import { auth, onAuthStateChanged } from '../fb'
 
 function User() {
 	const [id, setId] = useState()
@@ -25,6 +26,7 @@ function User() {
 				<Route path='register' element={<Register />} />
 				<Route path='prescription' element={<Prescription hospitalId={id} />} />
 				<Route path='patients' element={<Patients hospitalId={id} />} />
+				<Route path='patient' element={<Patient hospitalId={id} />} />
 			</Routes>
 		</>
 	)

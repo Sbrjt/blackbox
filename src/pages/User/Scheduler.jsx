@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import './css/scheduler.css'
 import {
 	auth,
 	doc,

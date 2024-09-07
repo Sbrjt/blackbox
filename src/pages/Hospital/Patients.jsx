@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { doc, firestore, getDoc, collection, setDoc, onSnapshot, orderBy, query } from '../../fb'
 
 function Patients({ hospitalId }) {
@@ -6,6 +6,8 @@ function Patients({ hospitalId }) {
 	const [patients, setPatients] = useState()
 	const [selectedId, setSelectedId] = useState()
 	const [selectedPatient, setSelectedPatient] = useState()
+
+	const formRef = useRef(null)
 
 	useEffect(() => {
 		if (hospitalId) {
@@ -57,47 +59,104 @@ function Patients({ hospitalId }) {
 		}
 	}
 
-	return (
-		<>
-			<h1>Patients</h1>
+	useEffect(() => {
+		document.getElementById('exampleModal').addEventListener('hidden.bs.modal', () => {
+			formRef.current.reset()
+			setNewPatient()
+		})
+	}, [])
 
-			<div>
-				Add new patient:
-				{!newPatient && (
-					<form onSubmit={getNewPatient}>
-						<input name='id' placeholder='Enter patient id' required />
-						<button>Go</button>
-					</form>
-				)}
-				{newPatient && (
-					<>
-						<div>
-							<div>Name: {newPatient.name}</div>
-							<div>Email: {newPatient.email}</div>
-							<div>Phone: {newPatient.phone}</div>
-						</div>
-						<button onClick={addNewPatient}>Add</button>
-						<button
-							onClick={() => {
-								setNewPatient()
-							}}
-						>
-							Cancel
+	return (
+		<div className='container mt-5 px-md-5 px-3'>
+			{/* headers */}
+			<div className=' row justify-content-sm-between mx-auto'>
+				<div className='col-sm-auto '>
+					<h1>Patients</h1>
+				</div>
+				<div className='col-sm-auto text-md-start row mx-md-0 mx-auto'>
+					<div className='col-sm-auto px-0 me-sm-2 mb-2 mb-sm-0 '>
+						<button className='btn btn-primary col-12 col-sm-auto' data-bs-toggle='modal' data-bs-target='#exampleModal'>
+							<i className='bi bi-plus-circle me-sm-2'></i>
+							Add patient
 						</button>
-					</>
-				)}
+					</div>
+					<div className='col-sm-auto px-0'>
+						<div className='input-group col-12 col-sm-auto'>
+							<span className='input-group-text ' id='basic-addon1' style={{ backgroundColor: 'transparent' }}>
+								<i className='bi bi-search'></i>
+							</span>
+							<input className='form-control border-start-0' type='search' placeholder='Search patients' />
+						</div>
+					</div>
+				</div>
 			</div>
 
-			<div>
-				{patients
-					? patients.map((i) => (
-							<button key={i.id} onClick={() => setSelectedId(i.id)}>
-								<p>{i.id}</p>
-								<p>{i.name}</p>
-								<br />
+			{/* modal */}
+			<div className='modal fade' id='exampleModal' tabIndex='-1'>
+				<div className='modal-dialog '>
+					<div className='modal-content'>
+						<div className='modal-header'>
+							<div className='input-group m-3  ps-2 ms-2'>
+								<form onSubmit={getNewPatient} className='mx-auto' ref={formRef}>
+									<div className='input-group '>
+										<input type='text' className='form-control' name='id' placeholder='Enter patient id to search' required />
+										<button className='btn btn-danger' id='basic-addon1'>
+											<i className='bi bi-search'></i>
+										</button>
+									</div>
+								</form>
+							</div>
+						</div>
+						{newPatient && (
+							<div className='modal-body mx-5 my-3'>
+								<div>
+									<div>Name: {newPatient.name}</div>
+									<div>Email: {newPatient.email}</div>
+									<div>Phone: {newPatient.phone}</div>
+									<div>Blood gr: {newPatient.blood}</div>
+								</div>
+							</div>
+						)}
+						<div className='modal-footer'>
+							<button type='button' className='btn btn-primary' disabled={!newPatient} onClick={addNewPatient}>
+								Add
 							</button>
-					  ))
-					: 'Loading...'}
+							<button type='button' className='btn btn-secondary' data-bs-dismiss='modal'>
+								Close
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			{/* all patients */}
+			<div className='row row-cols-1 row-cols-sm-2 row-cols-lg-3 my-3 my-lg-5'>
+				{patients?.map((i) => (
+					<div className='col px-3 py-2' key={i.id}>
+						<div className='card h-100 rounded-4 p-4'>
+							{/* <a href={i.url} target='_blank' rel='noreferrer' style={{ textDecoration: 'none' }} className='card h-100  rounded-4'> */}
+							<a
+								href={'/hospital/patient?id=' + i.id}
+								target='_blank'
+								rel='noreferrer'
+								style={{ textDecoration: 'none', color: 'black' }}
+								className='d-flex justify-content-evenly my-auto'
+							>
+								<div className='col-4 my-auto me-4 me-sm-2 me-lg-4'>
+									<img src='/images/avatar.svg' className='rounded-start  img-fluid' alt='...' />
+								</div>
+								<div className='my-auto  mx-2'>
+									<h4 className='card-title mb-0'>{i.name}</h4>
+									<small className='text-body-secondary card-text' style={{ fontSize: '0.5em' }}>
+										{i.id}
+									</small>
+									<p className='card-text'>{i.reason || 'Checkup'}</p>
+								</div>
+							</a>
+							{/* </a> */}
+						</div>
+					</div>
+				))}
 			</div>
 
 			{selectedPatient && (
@@ -106,7 +165,7 @@ function Patients({ hospitalId }) {
 					<p>Email: {selectedPatient.email}</p>
 				</>
 			)}
-		</>
+		</div>
 	)
 }
 
