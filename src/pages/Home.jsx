@@ -313,7 +313,7 @@ function Home() {
 									<button
 										className='btn btn-primary'
 										style={{ color: '#030812', fontWeight: 700 }}
-										onClick={() => (window.location.href = 'userlogin.html')}
+										onClick={() => (window.location.href = 'user/login')}
 									>
 										User Register
 									</button>
@@ -339,7 +339,7 @@ function Home() {
 									<button
 										className='btn btn-primary'
 										style={{ color: '#030812', fontWeight: 700 }}
-										onClick={() => (window.location.href = 'hospitallogin.html')}
+										onClick={() => (window.location.href = 'hospital/login')}
 									>
 										Hospital Register
 									</button>
