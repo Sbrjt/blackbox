@@ -47,9 +47,9 @@ const Navbar = ({ userId }) => {
 										className='nav-link'
 										style={{ color: '#95a8f3', fontSize: '1.6rem', fontFamily: "'Nunito', sans-serif", fontWeight: 800 }}
 										aria-current='page'
-										href='/user/scheduler'
+										href='/user/medicine'
 									>
-										Scheduler
+										Medicine
 									</a>
 								</li>
 								<li className='nav-item mx-4'>
