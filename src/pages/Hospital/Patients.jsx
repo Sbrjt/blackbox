@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { doc, firestore, getDoc, collection, setDoc, onSnapshot, orderBy, query } from '../../fb'
+import Navbar from './Navbar'
 
 function Patients({ hospitalId }) {
 	const [newPatient, setNewPatient] = useState()
@@ -67,6 +68,7 @@ function Patients({ hospitalId }) {
 	}, [])
 
 	return (
+		<>
 		<div className='container mt-5 px-md-5 px-3'>
 			{/* headers */}
 			<div className=' row justify-content-sm-between mx-auto'>
@@ -166,6 +168,7 @@ function Patients({ hospitalId }) {
 				</>
 			)}
 		</div>
+		</>
 	)
 }
 

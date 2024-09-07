@@ -6,7 +6,7 @@ import Register from './Hospital/Register'
 import Prescription from './Hospital/Prescription'
 import Patient from './Hospital/Patient'
 import Patients from './Hospital/Patients'
-
+import Navbar from './Hospital/Navbar'
 function User() {
 	const [id, setId] = useState()
 
@@ -21,6 +21,7 @@ function User() {
 
 	return (
 		<>
+		    <Navbar hospitalId={id} />
 			<Routes>
 				<Route path='login' element={<Login />} />
 				<Route path='register' element={<Register />} />

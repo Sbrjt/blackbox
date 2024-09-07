@@ -3,6 +3,7 @@ import { doc, firestore, getDoc, storage, uploadBytes, ref, getDownloadURL, addD
 import CreatableSelect from 'react-select/creatable'
 import { pdf } from '@react-pdf/renderer'
 import Pdf from './Pdf'
+import Navbar from './Navbar'
 
 function Prescription() {
 	const [patient, setPatient] = useState()
@@ -84,6 +85,7 @@ function Prescription() {
 	}
 
 	return (
+		<>
 		<div className='bg-light h-100'>
 			<div className='container px-4 py-5'>
 				<h2 className='pb-2 border-bottom mb-4'>Prescription</h2>
@@ -221,6 +223,7 @@ function Prescription() {
 				)}
 			</div>
 		</div>
+		</>
 	)
 }
 
