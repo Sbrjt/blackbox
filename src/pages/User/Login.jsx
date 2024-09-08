@@ -52,9 +52,25 @@ function LoginUser(userId = { id }) {
           <div className="container mt-4 content">
             <div className="row align-items-center ">
               <div className="col-lg-6 text-center text-lg-start mb-4 mb-lg-0 ms-10">
-                <div className="hero-text ms-10">
-                  <h1>Hello!..</h1>
-                  <p style={{ color: 'black', fontWeight: 'bold' }}>
+                <div className="hero-text ">
+                  <h1
+                    style={{
+                      color: 'black',
+                      fontWeight: 'bold',
+                      fontSize: '5rem',
+                      fontFamily: "'Nunito', sans-serif",
+                    }}
+                  >
+                    Hello!..
+                  </h1>
+                  <p
+                    style={{
+                      color: 'black',
+                      fontWeight: 'bold',
+                      fontSize: '2rem',
+                      fontFamily: "'Nunito', sans-serif",
+                    }}
+                  >
                     Medical Management Made Simple...
                   </p>
                 </div>
@@ -70,10 +86,14 @@ function LoginUser(userId = { id }) {
                   className="card-custom mx-auto"
                   style={{ width: '100%', maxWidth: '300px' }}
                 >
-                  <div className=" text-center">
+                  <div
+                    className=" text-center  p-4"
+                    
+                  >
                     <form onSubmit={register}>
                       <div className="mb-4">
                         <img
+                          style={{ height: '200px', width: '200px;' }}
                           src="/images/login.png"
                           alt="Profile Picture"
                           className="rounded-circle profile-img"
@@ -103,7 +123,17 @@ function LoginUser(userId = { id }) {
                           placeholder="Password"
                         />
                       </div>
-                      <button type="submit" className="btn btn-primary w-100">
+                      <button
+                        type="submit"
+                        className="btn btn-custom w-100"
+                        style={{
+                          fontSize: '1.4rem',
+                          fontWeight: 800,
+                          backgroundColor: 'rgb(18, 18, 95)',
+                          color: '#aaacf7',
+                          fontFamily: "'Nunito', sans-serif",
+                        }}
+                      >
                         Register
                       </button>
                     </form>
@@ -123,8 +153,11 @@ function LoginUser(userId = { id }) {
                       borderRadius: '20px',
                       marginTop: '10px',
                       padding: '10px',
-                      color: 'blue',
+                      color: '#aaacf7',
                       width: '30%',
+                      backgroundColor: 'rgb(18, 18, 95)',
+                      fontWeight: 'bold',
+                      fontFamily: "'Nunito', sans-serif",
                     }}
                     onClick={() => setReg(false)}
                   >
@@ -136,9 +169,8 @@ function LoginUser(userId = { id }) {
           </div>
         </div>
       )}
-
       {!reg && (
-        <div>
+        <div >
           <div className="container mt-4 content">
             <div className="row align-items-center">
               <div
@@ -146,8 +178,18 @@ function LoginUser(userId = { id }) {
                 style={{ marginLeft: '5px' }}
               >
                 <div className="hero-text">
-                  <h1>Hello!..</h1>
-                  <p style={{ color: 'black', fontWeight: 'bold' }}>
+                  <h1 style={{
+                      color: 'black',
+                      fontWeight: 'bold',
+                      fontSize: '5rem',
+                      fontFamily: "'Nunito', sans-serif",
+                    }}>Hello!..</h1>
+                  <p  style={{
+                      color: 'black',
+                      fontWeight: 'bold',
+                      fontSize: '2rem',
+                      fontFamily: "'Nunito', sans-serif",
+                    }}>
                     Medical Management Made Simple...
                   </p>
                 </div>
@@ -167,6 +209,7 @@ function LoginUser(userId = { id }) {
                     <form onSubmit={login}>
                       <div className="mb-4">
                         <img
+						style={{ height: '200px', width: '200px;' }}
                           src="/images/login.png"
                           alt="Profile Picture"
                           className="rounded-circle profile-img"
@@ -188,10 +231,13 @@ function LoginUser(userId = { id }) {
                           placeholder="Password"
                         />
                       </div>
-                      <button
-                        type="submit"
-                        className="w-100 btn btn-primary"
-                      >
+                      <button type="submit" className="btn btn-custom w-100" style={{
+                          fontSize: '1.4rem',
+                          fontWeight: 800,
+                          backgroundColor: 'rgb(18, 18, 95)',
+                          color: '#aaacf7',
+                          fontFamily: "'Nunito', sans-serif",
+                        }}>
                         Login
                       </button>
                     </form>
@@ -207,12 +253,16 @@ function LoginUser(userId = { id }) {
                   }}
                 >
                   New User? <br />
-                  <button className='btn btn-outline-primary'
-                    style={{
+                  <button
+                   style={{
                       borderRadius: '20px',
                       marginTop: '10px',
                       padding: '10px',
+                      color: '#aaacf7',
                       width: '30%',
+                      backgroundColor: 'rgb(18, 18, 95)',
+                      fontWeight: 'bold',
+                      fontFamily: "'Nunito', sans-serif",
                     }}
                     onClick={() => setReg(true)}
                   >
@@ -225,13 +275,7 @@ function LoginUser(userId = { id }) {
         </div>
       )}
 
-      {/* <button
-				// onClick={() => {
-					signOut(auth)
-				}}
-			>
-				Log out
-			</button> */}
+      
     </>
   )
 }
