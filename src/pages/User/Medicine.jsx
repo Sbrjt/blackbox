@@ -42,7 +42,7 @@ function Medicine({ userId }) {
 		})
 	}
 
-	const history = (title, filterCondition) => {
+	const schedule = (title, filterCondition) => {
 		const filteredMedicines = medicines.filter((i) => i.instruction.includes(filterCondition))
 
 		if (filteredMedicines.length === 0) {
@@ -158,16 +158,16 @@ function Medicine({ userId }) {
 			<div className='container px-md-5 px-3 py-5'>
 				<h2 className='pb-2 border-bottom mb-4'>Your Schedule</h2>
 
-				{history('Morning', 'Morning')}
-				{history('Before Breakfast', 'Before Breakfast')}
-				{history('After Breakfast', 'After Breakfast')}
-				{history('Before Lunch', 'Before Lunch')}
-				{history('After Lunch', 'After Lunch')}
-				{history('Evening', 'Evening')}
-				{history('Before Dinner', 'Before Dinner')}
-				{history('After Dinner', 'After Dinner')}
-				{history('Before Bed', 'Before Bed')}
-				{history('Default', null)}
+				{schedule('Morning', 'Morning')}
+				{schedule('Before Breakfast', 'Before Breakfast')}
+				{schedule('After Breakfast', 'After Breakfast')}
+				{schedule('Before Lunch', 'Before Lunch')}
+				{schedule('After Lunch', 'After Lunch')}
+				{schedule('Evening', 'Evening')}
+				{schedule('Before Dinner', 'Before Dinner')}
+				{schedule('After Dinner', 'After Dinner')}
+				{schedule('Before Bed', 'Before Bed')}
+				{schedule('Default', null)}
 			</div>
 		</div>
 	)
