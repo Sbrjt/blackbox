@@ -6,7 +6,7 @@ const Navbar = ({ userId }) => {
 			<nav className='navbar navbar-expand-lg navbar-light' style={{ backgroundColor: 'rgba(2, 7, 17, 0.9)' }}>
 				<div className='container-fluid'>
 					<a className='navbar-brand' href='/user/profile'>
-						<img src='/images/login.png' alt='Logo' width='40' height='40' className='d-inline-block align-text-top' />
+						<img src='/images/login.png' alt='Logo' height='40' className='d-inline-block align-text-top' />
 					</a>
 					<button
 						style={{ backgroundColor: '#95a8f3' }}
@@ -14,9 +14,6 @@ const Navbar = ({ userId }) => {
 						type='button'
 						data-bs-toggle='collapse'
 						data-bs-target='#navbarSupportedContent'
-						aria-controls='navbarSupportedContent'
-						aria-expanded='false'
-						aria-label='Toggle navigation'
 					>
 						<span className='navbar-toggler-icon'></span>
 					</button>
