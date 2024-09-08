@@ -31,6 +31,15 @@ body {
 	color: #4368fc;
 }
 
+.abc:hover {
+	transform: translateY(-5px);
+}
+
+/* body{
+	background-color: #95a8f3;
+	color: #03071f;
+} */
+
 @keyframes fadeInUp {
 	from {
 		opacity: 0;

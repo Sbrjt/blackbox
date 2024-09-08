@@ -42,7 +42,7 @@ function Medicine({ userId }) {
 		})
 	}
 
-	const renderSection = (title, filterCondition) => {
+	const history = (title, filterCondition) => {
 		const filteredMedicines = medicines.filter((i) => i.instruction.includes(filterCondition))
 
 		if (filteredMedicines.length === 0) {
@@ -51,13 +51,13 @@ function Medicine({ userId }) {
 
 		return (
 			<>
-				<h3 className='mx-5 mt-5'>{title}</h3>
-				<div className='bg-white rounded-4 p-0 pt-3 card m-5'>
+				<h4 className='mt-5'>{title}</h4>
+				<div className='rounded-4 p-0 pt-3 card m-0'>
 					<ul className='list-unstyled'>
 						{filteredMedicines.map((i) => (
 							<li key={i.id} className='mb-3 d-flex justify-content-center'>
 								<div className='d-flex align-items-center justify-content-between bg-white border rounded p-3 w-75 shadow-sm'>
-									<img src='../../../images/bellIcon.svg' className='bellIcon me-3' alt='Notification Icon' />
+									<img src='/images/bellIcon.svg' className='bellIcon me-3' alt='Notification Icon' />
 									<p className='medicineName fw-bold mb-0'>{i.drug}</p>
 									<p className='pill mb-0'>
 										{i.unit}:{i.qty}
@@ -72,9 +72,11 @@ function Medicine({ userId }) {
 	}
 
 	return (
-		<div>
-			{userId && (
-				<>
+		<div className=' bg-light h-100'>
+			<div className='container px-md-5 px-3 py-5'>
+				<h2 className='pb-2 border-bottom mb-4'>Add to Schedule</h2>
+
+				<div className=''>
 					<form onSubmit={addPill}>
 						<button className='btn btn-success mb-2'>
 							<i className='bi bi-plus-circle me-2'></i>
@@ -150,23 +152,22 @@ function Medicine({ userId }) {
 							</div>
 						</div>
 					</form>
+				</div>
+			</div>
 
-					{/* <button className='btn btn-primary  btn-lg my-4' onClick={createPrescription}>
-				Done <i className='bi bi-check-lg'></i>
-			</button> */}
-				</>
-			)}
-			<div className='bg-light'>
-				{renderSection('Morning', 'Morning')}
-				{renderSection('Before Breakfast', 'Before Breakfast')}
-				{renderSection('After Breakfast', 'After Breakfast')}
-				{renderSection('Before Lunch', 'Before Lunch')}
-				{renderSection('After Lunch', 'After Lunch')}
-				{renderSection('Evening', 'Evening')}
-				{renderSection('Before Dinner', 'Before Dinner')}
-				{renderSection('After Dinner', 'After Dinner')}
-				{renderSection('Before Bed', 'Before Bed')}
-				{renderSection('Default', null)}
+			<div className='container px-md-5 px-3 py-5'>
+				<h2 className='pb-2 border-bottom mb-4'>Your Schedule</h2>
+
+				{history('Morning', 'Morning')}
+				{history('Before Breakfast', 'Before Breakfast')}
+				{history('After Breakfast', 'After Breakfast')}
+				{history('Before Lunch', 'Before Lunch')}
+				{history('After Lunch', 'After Lunch')}
+				{history('Evening', 'Evening')}
+				{history('Before Dinner', 'Before Dinner')}
+				{history('After Dinner', 'After Dinner')}
+				{history('Before Bed', 'Before Bed')}
+				{history('Default', null)}
 			</div>
 		</div>
 	)

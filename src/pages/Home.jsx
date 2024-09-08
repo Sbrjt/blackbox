@@ -149,7 +149,7 @@ function Home() {
 						<div className='row text-center'>
 							<div className='col-lg-4 col-md-6 mb-4'>
 								<div
-									className='service-card p-4'
+									className='abc p-4'
 									style={{
 										backgroundColor: 'rgba(2, 7, 17, 0.9)',
 										borderRadius: '12px',
@@ -164,7 +164,7 @@ function Home() {
 							</div>
 							<div className='col-lg-4 col-md-6 mb-4'>
 								<div
-									className='service-card p-4'
+									className='abc p-4'
 									style={{
 										backgroundColor: 'rgba(2, 7, 17, 0.9)',
 										borderRadius: '12px',
@@ -181,7 +181,7 @@ function Home() {
 							</div>
 							<div className='col-lg-4 col-md-6 mb-4'>
 								<div
-									className='service-card p-4'
+									className='abc p-4'
 									style={{
 										backgroundColor: 'rgba(2, 7, 17, 0.9)',
 										borderRadius: '12px',
@@ -351,11 +351,12 @@ function Home() {
 
 				<br />
 				<br />
-
-				<footer style={{ padding: 0, margin: 0, backgroundColor: 'rgba(2, 7, 17, 0.9)', maxWidth: '100%', height: '70px' }}>
-					<p style={{ color: '#7589fc', textAlign: 'center', marginTop: '20px' }}>© 2023 All Rights Reserved. Quick Medical Services</p>
-				</footer>
 			</div>
+			<footer style={{ backgroundColor: 'rgba(2, 7, 17, 0.9)' }} className='py-5'>
+				<p style={{ color: '#7589fc', textAlign: 'center' }} className='my-auto'>
+					© 2023 All Rights Reserved. Quick Medical Services
+				</p>
+			</footer>
 		</div>
 	)
 }
