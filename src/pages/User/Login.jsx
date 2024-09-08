@@ -33,7 +33,7 @@ function LoginUser(userId = { id }) {
 	}
 
 	return (
-		<>
+		<div className='p-5 h-100'>
 			{reg && (
 				<div>
 					<div className='container mt-4 content'>
@@ -229,7 +229,7 @@ function LoginUser(userId = { id }) {
 					</div>
 				</div>
 			)}
-		</>
+		</div>
 	)
 }
 

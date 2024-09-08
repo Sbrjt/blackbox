@@ -1,7 +1,7 @@
 function Home() {
 	return (
-		<>
-			<div className='container my-5'>
+		<div style={{ backgroundColor: '#95a8f3', color: '#03071f' }} className='pt-5'>
+			<div className='container'>
 				<div className='row align-items-center'>
 					<div className='col-md-6 text-center text-md-start mb-4 mb-md-0'>
 						<img src='/images/DoctorAndPatient.svg' alt='Logo' className='img-fluid' />
@@ -46,21 +46,22 @@ function Home() {
 								<p style={{ fontSize: '1rem', color: '#b0bec5', lineHeight: '1.5', marginBottom: '1.5rem' }}>
 									Securely store and access all your medical documents in one place.
 								</p>
-								<p href="/hospital/reports"><button
-									className='btn btn-primary'
-									style={{
-										borderRadius: '20px',
-										fontSize: '20px',
-										width: '100px',
-										fontFamily: "'Nunito', sans-serif",
-										fontWeight: 700,
-										backgroundColor: '#95a8f3',
-										color: '#03071f'
-									}}
-								>
-									View
-								</button></p>
-								
+								<p href='/hospital/reports'>
+									<button
+										className='btn btn-primary'
+										style={{
+											borderRadius: '20px',
+											fontSize: '20px',
+											width: '100px',
+											fontFamily: "'Nunito', sans-serif",
+											fontWeight: 700,
+											backgroundColor: '#95a8f3',
+											color: '#03071f'
+										}}
+									>
+										View
+									</button>
+								</p>
 							</div>
 						</div>
 					</div>
@@ -79,21 +80,22 @@ function Home() {
 								<p style={{ fontSize: '1rem', color: '#b0bec5', lineHeight: '1.5', marginBottom: '1.5rem' }}>
 									Keep track of all your medications in one place.
 								</p>
-								<a href="/hospital/medicine"><button
-									className='btn btn-primary'
-									style={{
-										borderRadius: '20px',
-										fontSize: '20px',
-										width: '100px',
-										fontFamily: "'Nunito', sans-serif",
-										fontWeight: 700,
-										backgroundColor: '#95a8f3',
-										color: '#03071f'
-									}}
-								>
-									View
-								</button></a>
-								
+								<a href='/hospital/medicine'>
+									<button
+										className='btn btn-primary'
+										style={{
+											borderRadius: '20px',
+											fontSize: '20px',
+											width: '100px',
+											fontFamily: "'Nunito', sans-serif",
+											fontWeight: 700,
+											backgroundColor: '#95a8f3',
+											color: '#03071f'
+										}}
+									>
+										View
+									</button>
+								</a>
 							</div>
 						</div>
 					</div>
@@ -112,21 +114,22 @@ function Home() {
 								<p style={{ fontSize: '1rem', color: '#b0bec5', lineHeight: '1.5', marginBottom: '1.5rem' }}>
 									Easily book appointments with the industry levels doctors.
 								</p>
-								<a href="/user/appointment"><button
-									className='btn btn-primary'
-									style={{
-										borderRadius: '20px',
-										fontSize: '20px',
-										width: '100px',
-										fontFamily: "'Nunito', sans-serif",
-										fontWeight: 700,
-										backgroundColor: '#95a8f3',
-										color: '#03071f'
-									}}
-								>
-									View
-								</button></a>
-								
+								<a href='/user/appointment'>
+									<button
+										className='btn btn-primary'
+										style={{
+											borderRadius: '20px',
+											fontSize: '20px',
+											width: '100px',
+											fontFamily: "'Nunito', sans-serif",
+											fontWeight: 700,
+											backgroundColor: '#95a8f3',
+											color: '#03071f'
+										}}
+									>
+										View
+									</button>
+								</a>
 							</div>
 						</div>
 					</div>
@@ -137,7 +140,7 @@ function Home() {
 			<footer style={{ padding: 0, margin: 0, backgroundColor: 'rgba(2, 7, 17, 0.9)', maxWidth: '100%', height: '70px' }}>
 				<p style={{ color: '#7589fc', textAlign: 'center', marginTop: '20px' }}>© 2023 All Rights Reserved. MediCare</p>
 			</footer>
-		</>
+		</div>
 	)
 }
 
