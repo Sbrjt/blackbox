@@ -73,6 +73,7 @@ function Medicine({ userId }) {
 
 	return (
 		<div>
+		    <div className='container px-4 py-5'>
 			{userId && (
 				<>
 					<form onSubmit={addPill}>
@@ -150,12 +151,12 @@ function Medicine({ userId }) {
 							</div>
 						</div>
 					</form>
-
+					
 					{/* <button className='btn btn-primary  btn-lg my-4' onClick={createPrescription}>
 				Done <i className='bi bi-check-lg'></i>
 			</button> */}
 				</>
-			)}
+			)}</div>
 			<div className='bg-light'>
 				{renderSection('Morning', 'Morning')}
 				{renderSection('Before Breakfast', 'Before Breakfast')}
