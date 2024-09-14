@@ -10,7 +10,8 @@ function Home() {
 						<h1 className='custom-header' style={{ fontFamily: "Nunito', sans-serif", fontWeight: 500 }}>
 							Book your appointments here
 						</h1>
-						<button
+						<a
+							href='/user/appointment'
 							className='btn custom-btn mt-4'
 							style={{
 								borderRadius: '20px',
@@ -23,7 +24,7 @@ function Home() {
 							}}
 						>
 							Get Started
-						</button>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -46,7 +47,7 @@ function Home() {
 								<p style={{ fontSize: '1rem', color: '#b0bec5', lineHeight: '1.5', marginBottom: '1.5rem' }}>
 									Securely store and access all your medical documents in one place.
 								</p>
-								<p href='/hospital/reports'>
+								<a href='/user/reports'>
 									<button
 										className='btn btn-primary'
 										style={{
@@ -61,7 +62,7 @@ function Home() {
 									>
 										View
 									</button>
-								</p>
+								</a>
 							</div>
 						</div>
 					</div>
@@ -80,7 +81,7 @@ function Home() {
 								<p style={{ fontSize: '1rem', color: '#b0bec5', lineHeight: '1.5', marginBottom: '1.5rem' }}>
 									Keep track of all your medications in one place.
 								</p>
-								<a href='/hospital/medicine'>
+								<a href='/user/medicine'>
 									<button
 										className='btn btn-primary'
 										style={{
